@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="Station">
+
+	<select id="info"  resultType="map"    parameterType="int">
+		SELECT * FROM Tower_info WHERE t_id=#{id}
+	</select>
+
+
+	<select id="list"  resultType="map" parameterType="map">
+
+		SELECT t_id,t_name,t_city,t_county ,t_version ,t_cg_time,t_cg_u_id  FROM Tower_info WHERE  t_new_sign=1 and t_status=1
+		<if test="t_name != '' and  t_name != null">
+			and  t_name=#{t_name}
+		</if>
+		<if test="t_city != '' and t_city != null">
+			and t_city = #{t_city}
+		</if>
+		<if test="t_county != '' and  t_county != null">
+			and t_county = #{t_county}
+		</if>
+		order by  t_cg_time  desc limit #{pageIndex}, #{pageSize}
+	</select>
+
+
+
+	<select id="getVID"  resultType="map"   parameterType="string">
+ 			SELECT t_id,t_version  FROM Tower_info WHERE    t_status=1   and  t_group=#{t_group} order by  t_version  desc
+	</select>
+	
+	
+	
+	<delete id="del" parameterType="map">
+		<![CDATA[
+			delete from users where id = #{id}
+		]]>
+	</delete>
+ 
+	
+	<update id="upd" parameterType="map">
+ 
+			update t_status  set  t_cg_time = now(),t_cg_u_id=#{t_cg_u_id}
+			<if test="t_name != '' and  t_name != null">,t_name = #{t_name}</if>
+			<if test="t_city != '' and  t_city != null">,t_city = #{t_city}</if>
+			<if test="t_county != '' and  t_county != null">,t_county = #{t_county}</if>
+			<if test="t_township != '' and  t_township != null">,t_township = #{t_township}</if>
+			<if test="t_address != '' and  t_address != null">,t_address = #{t_address}</if>
+			<if test="t_longitude != '' and  t_longitude != null">,t_longitude = #{t_longitude}</if>
+			<if test="t_latitude != '' and  t_latitude != null">,t_latitude = #{t_latitude}</if>
+			<if test="t_accuracy != '' and  t_accuracy != null">,t_accuracy = #{t_accuracy}</if>
+			<if test="t_altitude != '' and  t_altitude != null">,t_altitude = #{t_altitude}</if>
+			<if test="t_build_date != '' and  t_build_date != null">,t_build_date = #{t_build_date}</if>
+			<if test="t_purpose != '' and  t_purpose != null">,t_purpose = #{t_purpose}</if>
+			<if test="t_parent != '' and  t_parent != null">,t_parent = #{t_parent}</if>
+			<if test="t_distance != '' and  t_distance != null">,t_distance = #{t_distance}</if>
+			<if test="t_move != '' and  t_move != null">,t_move = #{t_move}</if>
+			<if test="t_version != '' and  t_version != null">,t_version = #{t_version}</if>
+			<if test="t_group != '' and  t_group != null">,t_group = #{t_group}</if>
+			
+			<if test="p_primary != '' and  p_primary != null">,p_primary = #{p_primary}</if>
+			<if test="p_standby != '' and  p_standby != null">,p_standby = #{p_standby}</if>
+			<if test="p_t_capacity != '' and  p_t_capacity != null">,p_t_capacity = #{p_t_capacity}</if>
+			<if test="p_t_quantity != '' and  p_t_quantity != null">,p_t_quantity = #{p_t_quantity}</if>
+			<if test="p_t_load != '' and  p_t_load != null">,p_t_load = #{p_t_load}</if>
+			<if test="p_a_power != '' and  p_a_power != null">,p_a_power = #{p_a_power}</if>
+			<if test="p_u_capacity != '' and  p_u_capacity != null">,p_u_capacity = #{p_u_capacity}</if>
+			<if test="p_u_quantity != '' and  p_u_quantity != null">,p_u_quantity = #{p_u_quantity}</if>
+			<if test="p_u_load != '' and  p_u_load != null">,p_u_load = #{p_u_load}</if>
+			<if test="p_m_capacity != '' and  p_m_capacity != null">,p_m_capacity = #{p_m_capacity}</if>
+			<if test="p_m_quantity != '' and  p_m_quantity != null">,p_m_quantity = #{p_m_quantity}</if>		
+			<if test="p_m_load != '' and  p_m_load != null">,p_m_load = #{p_m_load}</if>	
+			<if test="p_resistance != '' and  p_resistance != null">,p_resistance = #{p_resistance}</if>		
+			where t_id=#{t_id}
+ 
+	</update>
+	
+	
+	<insert id="add" parameterType="map">
+		<![CDATA[
+			insert into t_status  (t_c_time,t_c_u_id)  values (#{t_c_time},#{t_c_u_id})
+		]]>
+	</insert>
+</mapper>
