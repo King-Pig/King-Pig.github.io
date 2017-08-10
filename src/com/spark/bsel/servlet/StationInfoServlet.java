@@ -37,23 +37,24 @@ public class StationInfoServlet  extends HttpServlet {
 		StationDao sd = new StationDao();
 		if("querylist".equals(method)){
 			int pageSize = 10;
-			Map<String,String>  map = new HashMap<String,String>();
+			Map<String,Object>  map = new HashMap<String,Object>();
 			
 			String str_page = request.getParameter("page");
 			if(str_page == null || "".equals(str_page)) str_page = "1";
 			int page = Integer.parseInt(str_page);
-			map.put("pageIndex", (page-1) * pageSize);
+			map.put("pageIndex",  (page-1) * pageSize);
 			map.put("pageSize", pageSize);
-/*			map.put("t_name", request.getParameter("t_name"));
+			map.put("t_name", request.getParameter("t_name"));
 			map.put("t_city", request.getParameter("t_city"));
-			map.put("t_county", request.getParameter("t_county"));*/
+			map.put("t_county", request.getParameter("t_county"));
 
-			map.put("t_name", "");
+/*			map.put("t_name", "");
 			map.put("t_city", "");
 			map.put("t_county", "");
-			
-			//sd.queryStationList(map);
+			*/
+			sd.queryStationList(map);
 			JSONObject  o = JSONObject.fromObject(map);
+
 			out.write(o.toString());
 		}else if("queryinfo".equals(method)){
 			String t_id = request.getParameter("t_id");
