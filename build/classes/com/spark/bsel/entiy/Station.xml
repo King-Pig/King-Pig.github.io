@@ -7,6 +7,21 @@
 	</select>
 
 
+
+	<select id="count"  resultType="int"  parameterType="map">
+ 		SELECT count(*)   FROM Tower_info WHERE  t_new_sign=1 and t_status=1
+		<if test="t_name != '' and  t_name != null">
+			and  t_name=#{t_name}
+		</if>
+		<if test="t_city != '' and t_city != null">
+			and t_city = #{t_city}
+		</if>
+		<if test="t_county != '' and  t_county != null">
+			and t_county = #{t_county}
+		</if>
+	</select>
+
+
 	<select id="list"  resultType="map" parameterType="map">
 
 		SELECT t_id,t_name,t_city,t_county ,t_version ,t_cg_time,t_cg_u_id  FROM Tower_info WHERE  t_new_sign=1 and t_status=1
@@ -75,9 +90,9 @@
 	</update>
 	
 	
-	<insert id="add" parameterType="map">
+	<insert id="add" parameterType="int"  useGeneratedKeys="true"  keyProperty="id" >
 		<![CDATA[
-			insert into t_status  (t_c_time,t_c_u_id)  values (#{t_c_time},#{t_c_u_id})
+			insert into t_status  (t_c_time,t_c_u_id)  values (now(),#{t_c_u_id})
 		]]>
 	</insert>
 </mapper>

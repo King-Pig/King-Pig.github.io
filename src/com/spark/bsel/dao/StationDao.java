@@ -6,24 +6,52 @@ import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
+import com.spark.bsel.util.MybatisUtil;
+import com.spark.bsel.util.PageUtil;
+
  
 
 public class StationDao {
 
 	
-	
-	public void queryInfo(PageUtil<User> page) {
+	public Map<String,Object> queryInfo(int id){
 		SqlSession session = MybatisUtil.getSession();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("num1", page.getIndex() * page.getSize());
-		map.put("num2", (page.getIndex() - 1) * page.getSize());
-		List<User> list = session.selectList("UserInfo.all", map);
-		page.setCount((Integer) session.selectOne("UserInfo.count"));
-		page.setList(list);
+		Map<String,Object>  u = session.selectOne("Station.info", id);
+		MybatisUtil.closeSession();
+		return u;
+		
+		
+	}
+	
+	
+	public void queryStationList(Map<String,Object>  map) {
+		SqlSession session = MybatisUtil.getSession();
+		List<Map<String,Object>> list = session.selectList("Station.list", map);
+		map.put("list", list);
+		map.put("count", (Integer) session.selectOne("Station.count"));
 		MybatisUtil.closeSession();
 	}
+	
+	
 
-	public int del(int id) {
+
+	public int insertStationInfo(int user_id){
+		SqlSession session = MybatisUtil.getSession();
+		int i = session.insert("Station.add", user_id);
+		MybatisUtil.closeSession();
+		return i;
+	}
+
+	
+	public int updateStationInfo(Map<String,Object>  map){
+		SqlSession session = MybatisUtil.getSession();
+		int i = session.update("Station.upd", map);
+		MybatisUtil.closeSession();
+		return i;
+	}
+	
+	
+/*	public int del(int id) {
 		SqlSession session = MybatisUtil.getSession();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("id", id);
@@ -31,15 +59,8 @@ public class StationDao {
 		session.commit();
 		MybatisUtil.closeSession();
 		return num;
-	}
+	}*/
 
-	public User ById(int id) {
-		SqlSession session = MybatisUtil.getSession();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("id", id);
-		User u = session.selectOne("UserInfo.ById", map);
-		MybatisUtil.closeSession();
-		return u;
-	}
+
 	
 }

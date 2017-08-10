@@ -6,7 +6,7 @@
 			<transactionManager type="jdbc" />
 			<dataSource type="pooled">
 				<property name="driver" value="com.mysql.jdbc.Driver" />
-				<property name="url" value="jdbc:mysql://115.159.6.25:3308/test?useUnicode=true&characterEncoding=UTF-8" />
+				<property name="url" value="jdbc:mysql://115.159.6.25:3308/test" />
 				<property name="username" value="root" />
 				<property name="password" value="dbplus03" />
 			</dataSource>
@@ -14,6 +14,5 @@
 	</environments>
 	<mappers>
 		<mapper resource="com/spark/bsel/entiy/Station.xml" />
- 
 	</mappers>
 </configuration>
