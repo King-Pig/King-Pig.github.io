@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="Device">
+
+<!-- 设备操作 device -->
+	<select id="d_list"  resultType="map"    parameterType="int">
+		SELECT * FROM device_info WHERE t_id=#{id}
+	</select>
+	<select id="d_info"  resultType="map"    parameterType="int">
+		SELECT * FROM device_info WHERE d_id=#{id}
+	</select>
+	<insert id="d_add"  parameterType="map" >
+			insert into device_info  (t_id,d_type,d_frequency,d_r_power,d_t_power,d_program,d_m_m,d_i_interface,d_m_b,d_multiple,d_f_type,d_f_polarity,d_f_direction,d_f_h,d_f_c_type,d_f_length)  values (#{t_id},#{d_type},#{d_frequency},#{d_r_power},#{d_t_power},#{d_program},#{d_m_m},#{d_i_interface},#{d_m_b},#{d_multiple},#{d_f_type},#{d_f_polarity},#{d_f_direction},#{d_f_h},#{d_f_c_type},#{d_f_length))
+	</insert>
+	<update id="d_update"  parameterType="map"  >
+		   UPDATE device_info set d_frequency=#{d_frequency},d_r_power=#{d_r_power},d_t_power=#{d_t_power},d_program=#{d_program},d_m_m=#{d_m_m},d_i_interface=#{d_i_interface},d_m_b=#{d_m_b},d_multiple=#{d_multiple},d_f_type=#{d_f_type},d_f_polarity=#{d_f_polarity},d_f_direction=#{d_f_direction},d_f_h=#{d_f_h},d_f_c_type=#{d_f_c_type},d_f_length=#{d_f_length)  where d_id=#{d_id}
+	</update>
+	<delete id="d_del"  parameterType="int">
+			delete from device_info  where d_id = #{id}
+	</delete>
+	
+<!-- 微波设备microwave -->
+ 	<select id="m_list"  resultType="map"    parameterType="int">
+		SELECT * FROM microwave WHERE t_id=#{id}
+	</select>
+	 <select id="m_info"  resultType="map"    parameterType="int">
+		SELECT * FROM microwave WHERE m_id=#{id}
+	</select>
+	<delete id="m_del"  parameterType="int">
+			delete from microwave  where m_id = #{id}
+	</delete>
+		<insert id="m_add"  parameterType="map" >
+			insert into microwave  (t_id,m_name,m_t_frequency,m_t_capacity,m_u_capacity,m_t_content)  values ( #{t_id},#{m_name},#{m_t_frequency},#{m_t_capacity},#{m_u_capacity},#{m_t_content})
+	</insert>
+	<update id="m_update"  parameterType="map"  >
+		   UPDATE microwave  set   m_name=#{m_name},m_t_frequency=#{m_t_frequency},m_t_capacity=#{m_t_capacity},m_u_capacity=#{m_u_capacity},m_t_content=#{m_t_content}   where m_id=#{m_id}
+	</update>
+	
+
+<!-- 光缆设备 optical-->
+	<select id="o_list"  resultType="map"    parameterType="int">
+		SELECT * FROM optical_cable WHERE t_id=#{id}
+	</select>
+	<select id="o_info"  resultType="map"    parameterType="int">
+		SELECT * FROM optical_cable WHERE o_id=#{id}
+	</select>
+	<delete id="o_del"  parameterType="int">
+			delete from optical_cable  where o_id = #{id}
+	</delete>
+	<insert id="o_add"  parameterType="map" >
+			insert into optical_cable  (t_id,o_direction,o_c_count,o_t_capacity,o_p_content,o_c_free,o_s_format,o_s_code)  values (#{t_id},#{o_direction},#{o_c_count},#{o_t_capacity},#{o_p_content},#{o_c_free},#{o_s_format},#{o_s_code})
+	</insert>
+	<update id="o_update"  parameterType="map"  >
+		   UPDATE optical_cable set  o_direction=#{o_direction},o_direction=#{o_c_count},o_t_capacity=#{o_t_capacity},o_p_content=#{o_p_content},o_c_free=#{o_c_free},o_s_format=#{o_s_format},o_s_code=#{o_s_code}  where o_id=#{o_id}
+	</update>
+	
+<!-- 卫星 satellite-->
+	<select id="s_list"  resultType="map"    parameterType="int">
+		SELECT * FROM satellite_info WHERE t_id=#{id}
+	</select>
+	<select id="s_info"  resultType="map"    parameterType="int">
+		SELECT * FROM satellite_info WHERE s_id=#{id}
+	</select>
+	<delete id="s_del"  parameterType="int">
+			delete from satellite_info  where s_id = #{id}
+	</delete>
+	<insert id="s_add"  parameterType="map" >
+			insert into device_info  ( t_id,s_name,s_a_caliber,s_p_content)  values ( #{t_id},#{s_name},#{s_a_caliber},#{s_p_content})
+	</insert>
+	<update id="s_update"  parameterType="map"  >
+		   UPDATE device_info set  s_name=#{s_name},s_a_caliber=#{s_a_caliber},s_p_content=#{s_p_content}  where s_id=#{s_id}
+	</update>
+
+
+
+</mapper>

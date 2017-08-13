@@ -10,12 +10,13 @@
 <button type="button" class="btn btn-success  btn-lg" onclick="list()" >     list        </button>
 <button type="button" class="btn btn-success  btn-lg" onclick="info()" >  info    </button>
 <button type="button" class="btn btn-success  btn-lg" onclick="inster()" >   inster   </button>
+<button type="button" class="btn btn-success  btn-lg" onclick="update()" >   update   </button>
 <div id="show"> </div>
 </body>
 
 <script>
  		 function list(){
- 			$.post("./StationInfo",{'method':'querylist','page':'1','t_name':'昆明'},function(result){
+ 			$.post("./StationInfo",{'method':'querylist','page':'1','t_city':'昆明'},function(result){
  			    $("#show").html(result);
  			  });
 		 }
@@ -33,6 +34,11 @@
    			  });
   		 }
  		 
+ 		 function update(){
+    			$.post("./StationInfo",{'method':'update','t_id':'6','t_cg_u_id':'1','t_status':'1','t_new_sign':'1','t_name':'昆明xxxx台站','t_city':'昆明','t_longitude':'24.8859360126','t_latitude':'102.8396611228','t_accuracy':'10'},function(result){
+    			    $("#show").html(result);
+    			  });
+   		 } 
 </script> 
 
 

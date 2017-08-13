@@ -19,9 +19,17 @@ public class StationDao {
 		Map<String,Object>  u = session.selectOne("Station.info", id);
 		MybatisUtil.closeSession();
 		return u;
-		
-		
+
 	}
+	
+	
+	public List<Map<String,Object>> group_city_count(){
+		SqlSession session = MybatisUtil.getSession();
+		List<Map<String,Object>> list  = session.selectList("Station.city_count");
+		MybatisUtil.closeSession();
+		return list;
+	}
+	
 	
 	
 	public void queryStationList(Map<String,Object>  map) {
@@ -35,17 +43,22 @@ public class StationDao {
 	
 
 
-	public int insertStationInfo(int user_id){
+	public String insertStationInfo(int user_id){
 		SqlSession session = MybatisUtil.getSession();
-		int i = session.insert("Station.add", user_id);
+		Map<String,Object>  map = new HashMap<String,Object>  ();
+		map.put("t_c_u_id", user_id);
+		session.insert("Station.add", map);
+		long i =(long)map.get("t_id");
+		session.commit(); 
 		MybatisUtil.closeSession();
-		return i;
+		return  String.valueOf(i);
 	}
 
 	
 	public int updateStationInfo(Map<String,Object>  map){
 		SqlSession session = MybatisUtil.getSession();
 		int i = session.update("Station.upd", map);
+		session.commit(); 
 		MybatisUtil.closeSession();
 		return i;
 	}
