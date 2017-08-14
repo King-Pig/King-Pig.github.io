@@ -63,13 +63,6 @@
 						<li class="divider"></li>
 						<li><a href="#">
 								<div>
-									<i class="fa  fa-search fa-fw"></i> 高级查询
-								</div>
-						</a></li>
-						
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
 									<i class="fa  fa-file-word-o fa-fw"></i> 导出报告
 								</div>
 						</a></li>
@@ -103,7 +96,7 @@
 						</li>
 
 						<div style="margin-top:30px;text-align:center;" id="city_loading">
-						<img src="../img/loading.gif" height="32" width="32" />
+						<img src="../img/loading1.gif" height="32" width="32" />
 						</div>
 					</ul>
 				</div>
@@ -125,7 +118,7 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <span class="" style='color:#666666'>最近编辑 </span>
+                            <span class="">最近编辑 </span>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -134,9 +127,8 @@
 									<tr>
 									<th  >市</th>
 									<th  >台站名称</th>
-									<th> 版本</th>
 									<th  >最后编辑时间</th>
-									<th  >操作</th>
+									<th style="width: 180px;">操作</th>
 									</tr>
 								</thead>
 								<tbody id="datalist">
@@ -191,7 +183,7 @@
 					$.each(data,function(i, item) {
 						html += "<li  class='' id='city_li"+ i+ "'  onclick='city_station("+ i+ ","+ item.num+ ",\""+ item.city+ "\")'   ><a href='#' ><i class='fa fa-map-marker fa-fw'></i>"+ item.city;
 						if (item.num > 0)
-								html += "  &nbsp; &nbsp;<span class='badge '>"+ item.num+ "</span> &nbsp; &nbsp; <img id='loading_"+i+"' src='../img/loading2.gif'  style='display:none;'/>";
+								html += "  &nbsp; &nbsp;<span class='badge '>"+ item.num+ "</span>";
 								html += "<span class='fa arrow'></span></a> <ul class='nav nav-second-level' id='city"+i+"' ></ul></li>";
 						});
 
@@ -210,8 +202,6 @@
 					var cityid = "#city" + id;
 					if ($(cityid).html().length == 0) {
 						$("#city" + id).attr("class","nav nav-second-level collapsing");
-						$("#loading_" + id).show();
-						
 						$.post("../StationInfo", {
 							'method' : 'querylist',
 							'page' : '1',
@@ -221,8 +211,8 @@
 						}, function(data) {
 							console.log(data); //  2pm
 							var html = "";
-							$.each(data.list, function(i, item) { 
-								html += "<li>   <a href='#' onclick='openstation("+ item.t_id + ")'><span class='glyphicon glyphicon-pawn' style='color:#cccccc'></span>   " + item.t_name+ "</a></li>";
+							$.each(data.list, function(i, item) {
+								html += "<li><a href='#' onclick='openstation("+ item.t_id + ")'>" + item.t_name+ "</a></li>";
 							});
 							$(cityid).html(html);
 
@@ -230,7 +220,7 @@
 							$("#city" + id).attr("style", "");
 							$("#city" + id).attr("class","nav nav-second-level collapse in");
 							$("#city" + id).attr("aria-expanded", "true");
-							$("#loading_" + id).hide();
+
 						}, "json");
 
 					} else {
@@ -266,11 +256,9 @@
 					_html_arr.push('<tr class="">');
 					_html_arr.push('<td>' + item.t_city + '</td>');
 					_html_arr.push('<td>' + item.t_name + '</td>');
-					_html_arr.push('<td>V ' + item.t_version + '</td>');
 					_html_arr.push('<td>' + item.t_cg_time + '</td><td>');
-					_html_arr.push('<button type="button" onclick="window.location.href=\'./station_info.jsp?t_id=' + item.t_id + '\'" style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">编辑</button>');
-					_html_arr.push('<button type="button" onclick="report('+item.t_id+')" style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">报告</button>');
-					_html_arr.push('<button type="button" onclick="del('+item.t_id+')" style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">删除</button>');
+					_html_arr.push('<button type="button" onclick="window.location.href=\'./station_info.jsp?t_id=' + item.t_id + '\'" style="margin-left: 10px;" class="btn btn-success btn-xs">编辑</button>');
+					_html_arr.push('<button type="button" onclick="report('+item.t_id+')" style="margin-left: 10px;" class="btn btn-success btn-xs">报告</button>');
 					_html_arr.push('</td>');
                 	_html_arr.push('</tr>');
 				});
