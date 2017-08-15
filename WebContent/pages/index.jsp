@@ -132,11 +132,11 @@
 							<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 								<thead>
 									<tr>
-									<th  >市</th>
-									<th  >台站名称</th>
+									<th >市</th>
+									<th >台站名称</th>
 									<th> 版本</th>
-									<th  >最后编辑时间</th>
-									<th  >操作</th>
+									<th >最后编辑时间</th>
+									<th >操作</th>
 									</tr>
 								</thead>
 								<tbody id="datalist">

@@ -51,53 +51,49 @@
 
 			<ul class="nav navbar-top-links navbar-right">
 
-				<!-- /.dropdown -->
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-th fa-fw"></i> <i class="fa fa-caret-down"></i>
-				</a>
-					<ul class="dropdown-menu dropdown-alerts">
-						<li><a href="#">
-								<div>
-									<i class="fa fa-plus fa-fw"></i> 新增台站
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa  fa-file-word-o fa-fw"></i> 导出报告
-								</div>
-						</a></li>
-
-					</ul> <!-- /.dropdown-alerts --></li>
-				<!-- /.dropdown -->
-				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
-				</a>
-					<ul class="dropdown-menu dropdown-user">
-						<li><a href="#"><i class="fa fa-user fa-fw"></i>密码修改</a></li>
-						<li><a href="#"><i class="fa fa-gear fa-fw"></i>用户管理</a></li>
-						<li class="divider"></li>
-						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 退出</a></li>
-					</ul> <!-- /.dropdown-user --></li>
-				<!-- /.dropdown -->
+				 <button type="button" class="btn btn-primary btn-sm" style="margin:10px">首页</button>
 			</ul>
 			<!-- /.navbar-top-links -->
 
 			<div class="navbar-default sidebar" role="navigation">
 				<div class="sidebar-nav navbar-collapse">
+						<div class="dropdown" style="margin:5px">
+							  
+  										<button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    										版本  V4 
+    									<span class="caret"></span>
+  										</button>
+  										<ul class="dropdown-menu" aria-labelledby="dropdownMenu1" style="position:absolute;height:120px;overflow:auto">
+    										<li><a href="#">V4</a></li>
+    										<li><a href="#">V3</a></li>
+    										<li><a href="#">V2</a></li>
+    										<li><a href="#">V1</a></li>
+    						
+  										</ul>
+						</div>
+									
 					<ul class="nav" id="side-menu">
 
-						<li class="sidebar-search">
-							<div class="input-group custom-search-form">
-								<input type="text" class="form-control" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-provide="typeahead" placeholder="台站名称..."> <span class="input-group-btn">
-									<button class="btn btn-default" type="button">
-										<i class="fa fa-search"></i>
-									</button>
-								</span>
-							</div> <!-- /input-group -->
-						</li>
+ 
 
-						<div style="margin-top:30px;text-align:center;" id="city_loading">
-						<img src="../img/loading1.gif" height="32" width="32" />
-						</div>
+
+ 						<li class ="active">
+                            <a href="#"><i class="glyphicon glyphicon-pawn"></i>xxxxxx 电视台<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level"  aria-expanded="true" class="nav nav-second-level collapse in">
+                                <li> <a href="flot.html" ><span class='fa fa-edit' style='color:#cc2200'></span> 台站概况</a></li>
+                                <li><a href="morris.html"><span class='fa fa-edit' style='color:#cccccc'></span> 供配电</a></li>
+                                <li><a href="morris.html"><span class='fa fa-edit' style='color:#cccccc'></span> 节目传送机房</a></li>
+                                <li><a href="morris.html"><span class='fa fa-edit' style='color:#cccccc'></span> 发射机房</a></li>
+                                <li><a href="morris.html"><span class='fa fa-edit' style='color:#cccccc'></span> 现有设备登记表（调频）</a></li>
+                                <li><a href="morris.html"><span class='fa fa-edit' style='color:#cccccc'></span> 现有设备登记表（电视，数字和模拟）</a></li>
+                                <li><a href="morris.html"><span class='fa fa-edit' style='color:#cccccc'></span> 控制室</a></li>
+                                <li><a href="morris.html"><span class='fa fa-edit' style='color:#cccccc'></span> 发射台自动化</a></li>
+                                <li><a href="morris.html"><span class='fa fa-edit' style='color:#cccccc'></span> 现有塔桅</a></li>
+                                <li><a href="morris.html"><span class='fa fa-edit' style='color:#cccccc'></span> 新增电视天馈系统</a></li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+ 
 					</ul>
 				</div>
 				<!-- /.sidebar-collapse -->
@@ -118,30 +114,15 @@
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <span class="">最近编辑 </span>
+                            <span class="">编辑 </span>
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-							<table class="table table-striped table-bordered table-hover" id="dataTables-example">
-								<thead>
-									<tr>
-									<th  >市</th>
-									<th  >台站名称</th>
-									<th  >最后编辑时间</th>
-									<th style="width: 180px;">操作</th>
-									</tr>
-								</thead>
-								<tbody id="datalist">
-
-
-								</tbody>
-							</table>
-							
-							<div style="margin-top:30px;text-align:center;" id="list_loading">
-										<img src="../img/loading.gif" height="32" width="32" />
-							</div>
+ 
 						</div>
-
+                        <div class="panel-footer" style="text-align:center" >
+                            
+                        </div>
 					</div>
 				</div>
 			</div>
@@ -175,107 +156,11 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="../dist/js/sb-admin-2.js"></script>
 	<script>
-		function showcity() {
-			$.post("../StationInfo",{"method" : "city_count"},
-				function(data) {
-					console.log(data); //  2pm
-					var html = "";
-					$.each(data,function(i, item) {
-						html += "<li  class='' id='city_li"+ i+ "'  onclick='city_station("+ i+ ","+ item.num+ ",\""+ item.city+ "\")'   ><a href='#' ><i class='fa fa-map-marker fa-fw'></i>"+ item.city;
-						if (item.num > 0)
-								html += "  &nbsp; &nbsp;<span class='badge '>"+ item.num+ "</span>";
-								html += "<span class='fa arrow'></span></a> <ul class='nav nav-second-level' id='city"+i+"' ></ul></li>";
-						});
+ 
 
-								// alert( $("#side-menu").html);
-						$("#city_loading").hide();
-						$("#side-menu").append(html);
-
-				}, "json");
-
-		}
-
-		function city_station(id, num, city) {
-
-			if ($("#city_li" + id).attr('class') == '') { //展开
-				if (num != 0) {
-					var cityid = "#city" + id;
-					if ($(cityid).html().length == 0) {
-						$("#city" + id).attr("class","nav nav-second-level collapsing");
-						$.post("../StationInfo", {
-							'method' : 'querylist',
-							'page' : '1',
-							'pageSize' : '100',
-							'orderby' : 't_name',
-							't_city' : city
-						}, function(data) {
-							console.log(data); //  2pm
-							var html = "";
-							$.each(data.list, function(i, item) {
-								html += "<li><a href='#' onclick='openstation("+ item.t_id + ")'>" + item.t_name+ "</a></li>";
-							});
-							$(cityid).html(html);
-
-							$("#city_li" + id).attr("class", "active");
-							$("#city" + id).attr("style", "");
-							$("#city" + id).attr("class","nav nav-second-level collapse in");
-							$("#city" + id).attr("aria-expanded", "true");
-
-						}, "json");
-
-					} else {
-
-						$("#city" + id).attr("class","nav nav-second-level collapse in");
-						$("#city" + id).attr("aria-expanded", "true");
-						$("#city" + id).attr("style", "");
-						$("#city_li" + id).attr("class", "active");
-
-					}
-				}
-
-			} else {
-				//收缩
-				$("#city_li" + id).attr("class", "");
-				$("#city" + id).attr("style", "height: 0px;");
-				$("#city" + id).attr("class", "nav nav-second-level collapse");
-				$("#city" + id).removeAttr("aria-expanded");
-
-			}
-
-		}
-
-		function showlist() {
-			$.post("../StationInfo", {
-				'method' : 'querylist',
-				'page' : '1',
-				'pageSize' : '20'
-			}, function(data) {
-				console.log(data); //  2pm
-				var _html_arr = new Array();
-				$.each(data.list, function(i, item) {
-					_html_arr.push('<tr class="">');
-					_html_arr.push('<td>' + item.t_city + '</td>');
-					_html_arr.push('<td>' + item.t_name + '</td>');
-					_html_arr.push('<td>' + item.t_cg_time + '</td><td>');
-					_html_arr.push('<button type="button" onclick="window.location.href=\'./station_info.jsp?t_id=' + item.t_id + '\'" style="margin-left: 10px;" class="btn btn-success btn-xs">编辑</button>');
-					_html_arr.push('<button type="button" onclick="report('+item.t_id+')" style="margin-left: 10px;" class="btn btn-success btn-xs">报告</button>');
-					_html_arr.push('</td>');
-                	_html_arr.push('</tr>');
-				});
-				$("#list_loading").hide();
-				$("#datalist").html(_html_arr.join(''));
-
-			}, "json");
-
-		}
-
-		function openstation(id) {
-			window.location.href = "";
-		}
-
+ 
 		$(function() {
-			showcity();
-			showlist();
+ 
 		});
 	</script>
 </body>
