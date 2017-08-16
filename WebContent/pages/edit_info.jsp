@@ -26,6 +26,7 @@
 
 <!-- Custom Fonts -->
 <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -134,7 +135,8 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
- 
+
+ 							<jsp:include page="form1.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
                             <button type="button" class="btn btn-success" onclick="editok(1)">下一项</button>
@@ -360,8 +362,13 @@
     <script src="../vendor/morrisjs/morris.min.js"></script>
     <script src="../data/morris-data.js"></script>
 -->
+
+	<script src="../js/bootstrap-datetimepicker.min.js"></script>
+
+	
 	<!-- Custom Theme JavaScript -->
 	<script src="../dist/js/sb-admin-2.js"></script>
+		<script type="text/javascript"  src="../js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 	<script>
 	function editpage(unm){
  		$(".pageedit").hide();
@@ -383,8 +390,19 @@
  		
  	}
 		$(function() {
- 
+
+			  $(".form_datetime").datetimepicker({
+				  locale:'bootstrap-datetimepicker.zh-CN',
+				  format: 'yyyy-mm',
+				  minView:'month',
+				  autoclose:true
+				  });
 		});
+		
+		
+ 
+	  
+ 
 	</script>
 </body>
 
