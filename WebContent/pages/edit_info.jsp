@@ -135,7 +135,6 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
-
  							<jsp:include page="form1.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
@@ -156,7 +155,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
- 
+ 							<jsp:include page="form2.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
                             <button type="button" class="btn btn-success" onclick="editok(2)">下一项</button>
@@ -176,7 +175,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
- 
+ 							<jsp:include page="form3.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
                             <button type="button" class="btn btn-success" onclick="editok(3)">下一项</button>
@@ -197,7 +196,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
- 
+ 							<jsp:include page="form4.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
                              <button type="button" class="btn btn-success" onclick="editok(4)">下一项</button>
@@ -218,7 +217,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
- 
+ 							 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
                             <button type="button" class="btn btn-success" onclick="editok(5)">下一项</button>
@@ -260,7 +259,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
- 
+ 							<jsp:include page="form7.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
                             <button type="button" class="btn btn-success" onclick="editok(7)">下一项</button>
@@ -281,7 +280,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
- 
+ 							<jsp:include page="form8.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
                             <button type="button" class="btn btn-success" onclick="editok(8)">下一项</button>
@@ -304,7 +303,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
- 
+ 							<jsp:include page="form9.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
                             <button type="button" class="btn btn-success" onclick="editok(9)">下一项</button>
@@ -327,7 +326,7 @@
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
- 
+ 							
 						</div>
                         <div class="panel-footer" style="text-align:center" >
                             <button type="button" class="btn btn-success" onclick="editok(10)">完成</button>
