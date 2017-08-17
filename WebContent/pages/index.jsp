@@ -55,7 +55,7 @@
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-th fa-fw"></i> <i class="fa fa-caret-down"></i>
 				</a>
 					<ul class="dropdown-menu dropdown-alerts">
-						<li><a href="#">
+						<li><a href="#" onclick="add()">
 								<div>
 									<i class="fa fa-plus fa-fw"></i> 新增台站
 								</div>
@@ -280,7 +280,18 @@
 			}, "json");
 
 		}
-
+		function add(){
+   			$.post("../StationInfo",{'method':'insert'},function(result){
+   				if (typeof( result.id) != "undefined"){
+ 
+   					window.location.href = "./edit_info.jsp?id="+ result.id+"&action=add"
+   				}else{
+   					alert("新增失败！");
+   				}
+   				
+   			  }, "json");
+			
+		}
 		function openstation(id) {
 			window.location.href = "";
 		}

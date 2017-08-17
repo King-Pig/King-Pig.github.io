@@ -1,4 +1,12 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+String id = request.getParameter("id");
+String action = request.getParameter("action");
+if(id==null)id="0";
+if(action == null) action ="";
+
+%>
+
 <!DOCTYPE html>
 <html>
 
@@ -37,7 +45,8 @@
 </head>
 
 <body style=" font-family: 'Microsoft YaHei';color:#666666;">
-
+ <input type="hidden"  id="t_id"  value="<%=id %>"> 
+  <input type="hidden"  id="action"  value="<%=action %>"> 
 	<div id="wrapper">
 
 		<!-- Navigation -->
@@ -62,7 +71,7 @@
 					<ul class="nav" id="side-menu">
 
  						<li class ="active">
-                            <a href="#"><i class="glyphicon glyphicon-pawn"></i>xxxxxx 电视台<span class="fa arrow"></span></a>
+                            <a href="#"><i class="glyphicon glyphicon-pawn"></i><span id="st_name"></spna> </span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level"  aria-expanded="true" class="nav nav-second-level collapse in">
                                 <li><a href="#" onclick="editpage(1)"><span id="ico1" class='fa fa-edit' style='color:#cc2200'></span> 台站概况</a></li>
                                 <li><a href="#" onclick="editpage(2)"><span id="ico2" class='fa fa-edit' style='color:#cccccc'></span> 供配电</a></li>
@@ -105,14 +114,19 @@
         
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa  fa-paperclip" ></span> 当前版本 V1<span class="caret"></span></a>
+          <%if ( !"add".equals(action) ){ %>
           <ul class="dropdown-menu">
             <li><a href="#">V3</a></li>
             <li><a href="#">V2</a></li>
             <li><a href="#">V1</a></li>
           </ul>
+             <%} %>
         </li>
+        <%if ( !"add".equals(action) ){ %>
            <li><a href="#"><span class="fa fa-copy" ></span> 复制</a></li>
+           <%}%>
            <li><a href="#"><span class="fa fa-trash-o" ></span> 删除</a></li>
+ 
       </ul>
  
       <ul class="nav navbar-nav navbar-right">
@@ -369,6 +383,7 @@
 	<script src="../dist/js/sb-admin-2.js"></script>
 		<script type="text/javascript"  src="../js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 	<script>
+
 	function editpage(unm){
  		$(".pageedit").hide();
  		$(".fa-edit").css("color","#cccccc");
@@ -398,9 +413,16 @@
 				  });
 		});
 		
-		
- 
-	  
+		var t_id=$('#t_id').val();  
+ 		var action = $('#action').val();  
+		$(function() {
+ 			if(action =="add"){
+ 				$('#st_name').html("  新增台站");  
+ 			}else{
+ 				$('#st_name').html("XXXXXX");  
+ 				
+ 			}
+		});
  
 	</script>
 </body>

@@ -81,7 +81,7 @@
                          <div class="form-group">
                            <label class="col-sm-2 control-label" for="tm_height" >铁塔高度 </label>
                             <div class="col-sm-4">
-								<input class="form-control"  id=" tm_height" name = "tm_height" type="text" placeholder="米"/>地网</option>
+								<input class="form-control"  id=" tm_height" name = "tm_height" type="text" placeholder="米"/>
 							 
                              </div>
                              
