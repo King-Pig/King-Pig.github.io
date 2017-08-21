@@ -115,7 +115,7 @@ if(action == null) action ="";
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa  fa-paperclip" ></span> 当前版本 V1<span class="caret"></span></a>
           <%if ( !"add".equals(action) ){ %>
-          <ul class="dropdown-menu">
+          <ul class="dropdown-menu"  id="t_version">
             <li><a href="#">V3</a></li>
             <li><a href="#">V2</a></li>
             <li><a href="#">V1</a></li>
@@ -130,21 +130,23 @@ if(action == null) action ="";
       </ul>
  
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="fa  fa-home" ></span>首页</a></li>
+        <li><a href="./index.jsp"><span class="fa  fa-home" ></span>首页</a></li>
          
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 
-			 
-			 <div class="row pageedit" id="page1"  >
+			 <div style="margin-top:30px;text-align:center;" id="list_loading">
+						<img src="../img/loading.gif" height="32" width="32" />
+			</div>
+			 <div class="row pageedit" id="page1"  style="display:none;">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>  台站概况</span>
                                 <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
- 									<button type="button" class="btn btn-default   btn-sm" onclick="save(1)">保存</button>
+ 									<button type="button" class="btn btn-default   btn-sm" onclick="save(1,0)">保存</button>
       							</div>
                         </div>
                         <!-- /.panel-heading -->
@@ -152,7 +154,8 @@ if(action == null) action ="";
  							<jsp:include page="form1.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
-                            <button type="button" class="btn btn-success" onclick="editok(1)">下一项</button>
+                            <button type="button" class="btn btn-success" onclick="save(1,1)">下一项</button>
+                            <div id="results"></div>
                         </div>
 					</div>
 				</div>
@@ -164,7 +167,7 @@ if(action == null) action ="";
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>  供配电</span>
                             <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
- 									<button type="button" class="btn btn-default   btn-sm" onclick="save(2)">保存</button>
+ 									<button type="button" class="btn btn-default   btn-sm" onclick="save(2,0)">保存</button>
       						</div>
                         </div>
                         <!-- /.panel-heading -->
@@ -172,7 +175,7 @@ if(action == null) action ="";
  							<jsp:include page="form2.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
-                            <button type="button" class="btn btn-success" onclick="editok(2)">下一项</button>
+                            <button type="button" class="btn btn-success" onclick="save(2,1)">下一项</button>
                         </div>
 					</div>
 				</div>
@@ -184,7 +187,7 @@ if(action == null) action ="";
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>  节目传送机房</span>
                             <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
- 									<button type="button" class="btn btn-default   btn-sm" onclick="save(3)">保存</button>
+ 									<button type="button" class="btn btn-default   btn-sm" onclick="save(3,0)">保存</button>
       						</div>                            
                         </div>
                         <!-- /.panel-heading -->
@@ -192,7 +195,7 @@ if(action == null) action ="";
  							<jsp:include page="form3.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
-                            <button type="button" class="btn btn-success" onclick="editok(3)">下一项</button>
+                            <button type="button" class="btn btn-success" onclick="save(3,1)">下一项</button>
                         </div>
 					</div>
 				</div>
@@ -205,7 +208,7 @@ if(action == null) action ="";
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>  发射机房 </span>
                             <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
- 									<button type="button" class="btn btn-default   btn-sm" onclick="save(4)">保存</button>
+ 									<button type="button" class="btn btn-default   btn-sm" onclick="save(4,0)">保存</button>
       						</div>                            
                         </div>
                         <!-- /.panel-heading -->
@@ -213,7 +216,7 @@ if(action == null) action ="";
  							<jsp:include page="form4.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
-                             <button type="button" class="btn btn-success" onclick="editok(4)">下一项</button>
+                             <button type="button" class="btn btn-success" onclick="save(4,1)">下一项</button>
                         </div>
 					</div>
 				</div>
@@ -226,15 +229,34 @@ if(action == null) action ="";
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>  现有设备登记表（调频）</span>
                             <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
- 									<button type="button" class="btn btn-default   btn-sm" onclick="save(5)">保存</button>
+ 								 <button type="button" class="btn btn-info   btn-sm" onclick=""> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
       						</div>                            
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
- 							 
+ 							 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+								<thead>
+									<tr>
+									<th >序号</th>
+									<th >频率</th>
+									<th>额定功率</th>
+									<th>发射功率</th>
+									<th >节目</th>
+									<th >发射机厂商/设备型号</th>
+									<th >是否具备对外智能接口</th>
+									<th >主/备</th>
+									<th >多工情况</th>
+									<th >天馈线</th>
+									<th >操作</th>
+									</tr>
+								</thead>
+								<tbody id="datalist">
+
+								</tbody>
+							</table>
 						</div>
                         <div class="panel-footer" style="text-align:center" >
-                            <button type="button" class="btn btn-success" onclick="editok(5)">下一项</button>
+                            <button type="button" class="btn btn-success" onclick="nextpage(5)">下一项</button>
                         </div>
 					</div>
 				</div>
@@ -247,15 +269,34 @@ if(action == null) action ="";
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>   现有设备登记表（电视，数字和模拟）</span>
                             <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
- 									<button type="button" class="btn btn-default   btn-sm" onclick="save(6)">保存</button>
+									<button type="button" class="btn btn-info   btn-sm" onclick=""> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
       						</div>                            
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
- 
+ 					 								 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+								<thead>
+									<tr>
+									<th >序号</th>
+									<th >频率</th>
+									<th>额定功率</th>
+									<th>发射功率</th>
+									<th >节目</th>
+									<th >发射机厂商/设备型号</th>
+									<th >是否具备对外智能接口</th>
+									<th >主/备</th>
+									<th >多工情况</th>
+									<th >天馈线</th>
+									<th >操作</th>
+									</tr>
+								</thead>
+								<tbody id="datalist">
+
+								</tbody>
+							</table>
 						</div>
                         <div class="panel-footer" style="text-align:center" >
-                            <button type="button" class="btn btn-success" onclick="editok(6)">下一项</button>
+                            <button type="button" class="btn btn-success" onclick="nextpage(6)">下一项</button>
                         </div>
 					</div>
 				</div>
@@ -268,7 +309,7 @@ if(action == null) action ="";
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>  控制室 </span>
                             <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
- 									<button type="button" class="btn btn-default   btn-sm" onclick="save(7)">保存</button>
+ 									<button type="button" class="btn btn-default   btn-sm" onclick="save(7,0)">保存</button>
       						</div>                            
                         </div>
                         <!-- /.panel-heading -->
@@ -276,7 +317,7 @@ if(action == null) action ="";
  							<jsp:include page="form7.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
-                            <button type="button" class="btn btn-success" onclick="editok(7)">下一项</button>
+                            <button type="button" class="btn btn-success" onclick="save(7,1)">下一项</button>
                         </div>
 					</div>
 				</div>
@@ -289,7 +330,7 @@ if(action == null) action ="";
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>   发射台自动化 </span>
                             <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
- 									<button type="button" class="btn btn-default   btn-sm" onclick="save(8)">保存</button>
+ 									<button type="button" class="btn btn-default   btn-sm" onclick="save(8,0)">保存</button>
       						</div>                            
                         </div>
                         <!-- /.panel-heading -->
@@ -297,7 +338,7 @@ if(action == null) action ="";
  							<jsp:include page="form8.jsp" flush="true" /> 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
-                            <button type="button" class="btn btn-success" onclick="editok(8)">下一项</button>
+                            <button type="button" class="btn btn-success" onclick="save(8,1)">下一项</button>
                         </div>
 					</div>
 				</div>
@@ -312,15 +353,15 @@ if(action == null) action ="";
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>   现有塔桅 </span>
                             <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
- 									<button type="button" class="btn btn-default   btn-sm" onclick="save(9)">保存</button>
+ 									<button type="button" class="btn btn-default   btn-sm" onclick="save(9,0)">保存</button>
       						</div>                            
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
  							<jsp:include page="form9.jsp" flush="true" /> 
 						</div>
-                        <div class="panel-footer" style="text-align:center" >
-                            <button type="button" class="btn btn-success" onclick="editok(9)">下一项</button>
+                        <div class="panel-footer"  style="text-align:center" >
+                            <button type="button" class="btn btn-success" onclick="save(9,1)">下一项</button>
                         </div>
 					</div>
 				</div>
@@ -334,7 +375,7 @@ if(action == null) action ="";
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>   电视天馈系统 </span>
                             <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
- 									<button type="button" class="btn btn-default   btn-sm" onclick="save(10)">保存</button>
+ 									<button type="button" class="btn btn-default   btn-sm" onclick="save(10,0)">保存</button>
       						</div>                            
                             
                         </div>
@@ -343,7 +384,7 @@ if(action == null) action ="";
  							
 						</div>
                         <div class="panel-footer" style="text-align:center" >
-                            <button type="button" class="btn btn-success" onclick="editok(10)">完成</button>
+                            <button type="button" class="btn btn-success" onclick="save(10,0)">完成</button>
                         </div>
 					</div>
 				</div>
@@ -377,13 +418,14 @@ if(action == null) action ="";
 -->
 
 	<script src="../js/bootstrap-datetimepicker.min.js"></script>
-
+	<script src="../js/populateForm.js"></script>
 	
 	<!-- Custom Theme JavaScript -->
 	<script src="../dist/js/sb-admin-2.js"></script>
 		<script type="text/javascript"  src="../js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 	<script>
 
+	
 	function editpage(unm){
  		$(".pageedit").hide();
  		$(".fa-edit").css("color","#cccccc");
@@ -392,17 +434,73 @@ if(action == null) action ="";
  		$("#ico"+unm).css("color","#cc2200");
  		
  	}
+	
+	function nextpage(unm){
+		var n = unm+1;
+			if(n<=10){
+				editpage(n);
+			}
+	}
+	
+	function save(unm,next){
+		var i = formValuesCheck("info_from"+unm);
+		if( i == 0){
+			//验证通过
+ 			var id = $("#t_id").val();
+			var from_data = $("#info_from"+unm).serialize();
+			$.post("../StationInfo?method=update&t_id="+id, from_data, function(data) {
+		         	if(next == 1){
+		         		nextpage(unm);
+					}
+		         		
+			}, "json");
+			
+		}
+	}
+	
+	function editform(id){
+		
+		$.post("../StationInfo",{'method':'queryinfo','t_id':id},function(result){
+					$('#st_name').html(result.t_name);  
+ 					$("#info_from1").populateForm(result);
+ 					$("#info_from2").populateForm(result);
+ 					$("#info_from3").populateForm(result);
+ 					$("#info_from4").populateForm(result);
+ 					$("#info_from7").populateForm(result);
+ 					$("#info_from8").populateForm(result);
+ 					$("#info_from9").populateForm(result);
+ 					$("#list_loading").hide();
+ 					$("#page1").show();	
+			  }, "json");
+	}
 
- 	function  editok(unm){
- 		 
- 		var n = unm+1;
- 		if(n<=10){
- 			
- 			editpage(n);
- 		}
- 		
- 		
- 	}
+ 
+
+
+ 
+ 
+ 	
+ 	function formValuesCheck(fname) {
+ 		var fields = $("#"+fname).serializeArray(); 
+ 		var r = 0;
+ 		var op = "";
+ 	    jQuery.each(fields, function(i, field){
+ 	    	if(field.value  == ""){
+ 	    		op =  $("#"+field.name).attr("optional");  //非必填
+ 	    		if (typeof(op) == "undefined"){ 
+ 	 	    		 r++;
+ 	 	    		$("#"+field.name).parent().addClass("has-error");
+ 	    			
+ 	    		}
+ 	    	}else{
+ 	    		$("#"+field.name).parent().removeClass("has-error");
+ 	    	}
+ 	    });
+ 	    
+ 	    return r;
+ 	  }
+ 	 
+ 	
 		$(function() {
 
 			  $(".form_datetime").datetimepicker({
@@ -415,15 +513,24 @@ if(action == null) action ="";
 		
 		var t_id=$('#t_id').val();  
  		var action = $('#action').val();  
+ 		
 		$(function() {
  			if(action =="add"){
  				$('#st_name').html("  新增台站");  
  			}else{
- 				$('#st_name').html("XXXXXX");  
  				
+
+
+ 				editform($('#t_id').val());
  			}
 		});
  
+		
+ 
+		
+		
+		
+		
 	</script>
 </body>
 

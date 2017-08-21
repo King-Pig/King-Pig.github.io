@@ -30,8 +30,8 @@
                           <label class="col-sm-2 control-label"  for="ta_s_centre" >是否通过网络传输到中心</label>
                           <div class="col-sm-4">
                              <select id="ta_s_centre" name ="ta_s_centre" class="form-control">
-								<option>是</option>
-								<option>否</option>
+								<option value ="1" >是</option>
+								<option value ="0" >否</option>
 							</select>
                           </div>
                        </div>
@@ -45,8 +45,8 @@
                            <label class="col-sm-2 control-label" for="ta_sm_i" >是否具备对外智能接口</label>
                              <div class="col-sm-4">
                              <select id="ta_sm_i" name ="ta_sm_i" class="form-control">
-								<option>是</option>
-								<option>否</option>
+								<option value ="1" >是</option>
+								<option value ="0" >否</option>
 							</select>
                             </div>
 
@@ -92,16 +92,16 @@
                            <label class="col-sm-2 control-label" for="ta_pm" >是否具备电力自动化系统 </label>
                             <div class="col-sm-4">
                              <select id="ta_pm" name ="ta_pm" class="form-control">
-								<option>是</option>
-								<option>否</option>
+								<option  value ="1" >是</option>
+								<option  value ="0" >否</option>
 							</select>
                              </div>
                              
                              <label class="col-sm-2 control-label" for="ta_pm_ups" >UPS监控功能</label>
                              <div class="col-sm-4">
  								<select id="ta_pm_ups" name ="ta_pm_ups" class="form-control">
-								<option>具备</option>
-								<option>不具备</option>
+								<option  value ="1"  >具备</option>
+								<option  value ="0" >不具备</option>
 								</select>
                     		 </div>
                              
@@ -112,16 +112,16 @@
                            <label class="col-sm-2 control-label" for="ta_pm_pc" >配电柜监控功能 </label>
                             <div class="col-sm-4">
  								<select id="ta_pm_pc" name ="ta_pm_pc" class="form-control">
-								<option>具备</option>
-								<option>不具备</option>
+								<option  value ="1" >具备</option>
+								<option  value ="0" >不具备</option>
 								</select>
                              </div>
                              
                              <label class="col-sm-2 control-label" for="ta_pm_rp" >稳压电源监控功能</label>
                              <div class="col-sm-4">
  								<select id="ta_pm_rp" name ="ta_pm_rp" class="form-control">
-								<option>具备</option>
-								<option>不具备</option>
+								<option  value ="1" >具备</option>
+								<option  value ="0" >不具备</option>
 								</select>
                     		 </div>
                              
@@ -165,14 +165,14 @@
                            <label class="col-sm-2 control-label" for=""  >入侵报警系统</label>
                              <div class="col-sm-2">
 								<select id="ta_vs_ia" name ="ta_vs_ia" class="form-control">
-								<option>具备</option>
-								<option>不具备</option>
+								<option  value ="1" >具备</option>
+								<option  value ="0" >不具备</option>
 								</select>
 							</div>
 							 <div class="col-sm-2">
 								<select id="ta_vs_ia_n" name ="ta_vs_ia_n" class="form-control">
-								<option>需要</option>
-								<option>不需要</option>
+								<option  value ="1" >需要</option>
+								<option  value ="0" >不需要</option>
 								</select>
                              </div>
                        
@@ -182,28 +182,28 @@
                            <label class="col-sm-2 control-label" for=""  >出入口控制系统 </label>
                              <div class="col-sm-2">
 								<select id="ta_vs_io" name ="ta_vs_io" class="form-control">
-								<option>具备</option>
-								<option>不具备</option>
+								<option  value ="1" >具备</option>
+								<option  value ="0" >不具备</option>
 								</select>
 							</div>
 							 <div class="col-sm-2">
 								<select id="ta_vs_io_n" name ="ta_vs_io_n" class="form-control">
-								<option>需要</option>
-								<option>不需要</option>
+								<option  value ="1" >需要</option>
+								<option  value ="0" >不需要</option>
 								</select>
                              </div>
                              
                            <label class="col-sm-2 control-label" for=""  >周界防范系统</label>
                              <div class="col-sm-2">
 								<select id="ta_vs_pg" name ="ta_vs_pg" class="form-control">
-								<option>具备</option>
-								<option>不具备</option>
+								<option  value ="1" >具备</option>
+								<option  value ="0" >不具备</option>
 								</select>
 								</div>
 							 	<div class="col-sm-2">
 								<select id="ta_vs_pg_n" name ="ta_vs_pg_n" class="form-control">
-								<option>需要</option>
-								<option>不需要</option>
+								<option  value ="1" >需要</option>
+								<option  value ="0" >不需要</option>
 								</select>
                              </div>
                        
@@ -218,14 +218,14 @@
                            <label class="col-sm-2 control-label" for=""  >是否具备环境监测</label>
                              <div class="col-sm-2">
 								<select id="ta_vs_em" name ="ta_vs_em" class="form-control">
-								<option>具备</option>
-								<option>不具备</option>
+								<option  value ="1" >具备</option>
+								<option  value ="0" >不具备</option>
 								</select>
 							</div>
 						 	<div class="col-sm-2">
 								<select id="ta_vs_em_n" name ="ta_vs_em_n" class="form-control">
-								<option>需要</option>
-								<option>不需要</option>
+								<option  value ="1" >需要</option>
+								<option  value ="0" >不需要</option>
 								</select>
                              </div>
                            <label class="col-sm-2 control-label" for="ta_vs_em_position"  >温湿度监控点位置 </label>

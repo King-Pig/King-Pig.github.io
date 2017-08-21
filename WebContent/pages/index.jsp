@@ -135,6 +135,7 @@
 									<th >市</th>
 									<th >台站名称</th>
 									<th> 版本</th>
+									<th> 录入状态</th>
 									<th >最后编辑时间</th>
 									<th >操作</th>
 									</tr>
@@ -258,18 +259,29 @@
 			$.post("../StationInfo", {
 				'method' : 'querylist',
 				'page' : '1',
-				'pageSize' : '20'
+				'pageSize' : '20',
+				't_status':'1'
 			}, function(data) {
 				console.log(data); //  2pm
 				var _html_arr = new Array();
+				var tstatus;
 				$.each(data.list, function(i, item) {
 					_html_arr.push('<tr class="">');
 					_html_arr.push('<td>' + item.t_city + '</td>');
 					_html_arr.push('<td>' + item.t_name + '</td>');
 					_html_arr.push('<td>V ' + item.t_version + '</td>');
+					
+					if(item.t_status == 0){
+						_html_arr.push('<td>未完成</td>');
+						tstatus = 'disabled="disabled"';
+					}else if(item.t_status == 1){
+						_html_arr.push('<td>已完成</td>');
+						tstatus = '';
+					}
+					
 					_html_arr.push('<td>' + item.t_cg_time + '</td><td>');
-					_html_arr.push('<button type="button" onclick="window.location.href=\'./station_info.jsp?t_id=' + item.t_id + '\'" style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">编辑</button>');
-					_html_arr.push('<button type="button" onclick="report('+item.t_id+')" style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">报告</button>');
+					_html_arr.push('<button type="button" onclick="window.location.href=\'./edit_info.jsp?id=' + item.t_id + '&action=edit \'    " style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">编辑</button>');
+					_html_arr.push('<button type="button" onclick="report('+item.t_id+')" style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs" '+tstatus+'>报告</button>');
 					_html_arr.push('<button type="button" onclick="del('+item.t_id+')" style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">删除</button>');
 					_html_arr.push('</td>');
                 	_html_arr.push('</tr>');

@@ -15,16 +15,16 @@
 </head>
 
 <body style=" font-family: 'Microsoft YaHei';color:#666666;">
-<form class="form-horizontal" role="form"  id="info_from1">
+<form class="form-horizontal" role="form"  id="info_from4">
                     <fieldset>
                         <legend>发射机房</legend>
                        <div class="form-group">
                           <label class="col-sm-2 control-label"  for="" >位置</label>
                           <div class="col-sm-2">
-                             <input class="form-control"  id="t_p_layers" name ="t_p_layers"  type="text" placeholder="层数"/> 
+                             <input class="form-control"  id="t_p_layers" name ="t_p_layers"  type="number" placeholder="层数"/> 
                           </div>
                           <div class="col-sm-2">
-                             <input class="form-control"  id="t_c_layers" name ="t_c_layers"  type="text" placeholder="总层数"/>
+                             <input class="form-control"  id="t_c_layers" name ="t_c_layers"  type="number" placeholder="总层数"/>
                           </div>
                           
                        </div>
@@ -43,7 +43,7 @@
  
                           <label class="col-sm-2 control-label"  for="t_d_v">数量</label>
                           <div class="col-sm-4">
-                              <input class="form-control"  id=" t_d_v" name = "t_d_v" type="text" placeholder=""/>
+                              <input class="form-control"  id=" t_d_v" name = "t_d_v" type="number" placeholder=""/>
                           </div>
  
                        </div>
@@ -69,12 +69,12 @@
                       <div class="form-group">
                            <label class="col-sm-2 control-label" for="c_l_v1" >距地高度/沟深</label>
                              <div class="col-sm-4">
- 								<input class="form-control"  id=" t_l_v1" name = "t_l_v1" type="text" placeholder="米"/>
+ 								<input class="form-control"  id=" t_l_v1" name = "t_l_v1" type="number" placeholder="米"/>
                     		 </div>
                     		 
                     		<label class="col-sm-2 control-label" for="t_l_v2" >宽度/沟宽</label>
                              <div class="col-sm-4">
- 								<input class="form-control"  id=" t_l_v2" name="t_l_v2" type="text" placeholder="米"/>
+ 								<input class="form-control"  id=" t_l_v2" name="t_l_v2" type="number" placeholder="米"/>
                     		 </div>
                       </div>      
                       </fieldset>
@@ -93,7 +93,7 @@
                              
                              <label class="col-sm-2 control-label" for="t_g_v" >接地电阻值</label>
                              <div class="col-sm-4">
- 								<input class="form-control"  id=" t_g_v" name="t_g_v" type="text" placeholder="欧姆（Ω）"/>
+ 								<input class="form-control"  id=" t_g_v" name="t_g_v" type="number" placeholder="欧姆（Ω）"/>
                     		 </div>
                              
                        	</div>
@@ -118,12 +118,12 @@
                        <div class="form-group">
                            <label class="col-sm-2 control-label" for="t_as_cool"  >制冷量 </label>
                              <div class="col-sm-4">
-								<input class="form-control"  id=" t_as_cool" name="t_as_cool"  type="text" placeholder="kW"/>
+								<input class="form-control"  id=" t_as_cool" name="t_as_cool"  type="number" placeholder="kW"/>
 								</select> 
                              </div>
                            <label class="col-sm-2 control-label" for="t_as_power"  >功率</label>
                              <div class="col-sm-4">
-								<input class="form-control"  id=" t_as_power" name="t_as_power"  type="text" placeholder="kW"/>
+								<input class="form-control"  id=" t_as_power" name="t_as_power"  type="number" placeholder="kW"/>
                              </div>
                        
                        </div>  
@@ -138,7 +138,7 @@
                              </div>
                            <label class="col-sm-2 control-label" for="t_a_volume"  >风量</label>
                              <div class="col-sm-4">
-								<input class="form-control"  id=" t_a_volume" name="t_a_volume"  type="text" placeholder="kW"/>
+								<input class="form-control"  id=" t_a_volume" name="t_a_volume"  type="number" placeholder="kW"/>
                              </div>
                        
                        </div>   
@@ -146,11 +146,11 @@
                       <div class="form-group">
                            <label class="col-sm-2 control-label" for="t_a_power"  >功率 </label>
                              <div class="col-sm-4">
-								<input class="form-control"  id=" t_a_power" name="t_a_power"  type="text" placeholder="kW"/>
+								<input class="form-control"  id=" t_a_power" name="t_a_power"  type="number" placeholder="kW"/>
                              </div>
                            <label class="col-sm-2 control-label" for="t_a_pressure"  >风压 </label>
                              <div class="col-sm-4">
-								<input class="form-control"  id=" t_a_pressure" name="t_a_pressure"  type="text" placeholder="帕"/>
+								<input class="form-control"  id=" t_a_pressure" name="t_a_pressure"  type="number" placeholder="帕"/>
                              </div>
                        
                        </div>  
@@ -166,7 +166,7 @@
                             <div class="alert alert-warning">
                                	应包括机房方位、机房尺寸、现有设备布置、预留设备位置、馈线洞口、桥架（地沟）线缆路由、接地极（排）位置；<br/>
 								机房和铁塔之间的相对位置和距离，线缆路由走向等<br/>
-								<button type="button" class="btn btn-default   btn-sm" onclick="save(1)">上传</button>
+								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile()">上传</button>
                             </div>
  							
                           </div>

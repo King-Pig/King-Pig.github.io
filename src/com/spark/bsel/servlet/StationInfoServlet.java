@@ -2,6 +2,7 @@ package com.spark.bsel.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,7 @@ public class StationInfoServlet  extends HttpServlet {
 			
 			String str_page = request.getParameter("page");
 			String ps = request.getParameter("pageSize");
+			String ts = request.getParameter("t_status");
 			if(ps != null && !"".equals(ps) )
 				pageSize = Integer.parseInt(ps);
 			
@@ -52,7 +54,7 @@ public class StationInfoServlet  extends HttpServlet {
 			map.put("t_name", request.getParameter("t_name"));
 			map.put("t_city", request.getParameter("t_city"));
 			map.put("t_county", request.getParameter("t_county"));
-
+			map.put("t_status", ts);
 /*			map.put("t_name", "");
 			map.put("t_city", "");
 			map.put("t_county", "");
@@ -67,6 +69,38 @@ public class StationInfoServlet  extends HttpServlet {
 			Map<String,Object>  map = sd.queryInfo(Integer.parseInt(t_id));
 			JSONObject  o = new JSONObject();
 			if(map != null ){
+				 
+				double a1 = (double)map.get("t_longitude");
+				double a2 = (double)map.get("t_latitude");
+				double b1 = (double)map.get("tm_longitude");
+				double b2 = (double)map.get("tm_latitude");
+				if(a1>0){
+					String[] s = GPS_2(a1);
+					map.put("t_longitude1", s[0]);
+					map.put("t_longitude2", s[1]);
+					map.put("t_longitude3", s[2]);
+				}
+				if(a2>0){
+					String[] s = GPS_2(a2);
+					map.put("t_latitude1", s[0]);
+					map.put("t_latitude2", s[1]);
+					map.put("t_latitude3", s[2]);
+				}
+				
+				if(b1>0){
+					String[] s = GPS_2(b1);
+					map.put("tm_longitude1", s[0]);
+					map.put("tm_longitude2", s[1]);
+					map.put("tm_longitude3", s[2]);
+				}
+				if(b2>0){
+					String[] s = GPS_2(b2);
+					map.put("tm_latitude1", s[0]);
+					map.put("tm_latitude2", s[1]);
+					map.put("tm_latitude3", s[2]);
+				}
+				
+				
 				o = JSONObject.fromObject(map);
 			}
 			out.write(o.toString());
@@ -78,6 +112,30 @@ public class StationInfoServlet  extends HttpServlet {
 			 out.write(o.toString());
 		}else if("update".equals(method)){
 			Map  map = getParameterStringMap(request);
+			
+			if(map.get("t_longitude1") !=null  && map.get("t_longitude2") !=null  && map.get("t_longitude3") !=null ){
+				double  c = GPS_1(Double.parseDouble((String)map.get("t_longitude1") ) ,  Double.parseDouble((String)map.get("t_longitude2") ) ,Double.parseDouble((String)map.get("t_longitude3") )  );
+				map.put("t_longitude", c);
+			}
+			
+			if(map.get("t_latitude1") !=null  && map.get("t_latitude2") !=null  && map.get("t_latitude3") !=null ){
+				double  c = GPS_1(Double.parseDouble((String)map.get("t_latitude1") ) ,  Double.parseDouble((String)map.get("t_latitude2") ) ,Double.parseDouble((String)map.get("t_latitude3") )  );
+				map.put("t_latitude", c);
+			}
+			
+			if(map.get("tm_longitude1") !=null  && map.get("tm_longitude2") !=null  && map.get("tm_longitude3") !=null ){
+				double  c = GPS_1(Double.parseDouble((String)map.get("tm_longitude1") ) ,  Double.parseDouble((String)map.get("tm_longitude2") ) ,Double.parseDouble((String)map.get("tm_longitude3") )  );
+				map.put("tm_longitude", c);
+			}
+			
+			if(map.get("tm_latitude1") !=null  && map.get("tm_latitude2") !=null  && map.get("tm_latitude3") !=null ){
+				double  c = GPS_1(Double.parseDouble((String)map.get("tm_latitude1") ) ,  Double.parseDouble((String)map.get("tm_latitude2") ) ,Double.parseDouble((String)map.get("tm_latitude3") )  );
+				map.put("tm_latitude", c);
+			}
+			
+			if(map.get("t_cg_u_id") == null){
+				map.put("t_cg_u_id", 1);
+			}
 			int i = sd.updateStationInfo(map);
 			 JSONObject  o = new JSONObject();
 			 o.put("result", i);
@@ -118,5 +176,37 @@ public class StationInfoServlet  extends HttpServlet {
             
         }
         return returnMap;
+    }
+    
+    
+    public double  GPS_1(double a,double b,double c){
+    	double r = 0d;
+    	r =  a+(b/60)+(c/3600);
+
+    	return r ;
+    }
+    
+    public String[]  GPS_2(double d){
+    	String[]  r = new String[3] ;
+    	Double a,a1,b,c;
+    	a = Math.floor(d); //度
+    	a1 = ( d - a)*60;
+    	b= Math.floor(a1);//分
+    	c = (a1 - b)*60 ; //度
+    	
+    	r[0] = String.valueOf(a.intValue());
+    	r[1] =String.valueOf(b.intValue());
+    	DecimalFormat df = new DecimalFormat("#.00");
+    	r[2] =df.format(c);
+ 
+    	return r ;
+    }
+    
+    public  String subZeroAndDot(String s){
+        if(s.indexOf(".") > 0){
+            s = s.replaceAll("0+?$", "");//去掉多余的0
+            s = s.replaceAll("[.]$", "");//如最后一位是.则去掉
+        }
+        return s;
     }
 }

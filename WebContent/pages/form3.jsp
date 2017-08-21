@@ -15,16 +15,16 @@
 </head>
 
 <body style=" font-family: 'Microsoft YaHei';color:#666666;">
-<form class="form-horizontal" role="form"  id="info_from1">
+<form class="form-horizontal" role="form"  id="info_from3">
                     <fieldset>
                         <legend>节目传送机房</legend>
                        <div class="form-group">
                           <label class="col-sm-2 control-label"  for="" >位置</label>
                           <div class="col-sm-2">
-                             <input class="form-control"  id="c_p_layers" name ="c_p_layers"  type="text" placeholder="层数"/> 
+                             <input class="form-control"  id="c_p_layers" name ="c_p_layers"  type="number" placeholder="层数"/> 
                           </div>
                           <div class="col-sm-2">
-                             <input class="form-control"  id="c_c_layers" name ="c_c_layers"  type="text" placeholder="总层数"/>
+                             <input class="form-control"  id="c_c_layers" name ="c_c_layers"  type="number" placeholder="总层数"/>
                           </div>
                           
                        </div>
@@ -32,6 +32,18 @@
                        
                           <label class="col-sm-2 control-label"  for="p_t_capacity">卫星接收</label>
                           <div class="col-sm-10">
+                              <div class="panel panel-default">
+                        		<div class="panel-heading" style='height:42px;'>
+                            		<span class=""> </span>
+                                	<div class="navbar-right" style='margin-top:-5px;margin-right:10px;'>
+ 										<button type="button" class="btn btn-info   btn-sm" onclick=""> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
+      								</div>
+                        		</div>
+                         
+                        		<div class="panel-body">
+ 						 				
+								</div>
+							</div>
                               
                           </div>
  
@@ -41,15 +53,36 @@
                        
                           <label class="col-sm-2 control-label"  for="p_t_capacity">光缆传输</label>
                           <div class="col-sm-10">
-                              
+                                <div class="panel panel-default">
+                        		<div class="panel-heading" style='height:42px;'>
+                            		<span class=""> </span>
+                                	<div class="navbar-right" style='margin-top:-5px;margin-right:10px;'>
+ 										<button type="button" class="btn btn-info   btn-sm" onclick=""> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
+      								</div>
+                        		</div>
+                         
+                        		<div class="panel-body">
+ 						 				
+								</div>
+							</div>
                           </div>
- 
                        </div>
                         <div class="form-group">
                        
                           <label class="col-sm-2 control-label"  for="p_t_capacity">微波传输</label>
                           <div class="col-sm-10">
-                              
+                             <div class="panel panel-default">
+                        		<div class="panel-heading" style='height:42px;'>
+                            		<span class=""> </span>
+                                	<div class="navbar-right" style='margin-top:-5px;margin-right:10px;'>
+ 										<button type="button" class="btn btn-info   btn-sm" onclick=""> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
+      								</div>
+                        		</div>
+                         
+                        		<div class="panel-body">
+ 						 				
+								</div>
+							</div>
                           </div>
  
                        </div>
@@ -74,12 +107,12 @@
                       <div class="form-group">
                            <label class="col-sm-2 control-label" for="c_l_v1" >距地高度/沟深</label>
                              <div class="col-sm-4">
- 								<input class="form-control"  id=" c_l_v1" name = "c_l_v1" type="text" placeholder="米"/>
+ 								<input class="form-control"  id=" c_l_v1" name = "c_l_v1" type="number" placeholder="米"/>
                     		 </div>
                     		 
                     		<label class="col-sm-2 control-label" for="c_l_v2" >宽度/沟宽</label>
                              <div class="col-sm-4">
- 								<input class="form-control"  id=" c_l_v2" name="c_l_v2" type="text" placeholder="米"/>
+ 								<input class="form-control"  id=" c_l_v2" name="c_l_v2" type="number" placeholder="米"/>
                     		 </div>
                       </div>      
                       </fieldset>
@@ -98,7 +131,7 @@
                              
                              <label class="col-sm-2 control-label" for="c_g_v" >接地电阻值</label>
                              <div class="col-sm-4">
- 								<input class="form-control"  id=" c_g_v" name="c_g_v" type="text" placeholder="欧姆（Ω）"/>
+ 								<input class="form-control"  id=" c_g_v" name="c_g_v" type="number" placeholder="欧姆（Ω）"/>
                     		 </div>
                              
                        	</div>
@@ -123,12 +156,12 @@
                        <div class="form-group">
                            <label class="col-sm-2 control-label" for="c_as_cool"  >制冷量 </label>
                              <div class="col-sm-4">
-								<input class="form-control"  id=" c_as_cool" name="c_as_cool"  type="text" placeholder="kW"/>
+								<input class="form-control"  id=" c_as_cool" name="c_as_cool"  type="number" placeholder="kW"/>
 								</select> 
                              </div>
                            <label class="col-sm-2 control-label" for="c_as_power"  >功率</label>
                              <div class="col-sm-4">
-								<input class="form-control"  id=" c_as_power" name="c_as_power"  type="text" placeholder="kW"/>
+								<input class="form-control"  id=" c_as_power" name="c_as_power"  type="number" placeholder="kW"/>
                              </div>
                        
                        </div>  
@@ -143,7 +176,7 @@
                              </div>
                            <label class="col-sm-2 control-label" for="c_a_volume"  >风量</label>
                              <div class="col-sm-4">
-								<input class="form-control"  id=" c_a_volume" name="c_a_volume"  type="text" placeholder="kW"/>
+								<input class="form-control"  id=" c_a_volume" name="c_a_volume"  type="number" placeholder="kW"/>
                              </div>
                        
                        </div>   
@@ -151,11 +184,11 @@
                       <div class="form-group">
                            <label class="col-sm-2 control-label" for="c_a_power"  >功率 </label>
                              <div class="col-sm-4">
-								<input class="form-control"  id=" c_a_power" name="c_a_power"  type="text" placeholder="kW"/>
+								<input class="form-control"  id=" c_a_power" name="c_a_power"  type="number" placeholder="kW"/>
                              </div>
                            <label class="col-sm-2 control-label" for="c_a_pressure"  >风压 </label>
                              <div class="col-sm-4">
-								<input class="form-control"  id=" c_a_pressure" name="c_a_pressure"  type="text" placeholder="帕"/>
+								<input class="form-control"  id=" c_a_pressure" name="c_a_pressure"  type="number" placeholder="帕"/>
                              </div>
                        
                        </div>  
@@ -177,7 +210,7 @@
 							5.如新建微波，需知道微波两点经纬度、海拔，对方微波天线挂高，本台站微波天线可挂在何处（如塔上那一段高度）<br/>
 							6.卫星天线及微波天线馈线如何送往节传设备机柜，沟洞、馈线走向要勾画示意图或至少文字描述清楚。包括：节传设备所在机房光缆如何进来、塔上微波馈线是否跟发射机馈线洞共用，在什么位置标明。<br/>
 							7.机房现有接地极的位置，是否需要新设计。<br/>
-								<button type="button" class="btn btn-default   btn-sm" onclick="save(1)">上传</button>
+								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile()">上传</button>
                             </div>
  							
                           </div>
