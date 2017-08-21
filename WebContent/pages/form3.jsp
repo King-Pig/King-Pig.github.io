@@ -41,6 +41,20 @@
                         		</div>
                          
                         		<div class="panel-body">
+ 						 			<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+										<thead>
+											<tr>
+											<th >序号</th>
+											<th >卫星名称</th>
+											<th>天线口径</th>
+											<th>节目内容</th>
+											<th >操作</th>
+											</tr>
+										</thead>
+									<tbody id="s_list">
+
+									</tbody>
+							</table>
  						 				
 								</div>
 							</div>
@@ -62,7 +76,24 @@
                         		</div>
                          
                         		<div class="panel-body">
- 						 				
+ 						 			<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+										<thead>
+											<tr>
+											<th >序号</th>
+											<th >传输方向</th>
+											<th>总芯数</th>
+											<th>传输容量</th>
+											<th>传输节目内容</th>
+											<th>空余芯数</th>
+											<th>信号格式</th>
+											<th>信号编码格式</th>
+											<th >操作</th>
+											</tr>
+										</thead>
+									<tbody id="o_list">
+
+									</tbody>
+									</table>
 								</div>
 							</div>
                           </div>
@@ -80,7 +111,23 @@
                         		</div>
                          
                         		<div class="panel-body">
- 						 				
+ 						 				 						 			<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+										<thead>
+											<tr>
+											<th >序号</th>
+											<th >台站名称</th>
+											<th>传输频率</th>
+											<th>传输容量</th>
+											<th>已用容量</th>
+											<th>传输节目内容</th>
+
+											<th >操作</th>
+											</tr>
+										</thead>
+									<tbody id="m_list">
+
+									</tbody>
+									</table>
 								</div>
 							</div>
                           </div>

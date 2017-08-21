@@ -250,7 +250,7 @@ if(action == null) action ="";
 									<th >操作</th>
 									</tr>
 								</thead>
-								<tbody id="datalist">
+								<tbody id="d_list1">
 
 								</tbody>
 							</table>
@@ -274,7 +274,7 @@ if(action == null) action ="";
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
- 					 								 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+ 					 		<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 								<thead>
 									<tr>
 									<th >序号</th>
@@ -290,7 +290,7 @@ if(action == null) action ="";
 									<th >操作</th>
 									</tr>
 								</thead>
-								<tbody id="datalist">
+								<tbody id="d_list2">
 
 								</tbody>
 							</table>
@@ -375,13 +375,28 @@ if(action == null) action ="";
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>   电视天馈系统 </span>
                             <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
- 									<button type="button" class="btn btn-default   btn-sm" onclick="save(10,0)">保存</button>
+ 										<button type="button" class="btn btn-info   btn-sm" onclick=""> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
       						</div>                            
                             
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
- 							
+ 							<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+								<thead>
+									<tr>
+									<th >序号</th>
+									<th >天线类型</th>
+									<th>高度</th>
+									<th>播出频率</th>
+									<th >馈线型号</th>
+									<th >操作</th>
+									</tr>
+								</thead>
+								<tbody id="as_datalist">
+
+								</tbody>
+							</table>
+
 						</div>
                         <div class="panel-footer" style="text-align:center" >
                             <button type="button" class="btn btn-success" onclick="save(10,0)">完成</button>
@@ -474,12 +489,7 @@ if(action == null) action ="";
 			  }, "json");
 	}
 
- 
 
-
- 
- 
- 	
  	function formValuesCheck(fname) {
  		var fields = $("#"+fname).serializeArray(); 
  		var r = 0;
@@ -502,7 +512,6 @@ if(action == null) action ="";
  	 
  	
 		$(function() {
-
 			  $(".form_datetime").datetimepicker({
 				  locale:'bootstrap-datetimepicker.zh-CN',
 				  format: 'yyyy-mm',
@@ -522,12 +531,122 @@ if(action == null) action ="";
 
 
  				editform($('#t_id').val());
+ 				getAllListData();
  			}
 		});
  
 		
  
-		
+		function getAllListData(){
+			var method  = new Array("s_list", "o_list", "m_list","d_list1","d_list2");
+			var _html_arr ;
+				
+				$.post("../DeviceInfo?method=alldata&t_id="+$('#t_id').val(), from_data, function(data) {
+					if (typeOf(data.s_list) == "object"){
+						_html_arr = new Array();
+						$.each(data.s_list, function(i, item) {
+
+			                _html_arr.push('<tr class="">');
+			                _html_arr.push('<td>' + (i+1)+ '</td>');
+			                _html_arr.push('<td>' + item.s_name + '</td>');
+			                _html_arr.push('<td>' + item.s_a_caliber + '</td>');
+			                _html_arr.push('<td>' + item.s_p_content + '</td>');
+			                _html_arr.push('<td style="text-align: center ;">');
+			               	_html_arr.push('<button type="button" onclick="" class="btn btn-success btn-xs">编辑</button>');
+			                _html_arr.push('</td>');
+			                _html_arr.push('</tr>');
+		                });
+						$('#s_list').html(_html_arr.join(''));
+					}
+					
+					if (typeOf(data.o_list) == "object"){
+						_html_arr = new Array();
+						$.each(data.o_list, function(i, item) {
+
+			                _html_arr.push('<tr class="">');
+			                _html_arr.push('<td>' + (i+1)+ '</td>');
+			                _html_arr.push('<td>' + item.o_direction + '</td>');
+			                _html_arr.push('<td>' + item.o_c_count + '</td>');
+			                _html_arr.push('<td>' + item.o_t_capacity + '</td>');
+			                _html_arr.push('<td>' + item.o_p_content + '</td>');
+			                _html_arr.push('<td>' + item.o_c_free + '</td>');
+			                _html_arr.push('<td>' + item.o_s_format + '</td>');
+			                _html_arr.push('<td>' + item.o_s_code + '</td>');
+			                _html_arr.push('<td style="text-align: center ;">');
+			               	_html_arr.push('<button type="button" onclick="" class="btn btn-success btn-xs">编辑</button>');
+			                _html_arr.push('</td>');
+			                _html_arr.push('</tr>');
+		                });
+						$('#o_list').html(_html_arr.join(''));
+					}
+					if (typeOf(data.m_list) == "object"){
+						_html_arr = new Array();
+						$.each(data.m_list, function(i, item) {
+
+			                _html_arr.push('<tr class="">');
+			                _html_arr.push('<td>' + (i+1)+ '</td>');
+			                _html_arr.push('<td>' + item.m_name + '</td>');
+			                _html_arr.push('<td>' + item.m_t_frequency + '</td>');
+			                _html_arr.push('<td>' + item.m_t_capacity + '</td>');
+			                _html_arr.push('<td>' + item.m_u_capacity + '</td>');
+			                _html_arr.push('<td>' + item.m_t_content + '</td>');
+			                _html_arr.push('<td style="text-align: center ;">');
+			               	_html_arr.push('<button type="button" onclick="" class="btn btn-success btn-xs">编辑</button>');
+			                _html_arr.push('</td>');
+			                _html_arr.push('</tr>');
+		                });
+						$('#m_list').html(_html_arr.join(''));
+					}
+					if (typeOf(data.d_list1) == "object"){
+						_html_arr = new Array();
+						$.each(data.d_list1, function(i, item) {
+
+			                _html_arr.push('<tr class="">');
+			                _html_arr.push('<td>' + (i+1)+ '</td>');
+			                _html_arr.push('<td>' + item.d_frequency + '</td>');
+			                _html_arr.push('<td>' + item.d_r_power + '</td>');
+			                _html_arr.push('<td>' + item.d_t_power + '</td>');
+			                _html_arr.push('<td>' + item.d_program + '</td>');
+			                _html_arr.push('<td>' + item.d_m_m + '</td>');
+			                _html_arr.push('<td>' + item.d_i_interface + '</td>');
+			                _html_arr.push('<td>' + item.d_m_b + '</td>');
+			                _html_arr.push('<td>' + item.d_multiple + '</td>');
+			                _html_arr.push('<td></td>');
+			                _html_arr.push('<td style="text-align: center ;">');
+			               	_html_arr.push('<button type="button" onclick="" class="btn btn-success btn-xs">编辑</button>');
+			                _html_arr.push('</td>');
+			                _html_arr.push('</tr>');
+		                });
+						$('#d_list1').html(_html_arr.join(''));
+					}
+					if (typeOf(data.d_list2) == "object"){
+						_html_arr = new Array();
+						$.each(data.d_list2, function(i, item) {
+
+			                _html_arr.push('<tr class="">');
+			                _html_arr.push('<td>' + (i+1)+ '</td>');
+			                _html_arr.push('<td>' + item.d_frequency + '</td>');
+			                _html_arr.push('<td>' + item.d_r_power + '</td>');
+			                _html_arr.push('<td>' + item.d_t_power + '</td>');
+			                _html_arr.push('<td>' + item.d_program + '</td>');
+			                _html_arr.push('<td>' + item.d_m_m + '</td>');
+			                _html_arr.push('<td>' + item.d_i_interface + '</td>');
+			                _html_arr.push('<td>' + item.d_m_b + '</td>');
+			                _html_arr.push('<td>' + item.d_multiple + '</td>');
+			                _html_arr.push('<td></td>');
+			                _html_arr.push('<td style="text-align: center ;">');
+			               	_html_arr.push('<button type="button" onclick="" class="btn btn-success btn-xs">编辑</button>');
+			                _html_arr.push('</td>');
+			                _html_arr.push('</tr>');
+		                });
+						$('#d_list2').html(_html_arr.join(''));
+					}
+					
+				}, "json");
+				
+ 
+			
+		}
 		
 		
 		
