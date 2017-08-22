@@ -36,7 +36,7 @@
                         		<div class="panel-heading" style='height:42px;'>
                             		<span class=""> </span>
                                 	<div class="navbar-right" style='margin-top:-5px;margin-right:10px;'>
- 										<button type="button" class="btn btn-info   btn-sm" onclick=""> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
+ 										<button type="button" class="btn btn-info   btn-sm" onclick="openwindow(1,0)"> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
       								</div>
                         		</div>
                          
@@ -44,11 +44,11 @@
  						 			<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 										<thead>
 											<tr>
-											<th >序号</th>
+											<th width="50px">序号</th>
 											<th >卫星名称</th>
 											<th>天线口径</th>
 											<th>节目内容</th>
-											<th >操作</th>
+											<th width="100px">操作</th>
 											</tr>
 										</thead>
 									<tbody id="s_list">
@@ -71,7 +71,7 @@
                         		<div class="panel-heading" style='height:42px;'>
                             		<span class=""> </span>
                                 	<div class="navbar-right" style='margin-top:-5px;margin-right:10px;'>
- 										<button type="button" class="btn btn-info   btn-sm" onclick=""> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
+ 										<button type="button" class="btn btn-info   btn-sm" onclick="openwindow(2,0)"> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
       								</div>
                         		</div>
                          
@@ -79,7 +79,7 @@
  						 			<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 										<thead>
 											<tr>
-											<th >序号</th>
+											<th width="50px">序号</th>
 											<th >传输方向</th>
 											<th>总芯数</th>
 											<th>传输容量</th>
@@ -87,7 +87,7 @@
 											<th>空余芯数</th>
 											<th>信号格式</th>
 											<th>信号编码格式</th>
-											<th >操作</th>
+											<th width="100px">操作</th>
 											</tr>
 										</thead>
 									<tbody id="o_list">
@@ -106,7 +106,7 @@
                         		<div class="panel-heading" style='height:42px;'>
                             		<span class=""> </span>
                                 	<div class="navbar-right" style='margin-top:-5px;margin-right:10px;'>
- 										<button type="button" class="btn btn-info   btn-sm" onclick=""> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
+ 										<button type="button" class="btn btn-info   btn-sm" onclick="openwindow(3,0)"> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
       								</div>
                         		</div>
                          
@@ -114,14 +114,14 @@
  						 				 						 			<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 										<thead>
 											<tr>
-											<th >序号</th>
+											<th width="50px">序号</th>
 											<th >台站名称</th>
 											<th>传输频率</th>
 											<th>传输容量</th>
 											<th>已用容量</th>
 											<th>传输节目内容</th>
 
-											<th >操作</th>
+											<th width="100px">操作</th>
 											</tr>
 										</thead>
 									<tbody id="m_list">

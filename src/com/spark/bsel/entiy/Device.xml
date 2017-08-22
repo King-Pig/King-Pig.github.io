@@ -71,10 +71,10 @@
 			delete from satellite_info  where s_id = #{id}
 	</delete>
 	<insert id="s_add"  parameterType="map" >
-			insert into device_info  ( t_id,s_name,s_a_caliber,s_p_content)  values ( #{t_id},#{s_name},#{s_a_caliber},#{s_p_content})
+			insert into satellite_info  ( t_id,s_name,s_a_caliber,s_p_content)  values ( #{t_id},#{s_name},#{s_a_caliber},#{s_p_content})
 	</insert>
 	<update id="s_update"  parameterType="map"  >
-		   UPDATE device_info set  s_name=#{s_name},s_a_caliber=#{s_a_caliber},s_p_content=#{s_p_content}  where s_id=#{s_id}
+		   UPDATE satellite_info set  s_name=#{s_name},s_a_caliber=#{s_a_caliber},s_p_content=#{s_p_content}  where s_id=#{s_id}
 	</update>
 
 

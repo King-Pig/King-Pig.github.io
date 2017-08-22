@@ -16,10 +16,21 @@ public class DeviceDao {
 	 * @param t_id
 	 * @return
 	 */
-	public List<Map<String,Object>> queryList(String queryType ,int t_id) {
+	public List<Map<String,Object>> queryList(String queryType ,int id) {
+		long startTime=System.currentTimeMillis();//记录开始时间
 		SqlSession session = MybatisUtil.getSession();
-		List<Map<String,Object>> list = session.selectList("Device."+queryType, t_id);
+		long endTime1=System.currentTimeMillis();//记录结束时间
+		List<Map<String,Object>> list = session.selectList("Device."+queryType, id);
+		long endTime2=System.currentTimeMillis();//记录结束时间
 		MybatisUtil.closeSession();
+		long endTime3=System.currentTimeMillis();//记录结束时间
+ 
+		float excTime1=(float)(endTime1-startTime)/1000;
+		float excTime2=(float)(endTime2-startTime)/1000;
+		float excTime3=(float)(endTime3-startTime)/1000;
+		System.out.println("执行时间1："+excTime1+"s");
+		System.out.println("执行时间2："+excTime2+"s");
+		System.out.println("执行时间3："+excTime3+"s");
 		return list;
 	}
 	
@@ -71,10 +82,17 @@ public class DeviceDao {
 	 * @return
 	 */
 	public int del(String queryType,int id){
+		long startTime=System.currentTimeMillis();//记录开始时间
 		SqlSession session = MybatisUtil.getSession();
 		int i = session.delete("Device."+queryType, id);
 		session.commit(); 
 		MybatisUtil.closeSession();
+		long endTime1=System.currentTimeMillis();//记录结束时间
+		 
+		float excTime1=(float)(endTime1-startTime)/1000;
+ 
+		System.out.println("执行时间 ："+excTime1+"s");
+ 
 		return i;
 	}
 }

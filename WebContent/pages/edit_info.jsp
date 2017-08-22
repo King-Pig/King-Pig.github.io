@@ -417,6 +417,246 @@ if(action == null) action ="";
 	</div>
 	<!-- /#wrapper -->
 
+
+
+<!-- Modal -->
+<div class="modal fade" id="list_modal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel"> 详情</h4>
+      </div>
+      <div class="modal-body">
+
+  
+ 			<form class="form-horizontal  list_info_form"  id="list_info_form1" style="display:none;">
+  					
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">卫星名称</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="s_name"  name="s_name"  type="text" class="form-control"   placeholder="卫星名称">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>
+    				
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">天线口径</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="s_a_caliber" name="s_a_caliber" type="number" class="form-control"   placeholder="米">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   				
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">节目内容</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+    				
+						<input id="s_p_content" name="s_p_content" type="text" class="form-control"   placeholder="">
+     
+    				</div>
+    				</div>
+    				</div>  
+    				<input type="hidden" id="s_id"  name="s_id"  >
+    				<input type="hidden" id="form_tag1"  name="form_tag"  value="s">
+  				</form>
+ 
+
+
+				<form class="form-horizontal  list_info_form"  id="list_info_form2" style="display:none;">
+  					
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">传输方向</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					    <select id="o_direction" name ="o_direction" class="form-control">
+								<option value="1">有线网络公司方向</option>
+								<option value="2">广播电视台方向</option>
+							</select>
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>
+    				
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">总芯数</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="o_c_count" name="o_c_count" type="number" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   				
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">传输容量</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+    				
+						<input id="o_t_capacity" name="o_t_capacity" type="number" class="form-control"   placeholder="">
+     
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>  
+
+					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">传输节目内容</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="o_p_content" name="o_p_content" type="text" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   	
+
+ 					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">空余芯数</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="o_c_free" name="o_c_free" type="number" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   
+					
+					
+ 					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">信号格式</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+					      	<select id="o_s_format" name ="o_s_format" class="form-control">
+								<option  >射频</option>
+								<option  >ASI</option>
+								<option  >IP</option>
+							</select>
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   
+
+ 					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">信号编码格式</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+					      	<select id="o_s_code" name ="o_s_code" class="form-control">
+								<option  >MPEG-2</option>
+								<option  >H264</option>
+							</select>
+    				</div><!-- /input-group -->
+    				</div>
+    				</div> 
+    				<input type="hidden" id="o_id"  name="o_id"  >
+    				<input type="hidden" id="form_tag2"  name="form_tag"  value="o">
+  				</form>
+ 
+
+ 
+				<form class="form-horizontal  list_info_form"   id="list_info_form3" style="display:none;">
+  					
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">台站名称</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="m_name" name="m_name" type="text" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>
+    				
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">传输频率</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="m_t_frequency" name="m_t_frequency" type="number" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   				
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">传输容量</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+    				
+						<input id="m_t_capacity" name="m_t_capacity" type="number" class="form-control"   placeholder="">
+     
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>  
+
+					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">已用容量</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="m_u_capacity" name="m_u_capacity" type="number" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   	
+
+ 					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">传输节目内容</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="m_t_content" name="m_t_content" type="text" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   
+ 					 <input type="hidden" id="m_id"  name="m_id"  >
+    				<input type="hidden" id="form_tag3"  name="form_tag"  value="m">
+  				</form>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">  取消  </button>
+        <button type="button" class="btn btn-success"   onclick="savelistinfo()" >  保存  </button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
 	<!-- jQuery -->
 	<script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -440,6 +680,59 @@ if(action == null) action ="";
 		<script type="text/javascript"  src="../js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 	<script>
 
+	
+	var save_list_info_num;
+	var save_list_info_type;
+	function openwindow(num,id){
+		$(".list_info_form").hide();
+		$("#list_info_form"+num).show();	
+		save_list_info_num = num;
+		var nowid =  $("#form_tag"+save_list_info_num).val()+"_id";
+		
+		if(id == 0){
+			// 新增
+			save_list_info_type = 'add';
+			$("#"+nowid).val(0);
+		}else{
+			//编辑
+			save_list_info_type = 'update';
+			$("#"+nowid).val(id);
+		}
+		$('#list_modal').modal({
+		    keyboard: true,
+		    show:true
+		});
+	}
+	
+	function savelistinfo(){
+		var i = formValuesCheck("list_info_form"+save_list_info_num);
+		if( i == 0){
+			//验证通过
+ 			var id = $("#t_id").val();
+ 			var mt = $("#form_tag"+save_list_info_num).val() + "_"+save_list_info_type;
+			var from_data = $("#list_info_form"+save_list_info_num).serialize();
+			$.post("../DeviceInfo?method="+mt+"&t_id="+$('#t_id').val(), from_data, function(data) {
+				if(data.result>0){
+					$('#list_modal').modal('hide');
+					getAllListData();//全部刷新
+				}
+		         		
+			}, "json");
+			
+		}
+	}
+	
+	function del_info(type,id){
+		var mt = type+"_del";
+		$.post("../DeviceInfo?method="+mt+"&id="+id, function(data) {
+			if(data.result>0){
+				getAllListData();//全部刷新
+			}
+	         		
+		}, "json");
+		
+		
+	}
 	
 	function editpage(unm){
  		$(".pageedit").hide();
@@ -541,8 +834,8 @@ if(action == null) action ="";
 			var method  = new Array("s_list", "o_list", "m_list","d_list1","d_list2");
 			var _html_arr ;
 				
-				$.post("../DeviceInfo?method=alldata&t_id="+$('#t_id').val(), from_data, function(data) {
-					if (typeOf(data.s_list) == "object"){
+				$.post("../DeviceInfo?method=alldata&t_id="+$('#t_id').val(), function(data) {
+					if (typeof(data.s_list) == "object"){
 						_html_arr = new Array();
 						$.each(data.s_list, function(i, item) {
 
@@ -552,14 +845,15 @@ if(action == null) action ="";
 			                _html_arr.push('<td>' + item.s_a_caliber + '</td>');
 			                _html_arr.push('<td>' + item.s_p_content + '</td>');
 			                _html_arr.push('<td style="text-align: center ;">');
-			               	_html_arr.push('<button type="button" onclick="" class="btn btn-success btn-xs">编辑</button>');
+			               	_html_arr.push('<button type="button" onclick="openwindow(1,'+item.s_id+')" class="btn btn-success btn-xs">编辑</button>');
+			               	_html_arr.push('&nbsp  <button type="button" onclick="del_info(\'s\','+item.s_id+')" class="btn btn-success btn-xs">删除</button>');
 			                _html_arr.push('</td>');
 			                _html_arr.push('</tr>');
 		                });
 						$('#s_list').html(_html_arr.join(''));
 					}
 					
-					if (typeOf(data.o_list) == "object"){
+					if (typeof(data.o_list) == "object"){
 						_html_arr = new Array();
 						$.each(data.o_list, function(i, item) {
 
@@ -573,13 +867,14 @@ if(action == null) action ="";
 			                _html_arr.push('<td>' + item.o_s_format + '</td>');
 			                _html_arr.push('<td>' + item.o_s_code + '</td>');
 			                _html_arr.push('<td style="text-align: center ;">');
-			               	_html_arr.push('<button type="button" onclick="" class="btn btn-success btn-xs">编辑</button>');
+			               	_html_arr.push('<button type="button" onclick="openwindow(2,'+item.o_id+')" class="btn btn-success btn-xs">编辑</button>');
+			               	_html_arr.push('&nbsp  <button type="button" onclick="del_info(\'o\','+item.o_id+')" class="btn btn-success btn-xs">删除</button>');
 			                _html_arr.push('</td>');
 			                _html_arr.push('</tr>');
 		                });
 						$('#o_list').html(_html_arr.join(''));
 					}
-					if (typeOf(data.m_list) == "object"){
+					if (typeof(data.m_list) == "object"){
 						_html_arr = new Array();
 						$.each(data.m_list, function(i, item) {
 
@@ -591,13 +886,14 @@ if(action == null) action ="";
 			                _html_arr.push('<td>' + item.m_u_capacity + '</td>');
 			                _html_arr.push('<td>' + item.m_t_content + '</td>');
 			                _html_arr.push('<td style="text-align: center ;">');
-			               	_html_arr.push('<button type="button" onclick="" class="btn btn-success btn-xs">编辑</button>');
+			               	_html_arr.push('<button type="button" onclick="openwindow(3,'+item.m_id+')" class="btn btn-success btn-xs">编辑</button>');
+			               	_html_arr.push('&nbsp  <button type="button" onclick="del_info(\'m\','+item.m_id+')" class="btn btn-success btn-xs">删除</button>');
 			                _html_arr.push('</td>');
 			                _html_arr.push('</tr>');
 		                });
 						$('#m_list').html(_html_arr.join(''));
 					}
-					if (typeOf(data.d_list1) == "object"){
+					if (typeof(data.d_list1) == "object"){
 						_html_arr = new Array();
 						$.each(data.d_list1, function(i, item) {
 
@@ -613,13 +909,14 @@ if(action == null) action ="";
 			                _html_arr.push('<td>' + item.d_multiple + '</td>');
 			                _html_arr.push('<td></td>');
 			                _html_arr.push('<td style="text-align: center ;">');
-			               	_html_arr.push('<button type="button" onclick="" class="btn btn-success btn-xs">编辑</button>');
+			               	_html_arr.push('<button type="button" onclick="openwindow(4,'+item.d_id+')" class="btn btn-success btn-xs">编辑</button>');
+			               	_html_arr.push('&nbsp  <button type="button" onclick="del_info(4,'+item.d_id+')" class="btn btn-success btn-xs">删除</button>');
 			                _html_arr.push('</td>');
 			                _html_arr.push('</tr>');
 		                });
 						$('#d_list1').html(_html_arr.join(''));
 					}
-					if (typeOf(data.d_list2) == "object"){
+					if (typeof(data.d_list2) == "object"){
 						_html_arr = new Array();
 						$.each(data.d_list2, function(i, item) {
 
@@ -635,7 +932,8 @@ if(action == null) action ="";
 			                _html_arr.push('<td>' + item.d_multiple + '</td>');
 			                _html_arr.push('<td></td>');
 			                _html_arr.push('<td style="text-align: center ;">');
-			               	_html_arr.push('<button type="button" onclick="" class="btn btn-success btn-xs">编辑</button>');
+			               	_html_arr.push('<button type="button" onclick="openwindow(4'+item.d_id+')" class="btn btn-success btn-xs">编辑</button>');
+			            	_html_arr.push('&nbsp  <button type="button" onclick="del_info(4,'+item.d_id+')" class="btn btn-success btn-xs">删除</button>');
 			                _html_arr.push('</td>');
 			                _html_arr.push('</tr>');
 		                });
