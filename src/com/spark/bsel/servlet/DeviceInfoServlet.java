@@ -55,19 +55,21 @@ public class DeviceInfoServlet  extends HttpServlet {
 			List<Map<String,Object>>  m_list = dd.queryList("m_list", id);
 			List<Map<String,Object>>  d_list1 = dd.queryList("d_list1",id);
 			List<Map<String,Object>>  d_list2 = dd.queryList("d_list2",id);
+			List<Map<String,Object>>  as_list = dd.queryList("as_list",id);
 			Map<String,Object>  m = new HashMap<String,Object>();
 			if(s_list != null) 	m.put("s_list", s_list);
 			if(o_list != null) 	m.put("o_list", o_list);
 			if(m_list != null) 	m.put("m_list", m_list);
 			if(d_list1 != null) 	m.put("d_list1", d_list1);
 			if(d_list2 != null) 	m.put("d_list2", d_list2);
-
+			if(as_list != null) 	m.put("as_list", as_list);
+			
 			JSONObject  o = JSONObject.fromObject(m);
 			out.write(o.toString());
 		}else if(method.indexOf("info")>0){
-			String t_id = request.getParameter("t_id");
-			if(t_id == null || "".equals(t_id)) t_id="0";
-			Map<String,Object> m= dd.queryInfo(method, Integer.parseInt(t_id));
+			String id = request.getParameter("id");
+			if(id == null || "".equals(id)) id="0";
+			Map<String,Object> m= dd.queryInfo(method, Integer.parseInt(id));
 			 JSONObject  o =   JSONObject.fromObject(m);
 			 out.write(o.toString());
 		}else if(method.indexOf("add")>0){
