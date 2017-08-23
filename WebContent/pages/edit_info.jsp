@@ -650,7 +650,10 @@ if(action == null) action ="";
 </div>
 
 
-
+ <form id="uploadform"  action="../uploadfile" method="post" enctype="multipart/form-data"  style="display:none;" >
+        <input  id="upload_file" name="upload_file"   type="file"   onchange="upload($(this))" >
+        <input  id="upload_file_type" name="upload_file_type"   type="text"   >
+</form>
 
 
 
@@ -680,6 +683,47 @@ if(action == null) action ="";
 		<script type="text/javascript"  src="../js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 	<script>
 
+	function uploadfile(type){
+		$('#upload_file_type').val(type);
+		$('#upload_file').click();
+
+	}
+	function upload(type){
+		var files = $('#upload_file').prop('files');
+		 var data = new FormData();
+		 data.append('file', files[0]);
+		 data.append('file_type', $('#upload_file_type').val());
+		
+		 $.post("../UploadFile", data, function(data) {
+			 if(datajson.result ==1 ){
+ 
+	        		var tmp = "";
+	        		if(datajson.ad_number>1){
+	        			tmp='<div id="img'+datajson.ad_id+'" class="ad_img" style="background-image: url(../..'+data.file_url+')" ><span class="numbershow">'+datajson.file_num+'</span><div class="butup"><button  type="button"   onclick="up('+ad_number_p+','+ad_number_n+','+datajson.ad_id+','+datajson.ad_number+')" class="btn btn-default btn-xs">UP</button>&nbsp;&nbsp;&nbsp;&nbsp;<button  type="button"   onclick="del('+ad_group_id+','+datajson.ad_number+','+datajson.ad_id+')" class="btn btn-default btn-xs">DEL</button></div></div>'
+	        		}else{
+	        			tmp='<div id="img'+datajson.ad_id+'" class="ad_img" style="background-image: url(../..'+data.file_url+')" ><span class="numbershow">'+datajson.file_num+'</span><div class="butup"> <button  type="button"   onclick="del('+ad_group_id+','+datajson.ad_number+','+datajson.ad_id+')" class="btn btn-default btn-xs">DEL</button></div></div>'
+	        		}
+	        		 
+	        		
+	        		$('#div_img').append(tmp);
+
+	        	}else{
+	        		$(obj).next().text('上传失败').show();
+	        	}
+		         		
+			}, "json");
+	
+	}
+	
+	('#selectFile').live('click',function(){  
+        var ie = !-[1,];   
+        if(ie){  
+            jQuery('input:file').trigger('click').trigger('change');  
+        }else{  
+            jQuery('input:file').trigger('click');  
+        }  
+          
+    });  
 	
 	var save_list_info_num;
 	var save_list_info_type;
