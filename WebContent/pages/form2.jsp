@@ -120,7 +120,10 @@
                                 1.市电  - 稳压器 - UPS - 发射机 <br/>
 								2.市电  - UPS  - 稳压器  - 发射机 <br/>
 								3.市电  - 发射机<br/>
-								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile()">上传</button>
+								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile(1)">上传</button>
+								<br/>
+								<div id="file_box1">
+								</div>
                             </div>
  							
                           </div>
@@ -134,10 +137,12 @@
                             <div class="alert alert-warning">
                                <strong>上传事项</strong> <br/>
                                 	配电箱系统图，有，拍系统图，无，拍配电箱，全图，进出开关大小<br/>
-                                <button type="button" class="btn btn-default   btn-sm" onclick="uploadfile()">上传</button>
+                                <button type="button" class="btn btn-default   btn-sm" onclick="uploadfile(2)">上传</button>
                             </div>
                             
- 							
+ 							<br/>
+								<div id="file_box2">
+								</div>
                           </div>
  
                        </div>
@@ -145,7 +150,10 @@
                           <label class="col-sm-2 control-label"  for="p_primary" >防雷接地检测报告</label>
                           <div class="col-sm-10">
                            <div class="alert alert-warning">
- 							<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile()">上传</button>
+ 							<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile(3)">上传</button>
+ 							 	<br/>
+								<div id="file_box3">
+								</div>
  							</div>
                           </div>
  

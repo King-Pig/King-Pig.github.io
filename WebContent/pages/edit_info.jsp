@@ -42,6 +42,29 @@ if(action == null) action ="";
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    	<style type="text/css">
+	.ad_img{
+		width: 180px;
+		height: 320px;
+		background-color:#d9d9d9;
+		margin: 16px;
+		 float:left;
+		 text-align:center;
+		 
+		 font-size:80px;
+	}
+	
+	.numbershow{
+		filter:alpha(opacity=10);-moz-opacity:0.1;opacity:0.1;
+	}
+	
+	.butup{
+ 
+		 position:relative; top:125px;
+	}
+</style>
+
 </head>
 
 <body style=" font-family: 'Microsoft YaHei';color:#666666;">
@@ -683,25 +706,54 @@ if(action == null) action ="";
 		<script type="text/javascript"  src="../js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
 	<script>
 
+
+
 	function uploadfile(type){
 		$('#upload_file_type').val(type);
 		$('#upload_file').click();
 
 	}
-	function upload(type){
+	function upload(o){
 		var files = $('#upload_file').prop('files');
-		 var data = new FormData();
-		 data.append('file', files[0]);
-		 data.append('file_type', $('#upload_file_type').val());
-		
-		 $.post("../UploadFile", data, function(data) {
-			 if(datajson.result ==1 ){
+		 var fdata = new FormData();
+		 fdata.append('file', files[0]);
+		 fdata.append('file_group', $('#upload_file_type').val());
+		 
+		 $.ajax({
+			 url: '../UploadFile',
+			    type: 'POST',
+			    cache: false,
+			    data: fdata,
+			    processData: false,
+			    contentType: false,
+			    dataType:'json',
+			 success: function(data){
+				 if(data.result ==1 ){
+	        		var tmp = "";
+	        		if(data.file_num>1){
+	        			tmp='<div id="img1" class="ad_img" style="background-image: url(../..'+data.file_url+')" ><span class="numbershow">'+datajson.file_num+'</span><div class="butup"><button  type="button"   onclick="file_up()" class="btn btn-default btn-xs">UP</button>&nbsp;&nbsp;&nbsp;&nbsp;<button  type="button"   onclick="del('+ad_group_id+','+datajson.ad_number+','+datajson.ad_id+')" class="btn btn-default btn-xs">DEL</button></div></div>'
+	        		}else{
+	        			tmp='<div id="img2" class="ad_img" style="background-image: url(../..'+data.file_url+')" ><span class="numbershow">'+datajson.file_num+'</span><div class="butup"> <button  type="button"   onclick="file_del()" class="btn btn-default btn-xs">DEL</button></div></div>'
+	        		}
+	        		 
+	        		
+	        		$('#div_img').append(tmp);
+		         
+		      }else{
+		    	  
+		     	 alert(0);
+		      }
+			 }
+		 });
+		 
+	/* 	 $.post("../UploadFile", fdata, function(data) {
+			 if(data.result ==1 ){
  
 	        		var tmp = "";
-	        		if(datajson.ad_number>1){
-	        			tmp='<div id="img'+datajson.ad_id+'" class="ad_img" style="background-image: url(../..'+data.file_url+')" ><span class="numbershow">'+datajson.file_num+'</span><div class="butup"><button  type="button"   onclick="up('+ad_number_p+','+ad_number_n+','+datajson.ad_id+','+datajson.ad_number+')" class="btn btn-default btn-xs">UP</button>&nbsp;&nbsp;&nbsp;&nbsp;<button  type="button"   onclick="del('+ad_group_id+','+datajson.ad_number+','+datajson.ad_id+')" class="btn btn-default btn-xs">DEL</button></div></div>'
+	        		if(data.file_num>1){
+	        			tmp='<div id="img'+datajson.ad_id+'" class="ad_img" style="background-image: url(../..'+data.file_url+')" ><span class="numbershow">'+datajson.file_num+'</span><div class="butup"><button  type="button"   onclick="file_up()" class="btn btn-default btn-xs">UP</button>&nbsp;&nbsp;&nbsp;&nbsp;<button  type="button"   onclick="del('+ad_group_id+','+datajson.ad_number+','+datajson.ad_id+')" class="btn btn-default btn-xs">DEL</button></div></div>'
 	        		}else{
-	        			tmp='<div id="img'+datajson.ad_id+'" class="ad_img" style="background-image: url(../..'+data.file_url+')" ><span class="numbershow">'+datajson.file_num+'</span><div class="butup"> <button  type="button"   onclick="del('+ad_group_id+','+datajson.ad_number+','+datajson.ad_id+')" class="btn btn-default btn-xs">DEL</button></div></div>'
+	        			tmp='<div id="img'+datajson.ad_id+'" class="ad_img" style="background-image: url(../..'+data.file_url+')" ><span class="numbershow">'+datajson.file_num+'</span><div class="butup"> <button  type="button"   onclick="file_del()" class="btn btn-default btn-xs">DEL</button></div></div>'
 	        		}
 	        		 
 	        		
@@ -712,10 +764,10 @@ if(action == null) action ="";
 	        	}
 		         		
 			}, "json");
-	
+	 */
 	}
 	
-	('#selectFile').live('click',function(){  
+/* 	('#selectFile').live('click',function(){  
         var ie = !-[1,];   
         if(ie){  
             jQuery('input:file').trigger('click').trigger('change');  
@@ -723,7 +775,7 @@ if(action == null) action ="";
             jQuery('input:file').trigger('click');  
         }  
           
-    });  
+    });   */
 	
 	var save_list_info_num;
 	var save_list_info_type;

@@ -257,7 +257,10 @@
 							5.如新建微波，需知道微波两点经纬度、海拔，对方微波天线挂高，本台站微波天线可挂在何处（如塔上那一段高度）<br/>
 							6.卫星天线及微波天线馈线如何送往节传设备机柜，沟洞、馈线走向要勾画示意图或至少文字描述清楚。包括：节传设备所在机房光缆如何进来、塔上微波馈线是否跟发射机馈线洞共用，在什么位置标明。<br/>
 							7.机房现有接地极的位置，是否需要新设计。<br/>
-								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile()">上传</button>
+								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile(4)">上传</button>
+								<br>
+								<div id="file_box4">
+								</div>
                             </div>
  							
                           </div>
