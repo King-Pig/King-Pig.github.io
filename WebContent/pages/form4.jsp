@@ -166,7 +166,10 @@
                             <div class="alert alert-warning">
                                	应包括机房方位、机房尺寸、现有设备布置、预留设备位置、馈线洞口、桥架（地沟）线缆路由、接地极（排）位置；<br/>
 								机房和铁塔之间的相对位置和距离，线缆路由走向等<br/>
-								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile()">上传</button>
+								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile(5)">上传</button>
+								<br/>
+								<div id="file_box5">
+								</div>
                             </div>
  							
                           </div>

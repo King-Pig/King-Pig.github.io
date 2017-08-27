@@ -7,7 +7,12 @@
 		Tower_info WHERE t_id=#{id}
 	</select>
 
-
+	 <select id="grouplist" resultType="map" parameterType="int">
+	 <![CDATA[
+		SELECT t_id,t_version FROM 	Tower_info WHERE t_status >=0 and  t_group=#{id} order by t_version DESC
+		]]>
+	</select>
+	
 	<select id="city_count" resultType="map"  >
 			SELECT c.city,  IF(ISNULL(t.num),0,t.num ) AS num FROM `city` c LEFT JOIN  (SELECT t_city ,COUNT(1) AS  num FROM `Tower_info` WHERE t_new_sign=1 AND t_status=1 GROUP BY t_city )  t ON c.city = t.t_city  ORDER BY c.id
 	</select>
@@ -214,6 +219,7 @@
 			tm_height = #{tm_height},
 			tm_hemline = #{tm_hemline},
 			tm_style = #{tm_style},
+			tm_style_v= #{tm_style_v},
 			tm_build_unit = #{tm_build_unit},
 			tm_design_unit = #{tm_design_unit},
 			tm_lifespan = #{tm_lifespan},
@@ -234,4 +240,12 @@
 			insert into Tower_info  (t_c_time,t_c_u_id,t_cg_time,t_cg_u_id)  values (now(),#{t_c_u_id},now(),#{t_c_u_id})
 		]]>
 	</insert>
+	
+	
+		<insert id="addgroup" parameterType="map" useGeneratedKeys="true" 		keyProperty="t_group">
+		<![CDATA[
+			 INSERT INTO  Tower_group ( t_group_name) VALUES (#{t_group_name})
+		]]>
+	</insert>
+	
 </mapper>

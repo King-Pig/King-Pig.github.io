@@ -2,11 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="Files">
  
-	<select id="file_group"  resultType="map"    parameterType="int">
-		SELECT * FROM file_info WHERE file_group=#{id} order by file_num
-	</select>
+
 	
-	<select id="file_s  resultType="map"    parameterType="int">
+	<select id="file_s"  resultType="map"    parameterType="int">
 		SELECT * FROM file_info WHERE t_id=#{id} order by file_group, file_num
 	</select>
 	
@@ -18,8 +16,8 @@
 	<delete id="file_del"  parameterType="int">
 			delete from file_info  where file_id = #{id}
 	</delete>
-	<insert id="file_add"  parameterType="map" >
-			insert into file_info  ( t_id,file_group,file_num,file_path,file_size,file_img,file_remark)  values (#{t_id},#{file_group},#{file_num},#{file_path},#{file_size},#{file_img},#{file_remark})
+	<insert id="file_add"  parameterType="map" useGeneratedKeys="true" keyProperty="file_id" >
+			insert into file_info  ( t_id,file_group,file_name,file_num,file_path,file_size,file_img,file_remark)  values (#{t_id},#{file_group},#{file_name},#{file_num},#{file_path},#{file_size},#{file_img},#{file_remark})
 	</insert>
 
 </mapper>

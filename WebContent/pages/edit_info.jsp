@@ -63,6 +63,39 @@ if(action == null) action ="";
  
 		 position:relative; top:125px;
 	}
+	.file_box_info{
+		width:220px;
+		height:100%;
+		 display:inline;
+		margin:12px;
+	}
+	
+	.file_img{
+	margin:5px;
+	width:220px;
+		
+	}
+	
+	.file_noimg{
+	margin:3px;
+	}
+	.myfiledel{
+			position: relative;
+			left :-30px;
+	}
+	
+		.myfiledel1{
+			position: relative;
+			left :10px;
+	}
+	
+	.file_box_info1{
+		width:50px;
+		height:50px;
+		 display:inline;
+		margin:18px;
+	}
+	
 </style>
 
 </head>
@@ -93,9 +126,9 @@ if(action == null) action ="";
 									
 					<ul class="nav" id="side-menu">
 
- 						<li class ="active">
+ 						<li class ="active"   >
                             <a href="#"><i class="glyphicon glyphicon-pawn"></i><span id="st_name"></spna> </span><span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level"  aria-expanded="true" class="nav nav-second-level collapse in">
+                            <ul class="nav nav-second-level"  aria-expanded="true" >
                                 <li><a href="#" onclick="editpage(1)"><span id="ico1" class='fa fa-edit' style='color:#cc2200'></span> 台站概况</a></li>
                                 <li><a href="#" onclick="editpage(2)"><span id="ico2" class='fa fa-edit' style='color:#cccccc'></span> 供配电</a></li>
                                 <li><a href="#" onclick="editpage(3)"><span id="ico3" class='fa fa-edit' style='color:#cccccc'></span> 节目传送机房</a></li>
@@ -136,12 +169,10 @@ if(action == null) action ="";
      
         
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa  fa-paperclip" ></span> 当前版本 V1<span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa  fa-paperclip" ></span> <span id="now_version">当前版本 V </span><span class="caret"></span></a>
           <%if ( !"add".equals(action) ){ %>
           <ul class="dropdown-menu"  id="t_version">
-            <li><a href="#">V3</a></li>
-            <li><a href="#">V2</a></li>
-            <li><a href="#">V1</a></li>
+
           </ul>
              <%} %>
         </li>
@@ -422,7 +453,7 @@ if(action == null) action ="";
 
 						</div>
                         <div class="panel-footer" style="text-align:center" >
-                            <button type="button" class="btn btn-success" onclick="save(10,0)">完成</button>
+                            <button type="button" class="btn btn-success" onclick="saveall()">完成</button>
                         </div>
 					</div>
 				</div>
@@ -716,8 +747,9 @@ if(action == null) action ="";
 	function upload(o){
 		var files = $('#upload_file').prop('files');
 		 var fdata = new FormData();
-		 fdata.append('file', files[0]);
+		 fdata.append('t_id', $('#t_id').val());
 		 fdata.append('file_group', $('#upload_file_type').val());
+		 fdata.append('file', files[0]);
 		 
 		 $.ajax({
 			 url: '../UploadFile',
@@ -729,16 +761,12 @@ if(action == null) action ="";
 			    dataType:'json',
 			 success: function(data){
 				 if(data.result ==1 ){
-	        		var tmp = "";
-	        		if(data.file_num>1){
-	        			tmp='<div id="img1" class="ad_img" style="background-image: url(../..'+data.file_url+')" ><span class="numbershow">'+datajson.file_num+'</span><div class="butup"><button  type="button"   onclick="file_up()" class="btn btn-default btn-xs">UP</button>&nbsp;&nbsp;&nbsp;&nbsp;<button  type="button"   onclick="del('+ad_group_id+','+datajson.ad_number+','+datajson.ad_id+')" class="btn btn-default btn-xs">DEL</button></div></div>'
-	        		}else{
-	        			tmp='<div id="img2" class="ad_img" style="background-image: url(../..'+data.file_url+')" ><span class="numbershow">'+datajson.file_num+'</span><div class="butup"> <button  type="button"   onclick="file_del()" class="btn btn-default btn-xs">DEL</button></div></div>'
-	        		}
-	        		 
-	        		
-	        		$('#div_img').append(tmp);
-		         
+ 					if(data.file_img ==1){
+	        			$("#file_box"+data.file_group).append("<div class='file_box_info'   id='file_box_info"+data.file_id+"'><img class='file_img' src='"+encodeURI("../../files/"+data.file_path)+"' ><button type='button' class='myfiledel btn btn-inverse btn-circle' onclick='file_del("+data.file_id+")'><i class='fa fa-times'></i></div>");
+				 	}else{
+				 		$("#file_box"+data.file_group).append("<div class='file_box_info1' id='file_box_info"+data.file_id+"'><img class='file_noimg' src='../img/script-text.png'> <a href='#' onclick='openfile(\""+'../../files'+data.file_path+"\" )'>"+data.file_name+"</a><button type='button' class=' myfiledel1 btn btn-inverse btn-circle' onclick='file_del("+data.file_id+")'><i class='fa fa-times'></i></div>")
+					 }
+				 
 		      }else{
 		    	  
 		     	 alert(0);
@@ -777,6 +805,9 @@ if(action == null) action ="";
           
     });   */
 	
+    function openfile(url){
+    	window.open(url);  
+    }
 	var save_list_info_num;
 	var save_list_info_type;
 	function openwindow(num,id){
@@ -846,6 +877,88 @@ if(action == null) action ="";
 			}
 	}
 	
+	
+	function saveall(){
+		var i = formValuesCheck("info_from1");
+		if(i>0){
+			alert("台站情况未填写完整");
+			return ;
+		}
+		
+		 i = formValuesCheck("info_from2");
+			if(i>0){
+				alert("供配电未填写完整");
+				return ;
+			}
+			
+		 i = formValuesCheck("info_from3");
+			if(i>0){
+				alert("节目传送机房未填写完整");
+				return ;
+			}
+			
+		 i = formValuesCheck("info_from4");
+			if(i>0){
+				alert("发射机房未填写完整");
+				return ;
+			}
+			
+			
+			
+		 i = formValuesCheck("info_from7");
+			if(i>0){
+				alert("控制室未填写完整");
+				return ;
+			}
+			
+		 i = formValuesCheck("info_from8");
+			if(i>0){
+				alert("发射台自动化未填写完整");
+				return ;
+			}
+			
+		 i = formValuesCheck("info_from9");
+			if(i>0){
+				alert("现有塔桅未填写完整");
+				return ;
+			}
+			
+			
+			if($('#s_list').html() == "" ){
+				alert("卫星设备未录入");
+				return ;
+			}
+			if($('#o_list').html() == "" ){
+				alert("光缆设备未录入");
+				return ;
+			}
+			if($('#m_list').html() == "" ){
+				alert("微波设备未录入");
+				return ;
+			}
+			if($('#d_list1').html() == "" ){
+				alert("现有设备登记未录入");
+				return ;
+			}
+ 
+			$.post("../StationInfo?method=update&t_id="+id+"&t_status=1", function(data) {
+	         	if(data.result == 1){
+	        	    if(confirm("已保存成功，是否放回首页？"))
+	        	   	 
+	        	    {
+	        	        location.href="./index.jsp";
+	        	 
+	        	     }
+				}
+	         		
+			}, "json");
+			
+		
+	}
+	
+	
+ 
+	
 	function save(unm,next){
 		var i = formValuesCheck("info_from"+unm);
 		if( i == 0){
@@ -863,8 +976,18 @@ if(action == null) action ="";
 	}
 	
 	function editform(id){
+		$("#side-menu").hide();
+		$(".pageedit").hide();
+		$("#list_loading").show();
 		
 		$.post("../StationInfo",{'method':'queryinfo','t_id':id},function(result){
+					$.each(result.version_list, function(i, item) {
+							
+						$('#t_version').append("<li><a href='#' onclick='editform("+item.t_id+")'>V "+item.t_version+"</a></li>");  
+ 
+					});
+					$('#now_version').html("当前版本 V "+result.t_version);
+					
 					$('#st_name').html(result.t_name);  
  					$("#info_from1").populateForm(result);
  					$("#info_from2").populateForm(result);
@@ -873,11 +996,37 @@ if(action == null) action ="";
  					$("#info_from7").populateForm(result);
  					$("#info_from8").populateForm(result);
  					$("#info_from9").populateForm(result);
+ 					showfiles(result.files);
  					$("#list_loading").hide();
+ 					$("#side-menu").show();
  					$("#page1").show();	
 			  }, "json");
 	}
 
+	function showfiles(o){
+		$.each(o, function(i, item) {
+			
+				if(item.file_img ==1){
+        			$("#file_box"+item.file_group).append("<div class='file_box_info' id='file_box_info"+item.file_id+"'><img class='file_img' src='"+encodeURI("../../files/"+item.file_path)+"' ><button type='button' class='myfiledel btn btn-inverse btn-circle' onclick='file_del("+item.file_id+")'><i class='fa fa-times'></i></div>");
+			 	}else{
+			 		$("#file_box"+item.file_group).append("<div class='file_box_info1' id='file_box_info"+item.file_id+"'><img class='file_noimg' src='../img/script-text.png'> <a href='#' onclick='openfile(\""+'../../files'+item.file_path+"\" )'>"+item.file_name+"</a><button type='button' class=' myfiledel1 btn btn-inverse btn-circle' onclick='file_del("+item.file_id+")'><i class='fa fa-times'></i></div>")
+				 }
+			       //$("#file_box"+item.file_group).append("<div class='file_box_info' id='file_box_info"+item.file_id+"'><img class='file_img' src='"+encodeURI("../../files/"+item.file_path)+"' ><button type='button' class='myfiledel btn btn-inverse btn-circle' onclick='file_del("+item.file_id+")'><i class='fa fa-times'></i></div>");
+			
+		});
+		
+	}
+	
+	
+	function file_del(id){
+		$.post("../StationInfo",{'method':'file_del','file_id':id},function(data){
+				if(data.result == 1){
+					$("#file_box_info"+id).remove() ;
+				}
+		},"json");
+		
+		
+	}
 
  	function formValuesCheck(fname) {
  		var fields = $("#"+fname).serializeArray(); 
@@ -915,6 +1064,8 @@ if(action == null) action ="";
 		$(function() {
  			if(action =="add"){
  				$('#st_name').html("  新增台站");  
+ 				$("#list_loading").hide();
+ 				$("#page1").show();	
  			}else{
  				
 

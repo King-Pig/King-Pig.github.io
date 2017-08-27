@@ -147,7 +147,7 @@
                        
                     </fieldset>
                     
- 
+ 					<input type="hidden" name="t_group"  id="t_group" value="-1">
                 </form>
  
 </body>

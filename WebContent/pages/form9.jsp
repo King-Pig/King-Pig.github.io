@@ -151,7 +151,10 @@
                           <label class="col-sm-2 control-label"  for="" >铁塔设计图纸（包括基础图）</label>
                           <div class="col-sm-10">
                             <div class="alert alert-warning">
-								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile()">上传</button>
+								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile(7)">上传</button>
+																<br/>
+								<div id="file_box7">
+								</div>
                             </div>
  							
                           </div>
@@ -162,7 +165,10 @@
                           <label class="col-sm-2 control-label"  for="" >地勘报告</label>
                           <div class="col-sm-10">
                             <div class="alert alert-warning">
-								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile()">上传</button>
+								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile(8)">上传</button>
+																<br/>
+								<div id="file_box8">
+								</div>
                             </div>
  							
                           </div>
@@ -173,7 +179,10 @@
                           <label class="col-sm-2 control-label"  for="" >铁塔检测报告</label>
                           <div class="col-sm-10">
                             <div class="alert alert-warning">
-								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile()">上传</button>
+								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile(9)">上传</button>
+								<br/>
+								<div id="file_box9">
+								</div>
                             </div>
  							
                           </div>

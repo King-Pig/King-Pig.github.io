@@ -1,5 +1,6 @@
 package com.spark.bsel.servlet;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DecimalFormat;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.spark.bsel.dao.FilesDao;
 import com.spark.bsel.dao.StationDao;
 
 import net.sf.json.JSONArray;
@@ -67,6 +69,9 @@ public class StationInfoServlet  extends HttpServlet {
 			String t_id = request.getParameter("t_id");
 			if(t_id == null || "".equals(t_id)) t_id="0";
 			Map<String,Object>  map = sd.queryInfo(Integer.parseInt(t_id));
+			int group_id = (int)map.get("t_group");
+			List<Map<String,Object>> t_version_list = sd.queryGroup(group_id);
+			map.put("version_list", t_version_list);
 			JSONObject  o = new JSONObject();
 			if(map != null ){
 				 
@@ -100,6 +105,9 @@ public class StationInfoServlet  extends HttpServlet {
 					map.put("tm_latitude3", s[2]);
 				}
 				
+				FilesDao fd = new FilesDao();
+				List<Map<String,Object>> list = fd.queryList(Integer.parseInt(t_id));
+				map.put("files", list);
 				
 				o = JSONObject.fromObject(map);
 			}
@@ -136,6 +144,12 @@ public class StationInfoServlet  extends HttpServlet {
 			if(map.get("t_cg_u_id") == null){
 				map.put("t_cg_u_id", 1);
 			}
+			
+			if("-1".equals(map.get("t_group")) && map.get("t_name") != null && !"".equals( (String)map.get("t_name") )){
+				 //生成group 
+				String t_group = sd.getGroupID((String) map.get("t_name") );
+				map.put("t_group",Integer.parseInt(t_group) );
+			}
 			int i = sd.updateStationInfo(map);
 			 JSONObject  o = new JSONObject();
 			 o.put("result", i);
@@ -143,6 +157,19 @@ public class StationInfoServlet  extends HttpServlet {
 		}else if("city_count".equals(method)){
 			List<Map<String,Object>> list  = sd.group_city_count();
 			JSONArray o = JSONArray.fromObject(list);
+			out.write(o.toString());
+		}else if("file_del".equals(method)){
+			String file_id = request.getParameter("file_id");
+			if(file_id == null || "".equals(file_id)) file_id="0";
+			FilesDao fd = new FilesDao();
+			Map<String,Object> m = fd.queryInfo(Integer.parseInt(file_id));
+			String file = "F:/apache-tomcat-7.0.62/webapps/files" +(String)m.get("file_path");
+			File f = new File(file);
+			f.delete();
+			
+			int i = fd.del(Integer.parseInt(file_id));
+			 JSONObject  o = new JSONObject();
+			 o.put("result", i);
 			out.write(o.toString());
 		}
 		

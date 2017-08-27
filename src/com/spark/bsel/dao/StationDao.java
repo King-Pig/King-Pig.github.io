@@ -23,6 +23,14 @@ public class StationDao {
 	}
 	
 	
+	public List<Map<String,Object>> queryGroup(int id){
+		SqlSession session = MybatisUtil.getSession();
+		List<Map<String,Object>> list   = session.selectList("Station.grouplist", id);
+		MybatisUtil.closeSession();
+		return list;
+
+	}
+	
 	public List<Map<String,Object>> group_city_count(){
 		SqlSession session = MybatisUtil.getSession();
 		List<Map<String,Object>> list  = session.selectList("Station.city_count");
@@ -41,7 +49,16 @@ public class StationDao {
 	}
 	
 	
-
+	public String getGroupID(String t_name){
+		SqlSession session = MybatisUtil.getSession();
+		Map<String,Object>  map = new HashMap<String,Object>  ();
+		map.put("t_group_name", t_name);
+		session.insert("Station.addgroup", map);
+		long r = (long)map.get("t_group");
+		session.commit(); 
+		MybatisUtil.closeSession();
+		return   String.valueOf(r); 
+	}
 
 	public String insertStationInfo(int user_id){
 		SqlSession session = MybatisUtil.getSession();
