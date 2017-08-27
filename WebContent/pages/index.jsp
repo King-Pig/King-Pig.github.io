@@ -282,7 +282,7 @@
 					_html_arr.push('<td>' + item.t_cg_time + '</td><td>');
 					_html_arr.push('<button type="button" onclick="window.location.href=\'./edit_info.jsp?id=' + item.t_id + '&action=edit \'    " style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">编辑</button>');
 					_html_arr.push('<button type="button" onclick="report('+item.t_id+')" style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs" '+tstatus+'>报告</button>');
-					_html_arr.push('<button type="button" onclick="del('+item.t_id+')" style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">删除</button>');
+					_html_arr.push('<button type="button" onclick="del('+item.t_id+','+item.t_version+',\''+ item.t_name+'\',$(this))" style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">删除</button>');
 					_html_arr.push('</td>');
                 	_html_arr.push('</tr>');
 				});
@@ -307,7 +307,21 @@
 		function openstation(id) {
 			window.location.href = "";
 		}
-
+	
+		function  del(id,v,name,obj){
+			 if(confirm("确定删除 "+name+"  V"+v+"版本？"))
+     	    {
+					$.post("../StationInfo?method=update&t_id="+id+"&t_status=-1", function(data) {
+			         	if(data.result == 1){
+			         		$(obj).parents('tr').remove();
+			         	}else{
+			         		alert("删除失败!");
+			         	}
+					}, "json");
+     	 
+     	     }
+			
+		}
 		$(function() {
 			showcity();
 			showlist();

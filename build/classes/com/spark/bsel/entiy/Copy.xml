@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
+<mapper namespace="Files">
+ 
+
+	
+<insert id="copy_1"  parameterType="map" useGeneratedKeys="true" keyProperty="t_id" >
+		INSERT INTO Tower_info  (t_name,t_city,t_county,t_township,t_address,t_longitude,t_latitude,t_accuracy,t_altitude,t_build_date,t_purpose,t_parent,t_distance,t_move,t_version,t_group,t_c_time,t_c_u_id,t_cg_time,t_cg_u_id,p_primary,p_standby,p_t_capacity,p_t_quantity,p_t_load,p_a_power,p_u_capacity,p_u_quantity,p_u_load,p_m_capacity,p_m_quantity,p_m_load,p_resistance,c_p_layers,c_c_layers,c_l_type,c_l_v1,c_l_v2,c_g_type,c_g_v,c_as_type,c_as_cool,c_as_power,c_a_type,c_a_volume,c_a_power,c_a_pressure,c_d_type,c_d_v,t_p_layers,t_c_layers,t_l_type,t_l_v1,t_l_v2,t_g_type,t_g_v,t_as_type,t_as_cool,t_as_power,t_a_type,t_a_volume,t_a_power,t_a_pressure,t_d_type,t_d_v,cm_p_layers,cm_c_layers,cm_l_type,cm_l_v1,cm_l_v2,cm_l_v3,cm_g_type,cm_g_v,cm_as_type,cm_as_cool,cm_as_power,cm_a_type,cm_a_volume,cm_a_power,cm_a_pressure,ta_net,ta_s_centre,ta_sm_i,ta_sm_i_type,ta_sm_c_i,ta_sm_m_c,ta_pm,ta_pm_ups,ta_pm_pc,ta_pm_rp,ta_vs,ta_vs_region,ta_vs_am,ta_vs_ia,ta_vs_ia_n,ta_vs_io,ta_vs_io_n,ta_vs_pg,ta_vs_pg_n,ta_vs_em,ta_vs_em_n,ta_vs_em_position,ta_vs_em_ci,tm_longitude,tm_latitude,tm_altitude,tm_position,tm_ice,tm_height,tm_hemline,tm_style,tm_style_v,tm_build_unit,tm_design_unit,tm_lifespan,tm_s_status,t_new_sign,t_status  )    SELECT t_name,t_city,t_county,t_township,t_address,t_longitude,t_latitude,t_accuracy,t_altitude,t_build_date,t_purpose,t_parent,t_distance,t_move,(t_version+1),t_group,t_c_time,t_c_u_id,t_cg_time,t_cg_u_id,p_primary,p_standby,p_t_capacity,p_t_quantity,p_t_load,p_a_power,p_u_capacity,p_u_quantity,p_u_load,p_m_capacity,p_m_quantity,p_m_load,p_resistance,c_p_layers,c_c_layers,c_l_type,c_l_v1,c_l_v2,c_g_type,c_g_v,c_as_type,c_as_cool,c_as_power,c_a_type,c_a_volume,c_a_power,c_a_pressure,c_d_type,c_d_v,t_p_layers,t_c_layers,t_l_type,t_l_v1,t_l_v2,t_g_type,t_g_v,t_as_type,t_as_cool,t_as_power,t_a_type,t_a_volume,t_a_power,t_a_pressure,t_d_type,t_d_v,cm_p_layers,cm_c_layers,cm_l_type,cm_l_v1,cm_l_v2,cm_l_v3,cm_g_type,cm_g_v,cm_as_type,cm_as_cool,cm_as_power,cm_a_type,cm_a_volume,cm_a_power,cm_a_pressure,ta_net,ta_s_centre,ta_sm_i,ta_sm_i_type,ta_sm_c_i,ta_sm_m_c,ta_pm,ta_pm_ups,ta_pm_pc,ta_pm_rp,ta_vs,ta_vs_region,ta_vs_am,ta_vs_ia,ta_vs_ia_n,ta_vs_io,ta_vs_io_n,ta_vs_pg,ta_vs_pg_n,ta_vs_em,ta_vs_em_n,ta_vs_em_position,ta_vs_em_ci,tm_longitude,tm_latitude,tm_altitude,tm_position,tm_ice,tm_height,tm_hemline,tm_style,tm_style_v,tm_build_unit,tm_design_unit,tm_lifespan,tm_s_status,t_new_sign,t_status  FROM Tower_info WHERE t_id=#{t_id}
+	</insert>
+	
+	<insert id="copy_2"  parameterType="map"  resultType="map" >
+				INSERT INTO  device_info( t_id, d_type, d_no, d_frequency, d_r_power, d_t_power, d_program, d_m_m, d_i_interface, d_m_b, d_multiple, d_f_type, d_f_polarity, d_f_direction, d_f_h, d_f_c_type, d_f_length ) SELECT  #{new_t_id} AS t_id, d_type, d_no, d_frequency, d_r_power, d_t_power, d_program, d_m_m, d_i_interface, d_m_b, d_multiple, d_f_type, d_f_polarity, d_f_direction, d_f_h, d_f_c_type, d_f_length FROM device_info WHERE  t_id = #{old_t_id} 
+	</insert>
+	
+	
+	<insert id="copy_3"  parameterType="map"  resultType="map" >
+				INSERT INTO  satellite_info( t_id,s_name,s_a_caliber,s_p_content) SELECT #{new_t_id} as t_id,s_name,s_a_caliber,s_p_content where t_id=#{old_t_id} 
+	</insert>
+	
+	<insert id="copy_4"  parameterType="map"  resultType="map" >
+				INSERT INTO optical_cable(t_id,o_direction,o_c_count,o_t_capacity,o_p_content,o_c_free,o_s_format,o_s_code) SELECT  #{new_t_id} as t_id,o_direction,o_c_count,o_t_capacity,o_p_content,o_c_free,o_s_format,o_s_code where t_id = #{old_t_id} 
+	</insert>
+	
+		<insert id="copy_5"  parameterType="map"  resultType="map" >
+				INSERT INTO microwave (t_id,m_name,m_t_frequency,m_t_capacity,m_u_capacity,m_t_content) SELECT #{new_t_id} as t_id,m_name,m_t_frequency,m_t_capacity,m_u_capacity,m_t_content where t_id=#{old_t_id} 
+	</insert>
+	
+	
+		<insert id="copy_6"  parameterType="map"  resultType="map" >
+				INSERT INTO file_info (t_id,file_name,file_group,file_num,file_path,file_size,file_img,file_remark) SELECT #{new_t_id} as t_id,file_name,file_group,file_num,file_path,file_size,file_img,file_remark where t_id=#{old_t_id} 
+				 
+	</insert>
+
+		<update id="m_update"  parameterType="map"  >
+		<![CDATA[
+		UPDATE file_info SET file_path = CONCAT( '/',#{t_id},REVERSE(LEFT(REVERSE(file_path),INSTR(REVERSE(file_path),'/'))) )   where t_id= #{t_id}
+				]]>
+		</update>
+</mapper>

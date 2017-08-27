@@ -177,9 +177,9 @@ if(action == null) action ="";
              <%} %>
         </li>
         <%if ( !"add".equals(action) ){ %>
-           <li><a href="#"><span class="fa fa-copy" ></span> 复制</a></li>
+           <li id="copy_info"  style="display:none;"><a href="#"><span class="fa fa-copy" ></span> 复制</a></li>
            <%}%>
-           <li><a href="#"><span class="fa fa-trash-o" ></span> 删除</a></li>
+           <li><a href="#" onclick="del()"><span class="fa fa-trash-o" ></span> 删除</a></li>
  
       </ul>
  
@@ -1202,7 +1202,7 @@ if(action == null) action ="";
 				return ;
 			}
  
-			$.post("../StationInfo?method=update&t_id="+id+"&t_status=1", function(data) {
+			$.post("../StationInfo?method=update&t_id="+$("#t_id").val()+"&t_status=1", function(data) {
 	         	if(data.result == 1){
 	        	    if(confirm("已保存成功，是否放回首页？"))
 	        	   	 
@@ -1219,7 +1219,20 @@ if(action == null) action ="";
 	
 	
  
-	
+	function  del(){
+		 if(confirm("确定删除当前 此台站信息 版本 ？"))
+	    {
+				$.post("../StationInfo?method=update&t_id="+$("#t_id").val()+"&t_status=-1", function(data) {
+		         	if(data.result == 1){
+		         		 location.href="./index.jsp";
+		         	}else{
+		         		alert("删除失败!");
+		         	}
+				}, "json");
+	 
+	     }
+		
+	}
  
 	//表单提交
 	function save(unm,next){
@@ -1238,6 +1251,9 @@ if(action == null) action ="";
 		}
 	}
 	
+	function openedit(id){
+		window.location.href = "./edit_info.jsp?id="+ id+"&action=edit";
+	}
 	//加载表单数据
 	function editform(id){
 		$("#side-menu").hide();
@@ -1245,12 +1261,15 @@ if(action == null) action ="";
 		$("#list_loading").show();
 		
 		$.post("../StationInfo",{'method':'queryinfo','t_id':id},function(result){
+					$('#t_version').html("");
 					$.each(result.version_list, function(i, item) {
-							
-						$('#t_version').append("<li><a href='#' onclick='editform("+item.t_id+")'>V "+item.t_version+"</a></li>");  
- 
+						$('#t_version').append("<li><a href='#' onclick='openedit("+item.t_id+")'>V "+item.t_version+"</a></li>");  
 					});
 					$('#now_version').html("当前版本 V "+result.t_version);
+					if(result.t_status==1){
+						
+						$("#copy_info").show();
+					}
 					
 					$('#st_name').html(result.t_name);  
  					$("#info_from1").populateForm(result);
