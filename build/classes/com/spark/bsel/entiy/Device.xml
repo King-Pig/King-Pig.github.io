@@ -16,13 +16,32 @@
 		SELECT * FROM device_info WHERE d_id=#{id}
 	</select>
 	<insert id="d_add"  parameterType="map" >
-			insert into device_info  (t_id,d_type,d_frequency,d_r_power,d_t_power,d_program,d_m_m,d_i_interface,d_m_b,d_multiple,d_f_type,d_f_polarity,d_f_direction,d_f_h,d_f_c_type,d_f_length)  values (#{t_id},#{d_type},#{d_frequency},#{d_r_power},#{d_t_power},#{d_program},#{d_m_m},#{d_i_interface},#{d_m_b},#{d_multiple},#{d_f_type},#{d_f_polarity},#{d_f_direction},#{d_f_h},#{d_f_c_type},#{d_f_length))
+			insert into device_info  (t_id,d_type,d_frequency,d_r_power,d_t_power,d_program,d_m_m,d_i_interface,d_m_b,d_multiple,d_f_type,d_f_polarity,d_f_direction,d_f_h,d_f_c_type,d_f_length)  values (#{t_id},#{d_type},#{d_frequency},#{d_r_power},#{d_t_power},#{d_program},#{d_m_m},#{d_i_interface},#{d_m_b},#{d_multiple},#{d_f_type},#{d_f_polarity},#{d_f_direction},#{d_f_h},#{d_f_c_type},#{d_f_length})
 	</insert>
 	<update id="d_update"  parameterType="map"  >
-		   UPDATE device_info set d_frequency=#{d_frequency},d_r_power=#{d_r_power},d_t_power=#{d_t_power},d_program=#{d_program},d_m_m=#{d_m_m},d_i_interface=#{d_i_interface},d_m_b=#{d_m_b},d_multiple=#{d_multiple},d_f_type=#{d_f_type},d_f_polarity=#{d_f_polarity},d_f_direction=#{d_f_direction},d_f_h=#{d_f_h},d_f_c_type=#{d_f_c_type},d_f_length=#{d_f_length)  where d_id=#{d_id}
+		   UPDATE device_info set d_frequency=#{d_frequency},d_r_power=#{d_r_power},d_t_power=#{d_t_power},d_program=#{d_program},d_m_m=#{d_m_m},d_i_interface=#{d_i_interface},d_m_b=#{d_m_b},d_multiple=#{d_multiple},d_f_type=#{d_f_type},d_f_polarity=#{d_f_polarity},d_f_direction=#{d_f_direction},d_f_h=#{d_f_h},d_f_c_type=#{d_f_c_type},d_f_length=#{d_f_length}  where d_id=#{d_id}
 	</update>
 	<delete id="d_del"  parameterType="int">
 			delete from device_info  where d_id = #{id}
+	</delete>
+	
+	
+<!-- 天馈线  antenna -->
+	<select id="as_list"  resultType="map"    parameterType="int">
+		SELECT * FROM antenna_system  WHERE  t_id=#{id}
+	</select>
+
+	<select id="as_info"  resultType="map"    parameterType="int">
+		SELECT * FROM antenna_system WHERE as_id=#{id}
+	</select>
+	<insert id="as_add"  parameterType="map" >
+			insert into antenna_system  (t_id,as_type,as_hieght,as_frequency,as_model)  values (#{t_id},#{as_type},#{as_hieght},#{as_frequency},#{as_model})
+	</insert>
+	<update id="as_update"  parameterType="map"  >
+		   UPDATE antenna_system set t_id = #{t_id},as_type = #{as_type},as_hieght = #{as_hieght},as_frequency = #{as_frequency},as_model = #{as_model}  where as_id=#{as_id}
+	</update>
+	<delete id="as_del"  parameterType="int">
+			delete from antenna_system  where as_id = #{id}
 	</delete>
 	
 <!-- 微波设备microwave -->

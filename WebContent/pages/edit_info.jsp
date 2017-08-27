@@ -283,7 +283,7 @@ if(action == null) action ="";
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>  现有设备登记表（调频）</span>
                             <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
- 								 <button type="button" class="btn btn-info   btn-sm" onclick=""> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
+ 								 <button type="button" class="btn btn-info   btn-sm" onclick="openwindow(4,0)"> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
       						</div>                            
                         </div>
                         <!-- /.panel-heading -->
@@ -300,7 +300,6 @@ if(action == null) action ="";
 									<th >是否具备对外智能接口</th>
 									<th >主/备</th>
 									<th >多工情况</th>
-									<th >天馈线</th>
 									<th >操作</th>
 									</tr>
 								</thead>
@@ -323,7 +322,7 @@ if(action == null) action ="";
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>   现有设备登记表（电视，数字和模拟）</span>
                             <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
-									<button type="button" class="btn btn-info   btn-sm" onclick=""> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
+									<button type="button" class="btn btn-info   btn-sm" onclick="openwindow(5,0)"> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
       						</div>                            
                         </div>
                         <!-- /.panel-heading -->
@@ -340,7 +339,6 @@ if(action == null) action ="";
 									<th >是否具备对外智能接口</th>
 									<th >主/备</th>
 									<th >多工情况</th>
-									<th >天馈线</th>
 									<th >操作</th>
 									</tr>
 								</thead>
@@ -429,7 +427,7 @@ if(action == null) action ="";
                         <div class="panel-heading">
                             <span class=""><span class='fa  fa-table' style='color:#cccccc'></span>   电视天馈系统 </span>
                             <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
- 										<button type="button" class="btn btn-info   btn-sm" onclick=""> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
+ 										<button type="button" class="btn btn-info   btn-sm" onclick="openwindow(6,0)"> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
       						</div>                            
                             
                         </div>
@@ -446,7 +444,7 @@ if(action == null) action ="";
 									<th >操作</th>
 									</tr>
 								</thead>
-								<tbody id="as_datalist">
+								<tbody id="as_list">
 
 								</tbody>
 							</table>
@@ -693,6 +691,242 @@ if(action == null) action ="";
   				</form>
 
 
+				<form class="form-horizontal  list_info_form"   id="list_info_form4" style="display:none;">
+  					
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">频率</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="d_frequency" name="d_frequency" type="number" class="form-control"   placeholder="DS，MHz">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>
+    				
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">额定功率</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="d_r_power" name="d_r_power" type="number" class="form-control"   placeholder="kW">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   				
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">发射功率</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+    				
+						<input id="d_t_power" name="d_t_power" type="number" class="form-control"   placeholder="kW">
+     
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>  
+
+					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">节目</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="d_program" name="d_program" type="text" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   	
+
+ 					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">发射机厂商/设备型号</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="d_m_m" name="d_m_m" type="text" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   
+    				
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">是否具备对外智能接口</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+    				       <select id="d_i_interface" name ="d_i_interface" class="form-control">
+								<option value ="1" >是</option>
+								<option value ="0" >否</option>
+							</select>
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>  
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">主/备</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+    				       <select id="d_m_b" name ="d_m_b" class="form-control">
+								<option >主</option>
+								<option >备</option>
+							</select>
+    				</div><!-- /input-group -->
+    				</div>
+    				</div> 
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">多工情况</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="d_multiple" name="d_multiple" type="text" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>  
+    				
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">天线类型</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="d_f_type" name="d_f_type" type="text" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>  
+    				
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">极化</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="d_f_polarity" name="d_f_polarity" type="number" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>  
+    				
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">方向性</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="d_f_direction" name="d_f_direction" type="text" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>  
+    				
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">天线中心挂高</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id=d_f_h name="d_f_h" type="number" class="form-control"   placeholder="米">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div> 
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">馈线类型、接头类型</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id=d_f_c_type name="d_f_c_type" type="text" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div> 
+    				
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">馈线长</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id=d_f_length name="d_f_length" type="number" class="form-control"   placeholder="米">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div> 
+    				
+    				
+ 					 <input type="hidden" id="d_id"  name="d_id"  >
+ 					 <input type="hidden" id="d_type"  name="d_type"  >
+    				<input type="hidden" id="form_tag4"  name="form_tag"  value="d">
+  				</form>
+  				
+  				
+  				
+  				<form class="form-horizontal  list_info_form"   id="list_info_form6" style="display:none;">
+  					
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">天线类型</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="as_type" name="as_type" type="text" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>
+    				
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">高度</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="as_hieght" name="as_hieght" type="number" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   				
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">播出频率</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+    				
+						<input id="as_frequency" name="as_frequency" type="number" class="form-control"   placeholder="">
+     
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>  
+
+					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">馈线型号</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="as_model" name="as_model" type="text" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   	
+
+ 					 
+ 					 <input type="hidden" id="as_id"  name="as_id"  >
+    				<input type="hidden" id="form_tag6"  name="form_tag"  value="as">
+  				</form>
+  				
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">  取消  </button>
@@ -795,42 +1029,66 @@ if(action == null) action ="";
 	 */
 	}
 	
-/* 	('#selectFile').live('click',function(){  
-        var ie = !-[1,];   
-        if(ie){  
-            jQuery('input:file').trigger('click').trigger('change');  
-        }else{  
-            jQuery('input:file').trigger('click');  
-        }  
-          
-    });   */
+ 
 	
     function openfile(url){
     	window.open(url);  
     }
-	var save_list_info_num;
-	var save_list_info_type;
+ 
+ 
+	var save_list_info_num;   //表单序号
+	var save_list_info_type;  //表单标签，与数据操作ID 有关系
+	
+	//模态窗口
+ 
 	function openwindow(num,id){
+		var d_type;
+		if(num == 5){
+			num = num-1; 
+			d_type = 2
+		}else if(num == 4){
+			d_type = 1
+		}
 		$(".list_info_form").hide();
 		$("#list_info_form"+num).show();	
 		save_list_info_num = num;
-		var nowid =  $("#form_tag"+save_list_info_num).val()+"_id";
 		
+		var type = $("#form_tag"+save_list_info_num).val();
+		var nowid =  type+"_id";
+		var mt = type+"_info";
 		if(id == 0){
 			// 新增
 			save_list_info_type = 'add';
+			document.getElementById("list_info_form"+num).reset();  //表单初始化
+			$('#d_type').val(d_type);
 			$("#"+nowid).val(0);
+			$('#list_modal').modal({
+			    keyboard: true,
+			    show:true
+			});
 		}else{
 			//编辑
 			save_list_info_type = 'update';
 			$("#"+nowid).val(id);
+			
+			$.post("../DeviceInfo",{'method':mt,'id':id},function(result){
+ 
+				$("#list_info_form"+num).populateForm(result);
+ 
+				$('#list_modal').modal({
+				    keyboard: true,
+				    show:true
+				});
+				
+		  }, "json");
+			
+			
+			
 		}
-		$('#list_modal').modal({
-		    keyboard: true,
-		    show:true
-		});
+
 	}
 	
+	//模态窗口 数据保存
 	function savelistinfo(){
 		var i = formValuesCheck("list_info_form"+save_list_info_num);
 		if( i == 0){
@@ -849,6 +1107,7 @@ if(action == null) action ="";
 		}
 	}
 	
+	//列表数据删除
 	function del_info(type,id){
 		var mt = type+"_del";
 		$.post("../DeviceInfo?method="+mt+"&id="+id, function(data) {
@@ -861,6 +1120,7 @@ if(action == null) action ="";
 		
 	}
 	
+	//左侧翻页效果
 	function editpage(unm){
  		$(".pageedit").hide();
  		$(".fa-edit").css("color","#cccccc");
@@ -877,6 +1137,7 @@ if(action == null) action ="";
 			}
 	}
 	
+ 
 	
 	function saveall(){
 		var i = formValuesCheck("info_from1");
@@ -959,6 +1220,8 @@ if(action == null) action ="";
 	
  
 	
+ 
+	//表单提交
 	function save(unm,next){
 		var i = formValuesCheck("info_from"+unm);
 		if( i == 0){
@@ -975,6 +1238,7 @@ if(action == null) action ="";
 		}
 	}
 	
+	//加载表单数据
 	function editform(id){
 		$("#side-menu").hide();
 		$(".pageedit").hide();
@@ -1003,6 +1267,7 @@ if(action == null) action ="";
 			  }, "json");
 	}
 
+
 	function showfiles(o){
 		$.each(o, function(i, item) {
 			
@@ -1028,6 +1293,9 @@ if(action == null) action ="";
 		
 	}
 
+
+	
+	//表单必填校验
  	function formValuesCheck(fname) {
  		var fields = $("#"+fname).serializeArray(); 
  		var r = 0;
@@ -1049,6 +1317,7 @@ if(action == null) action ="";
  	  }
  	 
  	
+		//时间 控件初始化
 		$(function() {
 			  $(".form_datetime").datetimepicker({
 				  locale:'bootstrap-datetimepicker.zh-CN',
@@ -1076,7 +1345,7 @@ if(action == null) action ="";
 		});
  
 		
- 
+ 		//列表数据加载
 		function getAllListData(){
 			var method  = new Array("s_list", "o_list", "m_list","d_list1","d_list2");
 			var _html_arr ;
@@ -1143,7 +1412,8 @@ if(action == null) action ="";
 					if (typeof(data.d_list1) == "object"){
 						_html_arr = new Array();
 						$.each(data.d_list1, function(i, item) {
-
+							var yes ;
+							( item.d_i_interface ==1)? yes='是' : yes='否' ;
 			                _html_arr.push('<tr class="">');
 			                _html_arr.push('<td>' + (i+1)+ '</td>');
 			                _html_arr.push('<td>' + item.d_frequency + '</td>');
@@ -1151,13 +1421,12 @@ if(action == null) action ="";
 			                _html_arr.push('<td>' + item.d_t_power + '</td>');
 			                _html_arr.push('<td>' + item.d_program + '</td>');
 			                _html_arr.push('<td>' + item.d_m_m + '</td>');
-			                _html_arr.push('<td>' + item.d_i_interface + '</td>');
+			                _html_arr.push('<td>' + yes+ '</td>');
 			                _html_arr.push('<td>' + item.d_m_b + '</td>');
 			                _html_arr.push('<td>' + item.d_multiple + '</td>');
-			                _html_arr.push('<td></td>');
 			                _html_arr.push('<td style="text-align: center ;">');
 			               	_html_arr.push('<button type="button" onclick="openwindow(4,'+item.d_id+')" class="btn btn-success btn-xs">编辑</button>');
-			               	_html_arr.push('&nbsp  <button type="button" onclick="del_info(4,'+item.d_id+')" class="btn btn-success btn-xs">删除</button>');
+			               	_html_arr.push('&nbsp  <button type="button" onclick="del_info(\'d\','+item.d_id+')" class="btn btn-success btn-xs">删除</button>');
 			                _html_arr.push('</td>');
 			                _html_arr.push('</tr>');
 		                });
@@ -1166,7 +1435,8 @@ if(action == null) action ="";
 					if (typeof(data.d_list2) == "object"){
 						_html_arr = new Array();
 						$.each(data.d_list2, function(i, item) {
-
+							var yes ;
+							( item.d_i_interface ==1)? yes='是' : yes='否' ;
 			                _html_arr.push('<tr class="">');
 			                _html_arr.push('<td>' + (i+1)+ '</td>');
 			                _html_arr.push('<td>' + item.d_frequency + '</td>');
@@ -1174,18 +1444,39 @@ if(action == null) action ="";
 			                _html_arr.push('<td>' + item.d_t_power + '</td>');
 			                _html_arr.push('<td>' + item.d_program + '</td>');
 			                _html_arr.push('<td>' + item.d_m_m + '</td>');
-			                _html_arr.push('<td>' + item.d_i_interface + '</td>');
+			                _html_arr.push('<td>' +yes + '</td>');
 			                _html_arr.push('<td>' + item.d_m_b + '</td>');
 			                _html_arr.push('<td>' + item.d_multiple + '</td>');
-			                _html_arr.push('<td></td>');
+
 			                _html_arr.push('<td style="text-align: center ;">');
 			               	_html_arr.push('<button type="button" onclick="openwindow(4'+item.d_id+')" class="btn btn-success btn-xs">编辑</button>');
-			            	_html_arr.push('&nbsp  <button type="button" onclick="del_info(4,'+item.d_id+')" class="btn btn-success btn-xs">删除</button>');
+			            	_html_arr.push('&nbsp  <button type="button" onclick="del_info(\'d\','+item.d_id+')" class="btn btn-success btn-xs">删除</button>');
 			                _html_arr.push('</td>');
 			                _html_arr.push('</tr>');
 		                });
 						$('#d_list2').html(_html_arr.join(''));
 					}
+					
+					
+					if (typeof(data.as_list) == "object"){
+						_html_arr = new Array();
+						$.each(data.as_list, function(i, item) {
+
+			                _html_arr.push('<tr class="">');
+			                _html_arr.push('<td>' + (i+1)+ '</td>');
+			                _html_arr.push('<td>' + item.as_type + '</td>');
+			                _html_arr.push('<td>' + item.as_hieght + '</td>');
+			                _html_arr.push('<td>' + item.as_frequency + '</td>');
+			                _html_arr.push('<td>' + item.as_model + '</td>');
+			                _html_arr.push('<td style="text-align: center ;">');
+			               	_html_arr.push('<button type="button" onclick="openwindow(6,'+item.as_id+')" class="btn btn-success btn-xs">编辑</button>');
+			            	_html_arr.push('&nbsp  <button type="button" onclick="del_info(\'as\','+item.as_id+')" class="btn btn-success btn-xs">删除</button>');
+			                _html_arr.push('</td>');
+			                _html_arr.push('</tr>');
+		                });
+						$('#as_list').html(_html_arr.join(''));
+					}
+					
 					
 				}, "json");
 				
