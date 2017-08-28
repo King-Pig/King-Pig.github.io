@@ -81,6 +81,35 @@ public class StationDao {
 	}
 	
 	
+	public int  copy1(int t_id,int max_v){
+		Map<String,Object>  map = new HashMap<String,Object>  ();
+		map.put("t_id", t_id);
+		map.put("t_version", (max_v+1));
+		SqlSession session = MybatisUtil.getSession();
+		session.insert("Copy.copy_1", map);
+		int i =(int)map.get("t_id");
+		session.commit(); 
+		MybatisUtil.closeSession();
+		return i;
+	}
+	
+	public int  copy_other(Map<String,Object>  map,int index){
+		SqlSession session = MybatisUtil.getSession();
+		int i = session.insert("Copy.copy_"+index, map);
+		session.commit(); 
+		MybatisUtil.closeSession();
+		return  i;
+	}
+	
+	public int  changfilepath(Map<String,Object>  map){
+		SqlSession session = MybatisUtil.getSession();
+		int i = session.update("Copy.copy_7", map);
+		session.commit(); 
+		MybatisUtil.closeSession();
+		return  i;
+		
+	}
+	
 /*	public int del(int id) {
 		SqlSession session = MybatisUtil.getSession();
 		Map<String, Object> map = new HashMap<String, Object>();
