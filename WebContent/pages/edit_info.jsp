@@ -177,7 +177,7 @@ if(action == null) action ="";
              <%} %>
         </li>
         <%if ( !"add".equals(action) ){ %>
-           <li id="copy_info"  style="display:none;"><a href="#"><span class="fa fa-copy" ></span> 复制</a></li>
+           <li id="copy_info"  style="display:none;"><a href="#" onclick="copy()"><span class="fa fa-copy" ></span> 复制</a></li>
            <%}%>
            <li><a href="#" onclick="del()"><span class="fa fa-trash-o" ></span> 删除</a></li>
  
@@ -1035,7 +1035,7 @@ if(action == null) action ="";
     	window.open(url);  
     }
  
- 
+ 	var max_t_version=0;
 	var save_list_info_num;   //表单序号
 	var save_list_info_type;  //表单标签，与数据操作ID 有关系
 	
@@ -1251,6 +1251,55 @@ if(action == null) action ="";
 		}
 	}
 	
+	function copy(){
+		showLoading();
+		$.post("../StationInfo",{'method':'copy','max_v':max_t_version,'t_id':$("#t_id").val()},function(result){
+			
+			if(result.copy1 >0){
+				hideLoading();
+				 if(confirm("复制成功，是否立即查看？")){
+					 openedit(result.copy1);
+				 }
+				 hideLoading();
+			}else{
+				hideLoading();
+				alert("复制失败！");
+			}
+			
+		 },"json");
+		
+	}
+	
+	
+	
+	function initLoading(){
+	    $("body").append("<!-- loading -->" +
+	            "<div class='modal fade' id='loading' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' data-backdrop='static'>" +
+	            "<div class='modal-dialog' role='document'>" +
+	            "<div class='modal-content'>" +
+	            "<div class='modal-header'>" +
+	            "<h4 class='modal-title' id='myModalLabel'>提示</h4>" +
+	            "</div>" +
+	            "<div id='loadingText' class='modal-body'>" +
+	            "<span  ><img src='../img/loading.gif' height='32' width='32' /></span>" +
+	            "处理中，请稍候..." +
+	            "</div>" +
+	            "</div>" +
+	            "</div>" +
+	            "</div>"
+	    );
+	}
+	
+	
+	function showLoading(){
+	    //$("#loadingText").html(text);
+	    $("#loading").modal("show");
+	}
+	function hideLoading(){
+	    $("#loading").modal("hide");
+	}
+	
+	
 	function openedit(id){
 		window.location.href = "./edit_info.jsp?id="+ id+"&action=edit";
 	}
@@ -1263,6 +1312,7 @@ if(action == null) action ="";
 		$.post("../StationInfo",{'method':'queryinfo','t_id':id},function(result){
 					$('#t_version').html("");
 					$.each(result.version_list, function(i, item) {
+						if(i==0) max_t_version = item.t_version;
 						$('#t_version').append("<li><a href='#' onclick='openedit("+item.t_id+")'>V "+item.t_version+"</a></li>");  
 					});
 					$('#now_version').html("当前版本 V "+result.t_version);
@@ -1504,7 +1554,7 @@ if(action == null) action ="";
 		}
 		
 		
-		
+		initLoading();
 	</script>
 </body>
 

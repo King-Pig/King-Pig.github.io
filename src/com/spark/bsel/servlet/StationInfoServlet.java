@@ -16,11 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.spark.bsel.dao.FilesDao;
 import com.spark.bsel.dao.StationDao;
+import com.spark.bsel.util.CopyFileUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 @WebServlet("/StationInfo")
 public class StationInfoServlet  extends HttpServlet {
+	private String uploadPath = "F:/apache-tomcat-7.0.62/webapps/files"; // 上传文件的目录
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
@@ -170,6 +172,65 @@ public class StationInfoServlet  extends HttpServlet {
 			int i = fd.del(Integer.parseInt(file_id));
 			 JSONObject  o = new JSONObject();
 			 o.put("result", i);
+			out.write(o.toString());
+		}else if("copy".equals(method)){
+			String t_id = request.getParameter("t_id");
+			String max_v = request.getParameter("max_v");
+			 JSONObject  o = new JSONObject();
+			if(t_id == null)t_id="0";
+			if("".equals(t_id))t_id="0";
+			if(max_v == null)max_v="1";
+			if("".equals(t_id))max_v="1";
+			
+			if(Integer.parseInt(t_id) > 0 && Integer.parseInt(max_v) >0){
+				int  new_t_id = sd.copy1(Integer.parseInt(t_id),Integer.parseInt(max_v)) ;
+				System.out.println("copy t_id :"+t_id+" new_t_id:"+new_t_id);
+				
+				o.put("copy1", new_t_id);
+				if(new_t_id >0){
+					Map<String,Object>  map = new HashMap<String,Object>  ();
+					map.put("old_t_id", Integer.parseInt(t_id));
+					map.put("new_t_id", new_t_id);
+
+					int i = sd.copy_other(map, 2);
+					System.out.println("copy 2 :"+i);
+					o.put("copy2", i);
+					
+					i =sd.copy_other(map, 3);
+					System.out.println("copy 3 :"+i);
+					o.put("copy3", i);
+					
+					i =sd.copy_other(map, 4);
+					System.out.println("copy 4 :"+i);
+					o.put("copy4", i);
+					
+					i =sd.copy_other(map, 5);
+					System.out.println("copy 5 :"+i);
+					o.put("copy5", i);
+					
+					i =sd.copy_other(map, 6);
+					System.out.println("copy 6 :"+i);
+					o.put("copy6", i);
+					
+
+					
+					i = sd.changfilepath(map);
+					System.out.println("copy 7 :"+i);
+					o.put("copy7", i);
+					if(i>0){
+						CopyFileUtil.copyDir(uploadPath+"/"+t_id, uploadPath+"/"+new_t_id);
+					}
+					
+					i =sd.copy_other(map, 8);
+					System.out.println("copy 8 :"+i);
+					o.put("copy8", i);
+				} 
+				
+				
+			}else{
+				o.put("error", "t_id is null");
+				
+			}
 			out.write(o.toString());
 		}
 		
