@@ -53,9 +53,13 @@ public class OutFileServlet extends HttpServlet {
 		System.out.println(p);
 		StationDao sd = new StationDao();
 		Map<String,Object>  map = sd.queryInfo(Integer.parseInt(t_id));
-		
 		System.out.println(map.get("c_d_type"));
 		System.out.println(map.get("c_d_v"));
+		Map<String,Object>  map1 = sd.queryInfoext(Integer.parseInt(t_id));
+		System.out.println(map1.get("c_d_type"));
+		System.out.println(map1.get("c_d_v"));
+		map.put("c_d_type", map1.get("c_d_type"));
+		map.put("c_d_v", map1.get("c_d_v"));
 		DeviceDao dd = new DeviceDao();
 		int id = Integer.parseInt(t_id);
 		List<Map<String,Object>>  s_list = dd.queryList("s_list",id );

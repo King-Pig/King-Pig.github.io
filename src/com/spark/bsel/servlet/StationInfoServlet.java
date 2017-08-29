@@ -69,6 +69,7 @@ public class StationInfoServlet  extends HttpServlet {
 			out.write(o.toString());
 		}else if("queryinfo".equals(method)){
 			String t_id = request.getParameter("t_id");
+			String outfile = request.getParameter("outfile");
 			if(t_id == null || "".equals(t_id)) t_id="0";
 			Map<String,Object>  map = sd.queryInfo(Integer.parseInt(t_id));
 			int group_id = (int)map.get("t_group");
@@ -232,6 +233,8 @@ public class StationInfoServlet  extends HttpServlet {
 				
 			}
 			out.write(o.toString());
+		}else if("outfile".equals(method)){
+			String t_id = request.getParameter("t_id");
 		}
 		
 		
@@ -297,4 +300,12 @@ public class StationInfoServlet  extends HttpServlet {
         }
         return s;
     }
+    
+
+    
+    
+    
+ 
+    
+    
 }

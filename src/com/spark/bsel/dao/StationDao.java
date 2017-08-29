@@ -22,6 +22,14 @@ public class StationDao {
 
 	}
 	
+	public Map<String,Object> queryInfoext(int id){
+		SqlSession session = MybatisUtil.getSession();
+		Map<String,Object>  u = session.selectOne("Station.info_ext", id);
+		MybatisUtil.closeSession();
+		return u;
+
+	}
+	
 	public Map<String,Object> queryUser(String name ,String pwd){
 		Map<String,Object>  map = new HashMap<String,Object>  ();
 		map.put("user_name", name);
