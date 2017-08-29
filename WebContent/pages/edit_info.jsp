@@ -1,5 +1,14 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
+	String admin =(String) request.getSession().getAttribute("manager");
+	if(admin == null)admin="";
+	if(!"admin".equals(admin)){
+		out.print("<html><script> window.location.href='./login.jsp';</script></html>");
+	}else{
+
+ 
+ 
+
 String id = request.getParameter("id");
 String action = request.getParameter("action");
 if(id==null)id="0";
@@ -1559,3 +1568,4 @@ if(action == null) action ="";
 </body>
 
 </html>
+<%} %>

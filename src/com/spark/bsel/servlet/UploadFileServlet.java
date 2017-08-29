@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 
 import com.spark.bsel.dao.FilesDao;
+import com.spark.bsel.util.FileUtil;
 
 import net.sf.json.JSONObject;
 
@@ -40,7 +41,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class UploadFileServlet extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-	private String uploadPath = "F:/apache-tomcat-7.0.62/webapps/files"; // 上传文件的目录
+ 
 	File tempPathFile;
 
 	// 重写doPost方法，处理事件识别请求
@@ -131,7 +132,7 @@ public class UploadFileServlet extends HttpServlet {
 
 	private String getPath(String t_id) {
 
-		String basepath = uploadPath + "/" + t_id + "/";
+		String basepath = FileUtil.uploadPath + "/" + t_id + "/";
 
 		File file = new File(basepath);
 		if (!file.exists() && !file.isDirectory()) {

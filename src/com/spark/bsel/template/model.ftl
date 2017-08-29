@@ -5809,7 +5809,7 @@
 											<w:color w:val="000000" />
 											<w:lang w:eastAsia="zh-CN" />
 										</w:rPr>
-										<w:t>${c_d_type}</w:t>
+										<w:t>${t_d_type}</w:t>
 									</w:r>
 									<w:r>
 										<w:rPr>
@@ -5818,7 +5818,7 @@
 											<w:u w:val="single" />
 											<w:lang w:eastAsia="zh-CN" />
 										</w:rPr>
-										<w:t xml:space="preserve">，数量  ${c_d_v} </w:t>
+										<w:t xml:space="preserve">，数量  ${t_d_v} </w:t>
 									</w:r>
 									<w:r>
 										<w:rPr>
@@ -7575,7 +7575,7 @@
 											<w:sz w:val="15" />
 											<w:szCs w:val="15" />
 										</w:rPr>
-										<w:t>${d1.d_f_t} </w:t>
+										<w:t>${d1.d_f_type} </w:t>
 									</w:r>
 								</w:p>
 							</w:tc>
@@ -8776,7 +8776,7 @@
 											<w:sz w:val="15" />
 											<w:szCs w:val="15" />
 										</w:rPr>
-										<w:t>${d2.d_f_t} </w:t>
+										<w:t>${d2.d_f_type} </w:t>
 									</w:r>
 								</w:p>
 							</w:tc>

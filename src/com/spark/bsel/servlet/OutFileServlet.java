@@ -3,8 +3,10 @@ package com.spark.bsel.servlet;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -29,7 +31,6 @@ import com.spark.bsel.util.ExportExcel;
 import com.spark.bsel.util.WordUtil;
 @WebServlet("/OutFile")
 public class OutFileServlet extends HttpServlet {
-	private String uploadPath = "F:/apache-tomcat-7.0.62/webapps/files"; // 上传文件的目录
 	
 	 private String filePath; //文件路径
 	 private String fileName; //文件名称
@@ -50,16 +51,66 @@ public class OutFileServlet extends HttpServlet {
 		String t_id = request.getParameter("t_id");
 		
 		String p = request.getServletContext().getRealPath("/")+"outfile";
-		System.out.println(p);
+		Map<String,Object>  map = getDataInfo(t_id);
+		String msg = createWord(request.getServletContext(),map);
+		
+		if("createWordSuccess".equals(msg)){
+			
+			OutputStream out = response.getOutputStream();
+			 
+			String filename = request.getParameter("filename");
+			// 文本从Brower传递是被编码为iOS-8859-1，需要转换成utf-8
+			String filename_utf = fileOnlyName;//URLDecoder.decode(fileOnlyName, "UTF-8");//new String(fileOnlyName.getBytes("ISO-8859-1"),"utf-8");
+			// fileOnlyName = URLDecoder.decode(fileOnlyName, "UTF-8");
+			if (filename_utf == null || filename_utf.equals(""))
+			{
+			     out.write("请输入文件名！".getBytes("utf-8"));
+			     response.setContentType("text/html;charset=utf-8");
+			     out.close();
+			     return;
+			}
+			// 获得服务器中文件的真实存储路径
+			String filePath1 = filePath + File.separator +  filename_utf;
+ 
+			 
+			int indexIndector = filename_utf.indexOf(".");
+			// 获得提取文件的文件后缀，包括.号
+			String indector  = filename_utf.substring(indexIndector, filename_utf.length());
+			// 由文件的全路径获得要下载文件的InputStream
+			InputStream is = new FileInputStream(new File(filePath1));
+			 
+			Date date = new Date();
+			long time = date.getTime();
+			// 设置响应头的MIME类型
+			filename_utf =  URLEncoder.encode(filename_utf, "UTF-8");
+			response.setContentType("application/force-download");
+			response.setHeader("Content-Length",String.valueOf(is.available()));
+			response.setHeader("Content-Disposition", "attachment;filename=" +filename_utf);
+			 
+			int i = 0;
+			byte[] b = new byte[1024];
+			while ((i = is.read(b)) != -1)
+			{
+			     out.write(b, 0, i);
+			}
+			is.close();
+			out.close();
+		}else{
+			
+			
+		}
+		//request.getServletContext();
+ 
+	}
+	
+	
+	
+	
+	public Map<String,Object> getDataInfo(String t_id){
+ 
 		StationDao sd = new StationDao();
-		Map<String,Object>  map = sd.queryInfo(Integer.parseInt(t_id));
-		System.out.println(map.get("c_d_type"));
-		System.out.println(map.get("c_d_v"));
-		Map<String,Object>  map1 = sd.queryInfoext(Integer.parseInt(t_id));
-		System.out.println(map1.get("c_d_type"));
-		System.out.println(map1.get("c_d_v"));
-		map.put("c_d_type", map1.get("c_d_type"));
-		map.put("c_d_v", map1.get("c_d_v"));
+		Map<String,Object>  map = sd.queryOutinfo(Integer.parseInt(t_id));
+ 
 		DeviceDao dd = new DeviceDao();
 		int id = Integer.parseInt(t_id);
 		List<Map<String,Object>>  s_list = dd.queryList("s_list",id );
@@ -83,11 +134,9 @@ public class OutFileServlet extends HttpServlet {
 		map.put("d_list2", d_list2);
 		map.put("as_list", as_list);
 		setjw(map);
-		createWord(request.getServletContext(),map);
-		//request.getServletContext();
- 
+		
+		return map;
 	}
-	
 	public  void   setjw(Map<String,Object>  map){
 	
 		if(map != null ){
@@ -137,29 +186,21 @@ public class OutFileServlet extends HttpServlet {
 	        
 	       // dataMap.put("content","这是其它内容这是其它内容这是其它内容这是其它内容这是其它内容这是其它内容这是其它内容这是其它内容这是其它内容这是其它内容这是其它内容这是其它内容这是其它内容");
 	        
-	        List<Map<String, Object>> newsList=new ArrayList<Map<String,Object>>();
-	        for(int i=1;i<=10;i++){
-	         Map<String, Object> map=new HashMap<String, Object>();
-	         map.put("title", "标题"+i);
-	         map.put("content", "内容"+(i*2));
-	         map.put("author", "作者"+(i*3));
-	         newsList.add(map);
-	        }
-	        dataMap.put("newsList",newsList);
+
 	        
 	        /** 文件名称，唯一字符串 */
-	        Random r=new Random();
+/*	        Random r=new Random();
 	        SimpleDateFormat sdf1=new SimpleDateFormat("yyyyMMdd_HHmmss_SSS");
 	        StringBuffer sb=new StringBuffer();
 	        sb.append(sdf1.format(new Date()));
 	        sb.append("_");
-	        sb.append(r.nextInt(100));
+	        sb.append(r.nextInt(100));*/
 	        
 	        //文件路径
 	        filePath=sc.getRealPath("/")+"outfile";
 	        
 	        //文件唯一名称"台站报告("++").doc";
-	        fileOnlyName = "台站报告_"+sb+".doc";
+	        fileOnlyName = "台站报告_"+dataMap.get("t_id")+"_"+dataMap.get("t_version")+".doc";
 	        
 	        //文件名称
 	        fileName="用freemarker导出的Word文档.doc";

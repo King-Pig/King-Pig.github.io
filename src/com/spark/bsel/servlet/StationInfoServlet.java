@@ -17,12 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 import com.spark.bsel.dao.FilesDao;
 import com.spark.bsel.dao.StationDao;
 import com.spark.bsel.util.CopyFileUtil;
+import com.spark.bsel.util.FileUtil;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 @WebServlet("/StationInfo")
 public class StationInfoServlet  extends HttpServlet {
-	private String uploadPath = "F:/apache-tomcat-7.0.62/webapps/files"; // 上传文件的目录
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
@@ -166,7 +167,7 @@ public class StationInfoServlet  extends HttpServlet {
 			if(file_id == null || "".equals(file_id)) file_id="0";
 			FilesDao fd = new FilesDao();
 			Map<String,Object> m = fd.queryInfo(Integer.parseInt(file_id));
-			String file = "F:/apache-tomcat-7.0.62/webapps/files" +(String)m.get("file_path");
+			String file =FileUtil.uploadPath +(String)m.get("file_path");
 			File f = new File(file);
 			f.delete();
 			
@@ -219,7 +220,7 @@ public class StationInfoServlet  extends HttpServlet {
 					System.out.println("copy 7 :"+i);
 					o.put("copy7", i);
 					if(i>0){
-						CopyFileUtil.copyDir(uploadPath+"/"+t_id, uploadPath+"/"+new_t_id);
+						CopyFileUtil.copyDir(FileUtil.uploadPath+"/"+t_id, FileUtil.uploadPath+"/"+new_t_id);
 					}
 					
 					i =sd.copy_other(map, 8);

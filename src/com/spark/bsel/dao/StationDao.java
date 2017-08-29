@@ -22,9 +22,9 @@ public class StationDao {
 
 	}
 	
-	public Map<String,Object> queryInfoext(int id){
+	public Map<String,Object> queryOutinfo(int id){
 		SqlSession session = MybatisUtil.getSession();
-		Map<String,Object>  u = session.selectOne("Station.info_ext", id);
+		Map<String,Object>  u = session.selectOne("Station.out_info", id);
 		MybatisUtil.closeSession();
 		return u;
 
@@ -63,7 +63,7 @@ public class StationDao {
 		SqlSession session = MybatisUtil.getSession();
 		List<Map<String,Object>> list = session.selectList("Station.list", map);
 		map.put("list", list);
-		map.put("count", (Integer) session.selectOne("Station.count"));
+		map.put("count", (Integer) session.selectOne("Station.count", map));
 		MybatisUtil.closeSession();
 	}
 	

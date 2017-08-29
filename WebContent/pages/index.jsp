@@ -1,5 +1,16 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%
+	String admin =(String) request.getSession().getAttribute("manager");
+	if(admin == null)admin="";
+	if(!"admin".equals(admin)){
+		out.print("<html><script> window.location.href='./login.jsp';</script></html>");
+	}else{
+
+ 
+ 
+ %>
+ 
 <html>
 
 <head>
@@ -67,13 +78,14 @@
 								</div>
 						</a></li>
 						
+						<!--  
 						<li class="divider"></li>
 						<li><a href="#">
 								<div>
 									<i class="fa  fa-file-word-o fa-fw"></i> 导出报告
 								</div>
 						</a></li>
-
+-->
 					</ul> <!-- /.dropdown-alerts --></li>
 				<!-- /.dropdown -->
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -82,7 +94,7 @@
 						<li><a href="#"><i class="fa fa-user fa-fw"></i>密码修改</a></li>
 						<li><a href="#"><i class="fa fa-gear fa-fw"></i>用户管理</a></li>
 						<li class="divider"></li>
-						<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> 退出</a></li>
+						<li><a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> 退出</a></li>
 					</ul> <!-- /.dropdown-user --></li>
 				<!-- /.dropdown -->
 			</ul>
@@ -94,8 +106,8 @@
 
 						<li class="sidebar-search">
 							<div class="input-group custom-search-form">
-								<input type="text" class="form-control" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-provide="typeahead" placeholder="台站名称..."> <span class="input-group-btn">
-									<button class="btn btn-default" type="button">
+								<input type="text"  id="q_t_name" class="form-control" style="margin: 0 auto;" data-provide="typeahead" data-items="4" data-provide="typeahead" placeholder="台站名称..."> <span class="input-group-btn">
+									<button class="btn btn-default" type="button"  onclick="showlist()">
 										<i class="fa fa-search"></i>
 									</button>
 								</span>
@@ -256,8 +268,11 @@
 		}
 
 		function showlist() {
+			var t_name = $("#q_t_name").val();
+		
 			$.post("../StationInfo", {
 				'method' : 'querylist',
+				't_name':t_name,
 				'page' : '1',
 				'pageSize' : '20',
 				't_status':'1'
@@ -291,6 +306,11 @@
 
 			}, "json");
 
+		}
+		
+		function report(id){
+			
+			window.open("../OutFile?t_id="+id);
 		}
 		function add(){
    			$.post("../StationInfo",{'method':'insert'},function(result){
@@ -330,3 +350,4 @@
 </body>
 
 </html>
+<%} %>
