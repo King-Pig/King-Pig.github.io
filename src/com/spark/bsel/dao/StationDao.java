@@ -12,11 +12,22 @@ import com.spark.bsel.util.PageUtil;
  
 
 public class StationDao {
-
+		
 	
 	public Map<String,Object> queryInfo(int id){
 		SqlSession session = MybatisUtil.getSession();
 		Map<String,Object>  u = session.selectOne("Station.info", id);
+		MybatisUtil.closeSession();
+		return u;
+
+	}
+	
+	public Map<String,Object> queryUser(String name ,String pwd){
+		Map<String,Object>  map = new HashMap<String,Object>  ();
+		map.put("user_name", name);
+		map.put("user_pwd", pwd);
+		SqlSession session = MybatisUtil.getSession();
+		Map<String,Object>  u = session.selectOne("Station.user_info", map);
 		MybatisUtil.closeSession();
 		return u;
 

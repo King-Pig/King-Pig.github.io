@@ -36,7 +36,7 @@ public static void createWord(Map dataMap,String templateName,String filePath,St
             configuration.setDefaultEncoding("UTF-8");
             
             //ftl模板文件统一放至 com.lun.template 包下面
-            configuration.setClassForTemplateLoading(WordUtil.class,"/com/lun/template/");
+            configuration.setClassForTemplateLoading(WordUtil.class,"/com/spark/bsel/template/");
             
             //获取模板 
             Template template = configuration.getTemplate(templateName);

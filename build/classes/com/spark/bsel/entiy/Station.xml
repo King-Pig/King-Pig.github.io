@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="Station">
-
+	<select id="user_info" resultType="map"  parameterType="map">
+		SELECT * FROM user  WHERE user_name=#{user_name} and user_pwd =Password(#{user_pwd})
+	</select>
+	
 	<select id="info" resultType="map" parameterType="int">
-		SELECT * FROM
-		Tower_info WHERE t_id=#{id}
+		SELECT `t_id`,`t_name`,`t_city`,`t_county`,`t_township`,`t_address`,`t_longitude`,`t_latitude`,`t_accuracy`,`t_altitude`,`t_build_date`,`t_purpose`,`t_parent`,`t_distance`,`t_move`,`t_version`,`t_group`,`t_c_time`,`t_c_u_id`,`t_cg_time`,`t_cg_u_id`,`p_primary`,`p_standby`,`p_t_capacity`,`p_t_quantity`,`p_t_load`,`p_a_power`,`p_u_capacity`,`p_u_quantity`,`p_u_load`,`p_m_capacity`,`p_m_quantity`,`p_m_load`,`p_resistance`,`c_p_layers`,`c_c_layers`,`c_l_type`,`c_l_v1`,`c_l_v2`,`c_g_type`,`c_g_v`,`c_as_type`,`c_as_cool`,`c_as_power`,`c_a_type`,`c_a_volume`,`c_a_power`,`c_a_pressure`,`c_d_type` as c_d_type,`c_d_v` as c_d_v,`t_p_layers`,`t_c_layers`,`t_l_type`,`t_l_v1`,`t_l_v2`,`t_g_type`,`t_g_v`,`t_as_type`,`t_as_cool`,`t_as_power`,`t_a_type`,`t_a_volume`,`t_a_power`,`t_a_pressure`,`t_d_type`,`t_d_v`,`cm_p_layers`,`cm_c_layers`,`cm_l_type`,`cm_l_v1`,`cm_l_v2`,`cm_l_v3`,`cm_g_type`,`cm_g_v`,`cm_as_type`,`cm_as_cool`,`cm_as_power`,`cm_a_type`,`cm_a_volume`,`cm_a_power`,`cm_a_pressure`,`ta_net`,`ta_s_centre`,`ta_sm_i`,`ta_sm_i_type`,`ta_sm_c_i`,`ta_sm_m_c`,`ta_pm`,`ta_pm_ups`,`ta_pm_pc`,`ta_pm_rp`,`ta_vs`,`ta_vs_region`,`ta_vs_am`,`ta_vs_ia`,`ta_vs_ia_n`,`ta_vs_io`,`ta_vs_io_n`,`ta_vs_pg`,`ta_vs_pg_n`,`ta_vs_em`,`ta_vs_em_n`,`ta_vs_em_position`,`ta_vs_em_ci`,`tm_longitude`,`tm_latitude`,`tm_altitude`,`tm_position`,`tm_ice`,`tm_height`,`tm_hemline`,`tm_style`,`tm_style_v`,`tm_build_unit`,`tm_design_unit`,`tm_lifespan`,`tm_s_status`,`t_new_sign`,`t_status` FROM Tower_info WHERE t_id=#{id}
 	</select>
 
 	 <select id="grouplist" resultType="map" parameterType="int">
