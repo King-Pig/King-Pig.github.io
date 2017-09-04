@@ -1,11 +1,17 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	String admin =(String) request.getSession().getAttribute("manager");
-	if(admin == null)admin="";
-	if(!"admin".equals(admin)){
-		out.print("<html><script> window.location.href='./login.jsp';</script></html>");
-	}else{
+Map<String,Object>  u  = (Map<String,Object>)request.getSession().getAttribute("user");
 
+if(u == null){
+	out.print("<html><script> window.location.href='./login.jsp';</script></html>");
+}else{
+ 	boolean isadmin=false ;
+ 	String u_name = (String)u.get("user_name");
+	if("admin".equals(u_name)) isadmin =true;
+	String city = (String)u.get("city"); 
+	if(city==null) city="";
+	String district = (String)u.get("district");
+	if(district==null) district="";
  
  
 

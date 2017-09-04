@@ -17,5 +17,6 @@
 		<mapper resource="com/spark/bsel/entiy/Device.xml" />
 		<mapper resource="com/spark/bsel/entiy/Files.xml" />
 		<mapper resource="com/spark/bsel/entiy/Copy.xml" />
+		<mapper resource="com/spark/bsel/entiy/User.xml" />
 	</mappers>
 </configuration>

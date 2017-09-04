@@ -8,6 +8,7 @@ import java.util.Map;
 public class CityBean {
 	public static List<String>  citylist = new ArrayList<>();
 	public CityBean(){
+		if(citylist.size()==0){
 		citylist.add("昆明市");
 		citylist.add("曲靖市");
 		citylist.add("玉溪市");
@@ -24,5 +25,6 @@ public class CityBean {
 		citylist.add("红河哈尼族彝族自治州");
 		citylist.add("文山壮族苗族自治州");
 		citylist.add("西双版纳傣族自治州");
+		}
 	}
 }

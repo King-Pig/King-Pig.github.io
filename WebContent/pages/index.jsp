@@ -1,14 +1,18 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-	String admin =(String) request.getSession().getAttribute("manager");
-	if(admin == null)admin="";
-	if(!"admin".equals(admin)){
+	Map<String,Object>  u  = (Map<String,Object>)request.getSession().getAttribute("user");
+
+	if(u == null){
 		out.print("<html><script> window.location.href='./login.jsp';</script></html>");
 	}else{
-
- 
- 
+	 	boolean isadmin=false ;
+	 	String u_name = (String)u.get("user_name");
+		if("admin".equals(u_name)) isadmin =true;
+		String city = (String)u.get("city"); 
+		if(city==null) city="";
+		String district = (String)u.get("district");
+		if(district==null) district="";
  %>
  
 <html>
@@ -77,7 +81,10 @@
 									<i class="fa  fa-search fa-fw"></i> 高级查询
 								</div>
 						</a></li>
+
 						
+ 					
+
 						<!--  
 						<li class="divider"></li>
 						<li><a href="#">
@@ -92,7 +99,11 @@
 				</a>
 					<ul class="dropdown-menu dropdown-user">
 						<li><a href="#"><i class="fa fa-user fa-fw"></i>密码修改</a></li>
-						<li><a href="#"><i class="fa fa-gear fa-fw"></i>用户管理</a></li>
+						<%
+							if(isadmin){
+						%>
+						<li><a href="user.jsp"><i class="fa fa-gear fa-fw"></i>用户管理</a></li>
+						<%} %>
 						<li class="divider"></li>
 						<li><a href="login.jsp"><i class="fa fa-sign-out fa-fw"></i> 退出</a></li>
 					</ul> <!-- /.dropdown-user --></li>
@@ -179,6 +190,11 @@
 	</div>
 	<!-- /#wrapper -->
 
+
+	<div   style="display:none;">
+	<input type="hidden"  id="user_city"  value="<%=city %>"> 
+	<input type="hidden"  id="user_district"  value="<%=district %>"> 
+	</div>
 	<!-- jQuery -->
 	<script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -269,9 +285,12 @@
 
 		function showlist() {
 			var t_name = $("#q_t_name").val();
-		
+			var t_city = $("#user_city").val();
+			var t_county = $("#user_district").val();
 			$.post("../StationInfo", {
 				'method' : 'querylist',
+				't_city':t_city,
+				't_county':t_county,
 				't_name':t_name,
 				'page' : '1',
 				'pageSize' : '20',

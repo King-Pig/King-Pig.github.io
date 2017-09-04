@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "mybatis-3-mapper.dtd" >
 <mapper namespace="Station">
 	<select id="user_info" resultType="map"  parameterType="map">
-		SELECT * FROM user  WHERE user_name=#{user_name} and user_pwd =Password(#{user_pwd})
+		SELECT * FROM user  WHERE user_name=#{user_name} and user_pwd =Password(#{user_pwd}) and user_status=1
 	</select>
 	
 	<select id="info"  resultType="hashmap"  parameterType="int">
@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="city_count" resultType="map"  >
-			SELECT c.city,  IF(ISNULL(t.num),0,t.num ) AS num FROM `city` c LEFT JOIN  (SELECT t_city ,COUNT(1) AS  num FROM `Tower_info` WHERE t_new_sign=1 AND t_status=1 GROUP BY t_city )  t ON c.city = t.t_city  ORDER BY c.id
+			SELECT c.name as city,  IF(ISNULL(t.num),0,t.num ) AS num FROM city c LEFT JOIN (SELECT t_city ,COUNT(1) AS  num FROM Tower_info  WHERE t_new_sign=1 AND t_status=1 GROUP BY t_city )  t ON c.name = t.t_city  ORDER BY c.id
 	</select>
 
 

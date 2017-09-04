@@ -51,7 +51,8 @@ public class ManagerLoginServlet extends HttpServlet {
  
 		if(u!= null &&u.size()>0){
 			HttpSession session = request.getSession();
-			session.setAttribute("manager", "admin");
+			session.setAttribute("user", u);
+			
 			response.sendRedirect("./pages/index.jsp"); 
 		}else{
 			response.sendRedirect("./pages/login.jsp?s=failed"); 
