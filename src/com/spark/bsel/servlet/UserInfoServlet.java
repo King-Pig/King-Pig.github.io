@@ -57,15 +57,34 @@ public class UserInfoServlet  extends HttpServlet {
 			out.write(o.toString());
 		}else if("useredit".equals(method) ){
 			Map  map = getParameterStringMap(request);
-			int  i = ud.update(map);
-			 JSONObject  o = new JSONObject();
-			 o.put("result", i);
-			 out.write(o.toString());
+			map.remove("user_name");
+ 
+			JSONObject  o = new JSONObject();
+ 
+				int  i = ud.update(map);
+				o.put("result", i);
+				if(i == 0){
+					o.put("msg", "系统错误");
+				}
+ 
+			
+			out.write(o.toString());
 		}else if("useradd".equals(method) ){
 			Map  map = getParameterStringMap(request);
-			int i = ud.insert(map);
-			 JSONObject  o = new JSONObject();
-			 o.put("result", i);
+			Map<String,Object> m = ud.queryName(map);
+			JSONObject  o = new JSONObject();
+			if(m != null){
+				o.put("result", 0);
+				o.put("msg", "用户名重复，请重新输入！");
+			}else{
+				map.put("user_pwd", map.get("user_pwd1"));
+				int  i = ud.insert(map);
+				o.put("result", i);
+				if(i == 0){
+					o.put("msg", "系统错误");
+				}
+				
+			}
 			 out.write(o.toString());
 		}else if("district".equals(method) ){
 			String id = request.getParameter("id");

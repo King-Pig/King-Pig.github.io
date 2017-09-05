@@ -25,7 +25,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>电视台站管理</title>
+<title>无线发射台站信息库</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -60,7 +60,7 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html"><span style="font-family: '楷体'; font-size: 25px; color: #cc0000; text-shadow: 1px 1px 2px #980000;"><strong>电视台站管理</strong></span></a>
+				<a class="navbar-brand" href="index.html"><span style="font-family: '楷体'; font-size: 25px; color: #cc0000; text-shadow: 1px 1px 2px #980000;"><strong>云南省广播电视无线发射台站资源信息库</strong></span></a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -213,7 +213,7 @@
 	<script src="../dist/js/sb-admin-2.js"></script>
 	<script>
 		function showcity() {
-			$.post("../StationInfo",{"method" : "city_count"},
+			$.post("../StationInfo",{"method" : "city_count","city":"<%=city%>"},
 				function(data) {
 					console.log(data); //  2pm
 					var html = "";
@@ -233,7 +233,7 @@
 		}
 
 		function city_station(id, num, city) {
-
+			var t_county = "<%=district%>";
 			if ($("#city_li" + id).attr('class') == '') { //展开
 				if (num != 0) {
 					var cityid = "#city" + id;
@@ -246,7 +246,8 @@
 							'page' : '1',
 							'pageSize' : '100',
 							'orderby' : 't_name',
-							't_city' : city
+							't_city' : city,
+							't_county':t_county
 						}, function(data) {
 							console.log(data); //  2pm
 							var html = "";
@@ -270,6 +271,8 @@
 						$("#city_li" + id).attr("class", "active");
 
 					}
+					$("#user_city").val(city);
+					showlist();
 				}
 
 			} else {
@@ -344,7 +347,7 @@
 			
 		}
 		function openstation(id) {
-			window.location.href = "";
+			window.location.href='./edit_info.jsp?id='+id+'&action=edit';   
 		}
 	
 		function  del(id,v,name,obj){

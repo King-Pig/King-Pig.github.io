@@ -5,7 +5,7 @@
 
 	
 	<insert id="user_add"  parameterType="map"  >
-		 INSERT INTO `user`   (user_name,user_pwd,city,district,lasttime) VALUES (#{user_name},#{user_pwd},#{city},#{district},now());
+		 INSERT INTO `user`   (user_name,user_pwd,city,district,lasttime) VALUES (#{user_name},password(#{user_pwd}),#{city},#{district},now());
 	</insert>
 	
 	
@@ -16,7 +16,7 @@
 	
 		<update id="user_edit"  parameterType="map"  >
 			UPDATE  `user`  SET  lasttime=now()
- 			<if test="user_pwd != '' and  user_pwd != null">,user_pwd = #{user_pwd}</if>
+ 			<if test="user_pwd != '' and  user_pwd != null">,user_pwd = password(#{user_pwd})</if>
  			<if test= "city != null">,city = #{city}</if>
  			<if test="district != null">,district = #{district}</if>
  			<if test="user_status != '' and  user_status != null">,user_status = #{user_status}</if>
@@ -34,8 +34,8 @@
 		
  		<select id="user_list" resultType="map"  parameterType="map">
 			SELECT  user_id,user_name,city,district ,cast(lasttime as 	char(25)) as lasttime   FROM `user`   WHERE user_status=1 
-			<if test="city != '' and  city != null"> and city = #{city}</if>
-			<if test="district != '' and  district != null"> and city = #{district}</if>
+			<if test=" city != null"> and city = #{city}</if>
+			<if test=" district != null"> and district = #{district}</if>
 		</select>
 		
 		

@@ -30,7 +30,7 @@ if(u == null){
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>电视台站管理</title>
+<title>无线发射台站信息库</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -67,13 +67,15 @@ if(u == null){
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html"><span style="font-family: '楷体'; font-size: 25px; color: #cc0000; text-shadow: 1px 1px 2px #980000;"><strong>电视台站管理</strong></span></a>
+				<a class="navbar-brand" href="index.html"><span style="font-family: '楷体'; font-size: 25px; color: #cc0000; text-shadow: 1px 1px 2px #980000;"><strong>云南省广播电视无线发射台站资源信息库</strong></span></a>
 			</div>
 			<!-- /.navbar-header -->
 
 			<ul class="nav navbar-top-links navbar-right">
 
-				
+			 
+       			 <li><a href="./index.jsp"><span class="fa  fa-home" ></span>首页</a></li>
+ 
 			</ul>
 			<!-- /.navbar-top-links -->
 
@@ -95,8 +97,8 @@ if(u == null){
   						<% for(Map<String,Object> m : city_list){%>
   								<li><a href="#"  onclick="citychange('<%=m.get("id") %>','<%=m.get("name") %>')"><%=m.get("name") %></a></li>
   						<%} %>
-  					</ul>
-				</div>
+  						</ul>
+					</div>
 				
 				
 				
@@ -121,18 +123,21 @@ if(u == null){
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <span class="" style='color:#666666'>用户管理</span>
+                            <div class="navbar-right" style='margin-top:-5px;margin-right:10px'>
+ 										<button type="button" class="btn btn-info   btn-sm" onclick='openuserform({"user_id":0})'> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
+      						</div>   
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
 							<table class="table table-striped table-bordered table-hover" id="dataTables-example">
 								<thead>
 									<tr>
-									<th >序号</th>
+									<th width="50px">序号</th>
 									<th >用户名</th>
-									<th> 市</th>
-									<th> 县</th>
-									<th >最后编辑时间</th>
-									<th >操作</th>
+									<th >市</th>
+									<th>县</th>
+									<th width="190px">最后编辑时间</th>
+									<th width="200px">操作</th>
 									</tr>
 								</thead>
 								<tbody id="datalist">
@@ -162,6 +167,115 @@ if(u == null){
 	</div>
 	<!-- /#wrapper -->
 
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="user_modal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel"> 详情</h4>
+      </div>
+      <div class="modal-body">
+      
+        			<form class="form-horizontal  list_info_form"   id="user_form" >
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">用户名</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="user_name" name="user_name" type="text" class="form-control"   placeholder="用户名..." maxlength="20">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>
+    				
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">密码1</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="user_pwd1" name="user_pwd1" type="password" class="form-control"   placeholder="" maxlength="20">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   				
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">密码2</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+    				
+						<input id="user_pwd2" name="user_pwd2" type="password" class="form-control"   placeholder="">
+     
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>  
+
+					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">市</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					 <div class="btn-group">
+  						<button type="button" class="btn btn-default" style="width:200px" id="cityshow1">市</button>
+  						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    							<span class="caret"></span>
+    							<span class="sr-only">Toggle Dropdown</span>
+  						</button>
+  						<ul class="dropdown-menu">
+  						<li><a href="#" onclick="citychange1('0','')">市</a></li>
+  						<% for(Map<String,Object> m : city_list){%>
+  								<li><a href="#"  onclick="citychange1('<%=m.get("id") %>','<%=m.get("name") %>')"><%=m.get("name") %></a></li>
+  						<%} %>
+  						</ul>
+					</div>
+    				</div>
+    				</div>
+    				</div>   	
+					
+					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">县/区</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					 <div class="btn-group">
+  						<button type="button" class="btn btn-default" style="width:200px" id="districtshow1">县/区</button>
+  						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    							<span class="caret"></span>
+    							<span class="sr-only">Toggle Dropdown</span>
+  						</button>
+  						<ul class="dropdown-menu"  id="districtshowbox1">
+
+  						</ul>
+						</div>
+    				</div>
+    				</div>
+    				</div>  
+    				
+					 <input type="hidden" id="district"  name="district"  >
+ 					 <input type="hidden" id="city"  name="city"  >
+ 					 <input type="hidden" id="user_id"  name="user_id"  >
+  				</form>
+  				
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">  取消  </button>
+        <button type="button" class="btn btn-success"   onclick="saveuser()" >  保存  </button>
+
+      </div>
+    </div>
+  </div>
+</div>
 	<!-- jQuery -->
 	<script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -209,9 +323,45 @@ if(u == null){
 			}
 		}
 		
+		function citychange1(id,city) {
+			if($("#cityshow1").html() != city){
+				$("#city").val(city);
+				$("#district").val("");
+
+				if(city == ''){
+					$("#cityshow1").html('市');
+					$("#districtshow1").html("县/区");
+					$("#districtshowbox1").html("");
+				}else{
+					$("#cityshow1").html(city);
+					$("#districtshow1").html("县/区");
+					$.post("../UserInfo",{"method" : "district","id":id},function(data) {
+	 
+						var html = '<li><a href="#" onclick="districtchange1(\'\')">县/区</a></li>';
+						$.each(data,function(i, item) {
+							html += '<li><a href="#" onclick="districtchange1(\''+item.name+'\')">'+item.name+'</a></li>';
+	 
+							$("#districtshowbox1").html(html);
+						});
+						
+						}, "json");
+				}
+				
+			}
+		}
 		
 		
-		
+		function districtchange1(district){
+			if(district == ''){
+				$("#district").val("");
+				$("#districtshow1").html("县/区");
+				
+			}else{
+				$("#district").val(district);
+				$("#districtshow1").html(district);
+			}
+		}
+
 		function districtchange(district){
 			if(district == ''){
 				district_str = "";
@@ -223,8 +373,6 @@ if(u == null){
 			}
 			showlist() ;
 		}
-
-
 		
 		
 		function showlist() {
@@ -244,11 +392,16 @@ if(u == null){
 					_html_arr.push('<td>' + item.city + '</td>');
 					_html_arr.push('<td>' + item.district + '</td>');
 					_html_arr.push('<td>' + item.lasttime + '</td>');
- 
-					_html_arr.push('<td>');
-					_html_arr.push('<button type="button" onclick="window.location.href=\'./edit_info.jsp?id=' + item.t_id + '&action=edit \'    " style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">编辑</button>');
-					_html_arr.push('<button type="button" onclick="del('+item.t_id+'\',$(this))" style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">删除</button>');
-					_html_arr.push('</td>');
+ 					if(item.user_name == "admin"){
+ 						_html_arr.push('<td>&nbsp;</td>');
+ 					}else{
+ 						_html_arr.push('<td>');
+ 						_html_arr.push("<button type='button' onclick='openuserform("+JSON.stringify(item)+")' style='margin-left: 10px;margin-top: 5px;' class='btn btn-info btn-xs'>编辑</button>");
+ 						_html_arr.push('<button type="button" onclick="del('+item.user_id+',\''+item.user_name+'\',$(this))" style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">删除</button>');
+ 						_html_arr.push('<button type="button" onclick="reset('+item.user_id+',$(this))" style="margin-left: 10px;margin-top: 5px;" class="btn btn-info btn-xs">重置密码</button>');
+ 						_html_arr.push('</td>');
+ 					}
+
                 	_html_arr.push('</tr>');
 				});
 				$("#list_loading").hide();
@@ -259,11 +412,20 @@ if(u == null){
 		}
 		
 		
-	
-		function  del(id,v,name,obj){
-			 if(confirm("确定删除 "+name+"  V"+v+"版本？"))
+		function reset(id){
+			$.post("../UserInfo?method=useredit&user_id="+id+"&user_pwd=123456", function(data) {
+	         	if(data.result == 1){
+	         		alert("已重置密码： 123456 ");
+ 
+	         	}else{
+	         		alert("重置失败!");
+	         	}
+			}, "json");
+		}
+		function  del(id,name,obj){
+			 if(confirm("确定删除 "+name+" 用户？"))
      	    {
-					$.post("../StationInfo?method=update&t_id="+id+"&t_status=-1", function(data) {
+					$.post("../UserInfo?method=useredit&user_id="+id+"&user_status=0", function(data) {
 			         	if(data.result == 1){
 			         		$(obj).parents('tr').remove();
 			         	}else{
@@ -277,6 +439,97 @@ if(u == null){
 		$(function() {
 			showlist() ;
 		});
+		
+		
+		
+		
+		function openuserform(user){
+ 
+			if(user.user_id == 0){
+				// 新增
+				document.getElementById("user_form").reset();  //表单初始化
+				districtchange1('');
+				citychange1(0,'');
+				$("#user_id").val(0);
+				$('#user_pwd1').removeAttr("disabled"); 
+ 				$('#user_pwd2').removeAttr("disabled");
+ 				$('#user_name').removeAttr("disabled");
+				$('#user_modal').modal({
+				    keyboard: true,
+				    show:true
+				});
+			}else{
+				//编辑
+					$("#user_id").val(user.user_id);
+ 					$("#user_name").val(user.user_name);
+ 					
+ 					$('#user_name').attr("disabled",true);
+ 					$('#user_pwd1').attr("disabled",true); 
+ 					$('#user_pwd2').attr("disabled",true);
+ 					if(user.city ==''){
+ 						$("#cityshow1").html('市');
+ 					}else{
+ 						$("#cityshow1").html(user.city);
+ 					}
+ 
+ 					if(user.district ==''){
+ 						$("#districtshow1").html('县/区');
+ 					}else{
+ 						$("#districtshow1").html(user.district);
+ 					}
+ 			 
+ 					
+ 					$("#city").val(user.city);
+ 					$("#district").val(user.district);
+ 					
+					$('#user_modal').modal({
+					    keyboard: true,
+					    show:true
+					});
+					
+ 
+				
+				
+				
+			}
+
+		}
+		
+		
+		function saveuser(){
+			var u_id = $("#user_id").val();
+			var m="";
+			var un = $("#user_name").val();
+			if(un ==""){
+				alert("请输入用户名");
+				return;
+			} 
+			if(u_id ==0){
+				m="useradd";
+				var p1 = $("#user_pwd1").val();
+				var p2 = $("#user_pwd2").val();
+				if(p1 != p2){
+					alert("输入的密码不一致！");
+					return;
+				}
+			}else{
+				m="useredit";
+			}
+ 
+			
+			var from_data = $("#user_form").serialize();
+			$.post("../UserInfo?method="+m, from_data, function(data) {
+				if(data.result>0){
+					$('#user_modal').modal('hide');
+					showlist();//全部刷新
+				}else{
+					alert(data.msg);
+				}
+		         		
+			}, "json");
+			
+			
+		}
 	</script>
 </body>
 

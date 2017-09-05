@@ -7,7 +7,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>电视台站管理-登录</title>
+        <title>无线发射台站信息库-登录</title>
 
         <!-- CSS -->
 
@@ -53,7 +53,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-8 col-sm-offset-2 text">
-                            <h1><strong>电视台站管理</strong> </h1>
+                            <h1><strong>云南省广播电视无线发射台站资源信息库</strong> </h1>
                             <div class="description">
 								 
                             </div>

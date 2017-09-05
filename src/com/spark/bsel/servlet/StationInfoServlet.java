@@ -159,7 +159,8 @@ public class StationInfoServlet  extends HttpServlet {
 			 o.put("result", i);
 			 out.write(o.toString());
 		}else if("city_count".equals(method)){
-			List<Map<String,Object>> list  = sd.group_city_count();
+			String city = request.getParameter("city");
+			List<Map<String,Object>> list  = sd.group_city_count(city);
 			JSONArray o = JSONArray.fromObject(list);
 			out.write(o.toString());
 		}else if("file_del".equals(method)){

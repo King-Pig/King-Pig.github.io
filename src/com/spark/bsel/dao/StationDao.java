@@ -50,9 +50,11 @@ public class StationDao {
 
 	}
 	
-	public List<Map<String,Object>> group_city_count(){
+	public List<Map<String,Object>> group_city_count(String city){
+		Map<String,Object>  map = new HashMap<String,Object>  ();
+		map.put("city", city);
 		SqlSession session = MybatisUtil.getSession();
-		List<Map<String,Object>> list  = session.selectList("Station.city_count");
+		List<Map<String,Object>> list  = session.selectList("Station.city_count",map);
 		MybatisUtil.closeSession();
 		return list;
 	}

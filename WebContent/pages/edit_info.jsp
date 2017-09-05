@@ -33,7 +33,7 @@ if(action == null) action ="";
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>电视台站管理</title>
+<title>无线发射台站信息库</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -126,7 +126,7 @@ if(action == null) action ="";
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html"><span style="font-family: '楷体'; font-size: 25px; color: #cc0000; text-shadow: 1px 1px 2px #980000;"><strong>电视台站管理</strong></span></a>
+				<a class="navbar-brand" href="index.html"><span style="font-family: '楷体'; font-size: 25px; color: #cc0000; text-shadow: 1px 1px 2px #980000;"><strong>云南省广播电视无线发射台站资源信息库</strong></span></a>
 			</div>
 			<!-- /.navbar-header -->
 
@@ -144,16 +144,16 @@ if(action == null) action ="";
  						<li class ="active"   >
                             <a href="#"><i class="glyphicon glyphicon-pawn"></i><span id="st_name"></spna> </span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level"  aria-expanded="true" >
-                                <li><a href="#" onclick="editpage(1)"><span id="ico1" class='fa fa-edit' style='color:#cc2200'></span> 台站概况</a></li>
-                                <li><a href="#" onclick="editpage(2)"><span id="ico2" class='fa fa-edit' style='color:#cccccc'></span> 供配电</a></li>
-                                <li><a href="#" onclick="editpage(3)"><span id="ico3" class='fa fa-edit' style='color:#cccccc'></span> 节目传送机房</a></li>
-                                <li><a href="#" onclick="editpage(4)"><span id="ico4" class='fa fa-edit' style='color:#cccccc'></span> 发射机房</a></li>
-                                <li><a href="#" onclick="editpage(5)"><span id="ico5" class='fa fa-edit' style='color:#cccccc'></span> 现有设备登记表（调频）</a></li>
-                                <li><a href="#" onclick="editpage(6)"><span id="ico6" class='fa fa-edit' style='color:#cccccc'></span> 现有设备登记表（电视，数字和模拟）</a></li>
-                                <li><a href="#" onclick="editpage(7)"><span id="ico7" class='fa fa-edit' style='color:#cccccc'></span> 控制室</a></li>
-                                <li><a href="#" onclick="editpage(8)"><span id="ico8" class='fa fa-edit' style='color:#cccccc'></span> 发射台自动化</a></li>
-                                <li><a href="#" onclick="editpage(9)"><span id="ico9" class='fa fa-edit' style='color:#cccccc'></span> 现有塔桅</a></li>
-                                <li><a href="#" onclick="editpage(10)"><span id="ico10" class='fa fa-edit' style='color:#cccccc'></span> 电视天馈系统</a></li>
+                                <li><a href="#" onclick="editpage(1)"><span id="ico1" class='fa fa-edit' style='color:#cc2200'></span> 1.台站概况</a></li>
+                                <li><a href="#" onclick="editpage(2)"><span id="ico2" class='fa fa-edit' style='color:#cccccc'></span> 2.供配电</a></li>
+                                <li><a href="#" onclick="editpage(3)"><span id="ico3" class='fa fa-edit' style='color:#cccccc'></span> 3.节目传送机房</a></li>
+                                <li><a href="#" onclick="editpage(4)"><span id="ico4" class='fa fa-edit' style='color:#cccccc'></span> 4.发射机房</a></li>
+                                <li><a href="#" onclick="editpage(5)"><span id="ico5" class='fa fa-edit' style='color:#cccccc'></span> 5.现有设备登记表（调频）</a></li>
+                                <li><a href="#" onclick="editpage(6)"><span id="ico6" class='fa fa-edit' style='color:#cccccc'></span> 6.现有设备登记表（电视，数字和模拟）</a></li>
+                                <li><a href="#" onclick="editpage(7)"><span id="ico7" class='fa fa-edit' style='color:#cccccc'></span> 7.控制室</a></li>
+                                <li><a href="#" onclick="editpage(8)"><span id="ico8" class='fa fa-edit' style='color:#cccccc'></span> 8.发射台自动化</a></li>
+                                <li><a href="#" onclick="editpage(9)"><span id="ico9" class='fa fa-edit' style='color:#cccccc'></span> 9.现有塔桅</a></li>
+                                <li><a href="#" onclick="editpage(10)"><span id="ico10" class='fa fa-edit' style='color:#cccccc'></span> 10.电视天馈系统</a></li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

@@ -19,8 +19,18 @@
 		]]>
 	</select>
 	
-	<select id="city_count" resultType="map"  >
-			SELECT c.name as city,  IF(ISNULL(t.num),0,t.num ) AS num FROM city c LEFT JOIN (SELECT t_city ,COUNT(1) AS  num FROM Tower_info  WHERE t_new_sign=1 AND t_status=1 GROUP BY t_city )  t ON c.name = t.t_city  ORDER BY c.id
+	<select id="city_count" resultType="map"  parameterType="map">
+			SELECT c.name as city,  IF(ISNULL(t.num),0,t.num ) AS num FROM city c LEFT JOIN (SELECT t_city ,COUNT(1) AS  num FROM Tower_info  WHERE t_new_sign=1 AND t_status=1
+			<if test="city != '' and  city != null">
+			 and t_city = #{city}
+			</if>
+			 GROUP BY t_city )  t ON c.name = t.t_city 
+			 
+			<if test="city != '' and  city != null">
+			 WHERE c.name = #{city} 
+			</if> 
+			 ORDER BY c.id
+	
 	</select>
 
 
