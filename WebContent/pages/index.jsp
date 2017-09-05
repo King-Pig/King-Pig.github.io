@@ -271,10 +271,11 @@
 						$("#city_li" + id).attr("class", "active");
 
 					}
-					$("#user_city").val(city);
-					showlist();
+					
+					
 				}
-
+				$("#user_city").val(city);
+				showlist();
 			} else {
 				//收缩
 				$("#city_li" + id).attr("class", "");

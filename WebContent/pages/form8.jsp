@@ -253,7 +253,17 @@
                        
                        </div>  
                     </fieldset>
-                   
+                                        <fieldset>
+                         <legend>备注</legend>
+                         <div class="form-group">
+                           <label class="col-sm-2 control-label" for="t_purpose" >备注</label>
+                             <div class="col-sm-10">
+ 									<textarea class="form-control" rows="4" id="t_remarks_8"  name="t_remarks_8"   optional=""></textarea>
+                             </div>
+
+                       </div>   
+
+                    </fieldset>
                 </form>
  
 </body>

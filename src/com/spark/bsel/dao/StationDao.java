@@ -105,7 +105,7 @@ public class StationDao {
 	public int  copy1(int t_id,int max_v){
 		Map<String,Object>  map = new HashMap<String,Object>  ();
 		map.put("t_id", t_id);
-		map.put("t_version", (max_v+1));
+		map.put("t_version", max_v);
 		SqlSession session = MybatisUtil.getSession();
 		session.insert("Copy.copy_1", map);
 		int i =(int)map.get("t_id");

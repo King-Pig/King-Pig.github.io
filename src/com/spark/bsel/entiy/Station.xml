@@ -20,7 +20,7 @@
 	</select>
 	
 	<select id="city_count" resultType="map"  parameterType="map">
-			SELECT c.name as city,  IF(ISNULL(t.num),0,t.num ) AS num FROM city c LEFT JOIN (SELECT t_city ,COUNT(1) AS  num FROM Tower_info  WHERE t_new_sign=1 AND t_status=1
+			SELECT c.name as city,  IF(ISNULL(t.num),0,t.num ) AS num FROM city c LEFT JOIN (SELECT t_city ,COUNT(1) AS  num FROM Tower_info  WHERE  t_status=1
 			<if test="city != '' and  city != null">
 			 and t_city = #{city}
 			</if>
@@ -240,7 +240,15 @@
 			tm_lifespan = #{tm_lifespan},
 			tm_s_status = #{tm_s_status}
 		</if>
-
+		<if test="t_remarks_1 != '' and  t_remarks_1 != null">,t_remarks_1 = #{t_remarks_1}</if>
+		<if test="t_remarks_2 != '' and  t_remarks_2 != null">,t_remarks_2 = #{t_remarks_2}</if>
+		<if test="t_remarks_3 != '' and  t_remarks_3 != null">,t_remarks_3 = #{t_remarks_3}</if>
+		<if test="t_remarks_4 != '' and  t_remarks_4 != null">,t_remarks_4 = #{t_remarks_4}</if>
+		<if test="t_remarks_7 != '' and  t_remarks_7 != null">,t_remarks_7 = #{t_remarks_7}</if>
+		<if test="t_remarks_8 != '' and  t_remarks_8 != null">,t_remarks_8 = #{t_remarks_8}</if>
+		<if test="t_remarks_9 != '' and  t_remarks_9 != null">,t_remarks_9 = #{t_remarks_9}</if>
+	 
+		
 		<if test="t_new_sign != '' and  t_new_sign != null">,t_new_sign = #{t_new_sign}</if>
 		<if test="t_status != '' and  t_status != null">,t_status = #{t_status}</if>
 		
