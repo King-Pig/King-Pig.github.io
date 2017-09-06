@@ -184,7 +184,7 @@ if(action == null) action ="";
      
         
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa  fa-paperclip" ></span> <span id="now_version">当前版本 V </span><span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="fa  fa-paperclip" ></span> <span id="now_version">当前版本  </span><span class="caret"></span></a>
           <%if ( !"add".equals(action) ){ %>
           <ul class="dropdown-menu"  id="t_version">
 
@@ -1330,7 +1330,7 @@ if(action == null) action ="";
 						if(i==0) max_t_version = item.t_version;
 						$('#t_version').append("<li><a href='#' onclick='openedit("+item.t_id+")'>V "+item.t_version+"</a></li>");  
 					});
-					$('#now_version').html("当前版本 V "+result.t_version);
+					$('#now_version').html("当前版本 V "+result.t_version+"."+result.t_version_1+"."+result.t_version_2);
 					if(result.t_status==1){
 						
 						$("#copy_info").show();

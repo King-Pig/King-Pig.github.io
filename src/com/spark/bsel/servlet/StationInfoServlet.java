@@ -192,11 +192,14 @@ public class StationInfoServlet extends HttpServlet {
 				out.write(o.toString());
 			} else if ("copy".equals(method)) {
 				String t_id = request.getParameter("t_id");
-				String max_v = request.getParameter("max_v");
+				//String max_v = request.getParameter("max_v");
+				Map<String, Object> info = sd.queryInfo(Integer.parseInt(t_id)); 
+				
 				JSONObject o = new JSONObject();
 				int user_level = 3;
 				String city = (String)user.get("city");
 				String district = (String) user.get("district");
+				
 				if("".equals(city) ) user_level--;
 				if("".equals(district) ) user_level--;
 				
@@ -204,27 +207,28 @@ public class StationInfoServlet extends HttpServlet {
 					t_id = "0";
 				if ("".equals(t_id))
 					t_id = "0";
-				if (max_v == null)
-					max_v = "1";
-				if ("".equals(t_id))
-					max_v = "1";
+ 
+				 
+				//获取当前版本
+				int  v1 = (int)info.get("t_version");
+				int  v2 = (int)info.get("t_version_1");
+				int  v3 = (int)info.get("t_version_2");
 				
-				int  v1 = Integer.parseInt(max_v);
-				int  v2 = 0;
-				int  v3 = 0;
-				
-				if(user_level == 1){
-					
-				}else if(user_level == 2){
-					
-				}else if(user_level == 3){
-					
+				//按权限计算新版本
+				Map<String,Object> vs = sd.getMaxVersions((int)info.get("t_group"));
+				if(user_level == 1){//省级
+					v1 = (int)vs.get("v1")+1;
+					v2=0;
+					v3=0;
+				}else if(user_level == 2){//市级
+					v2 = (int)vs.get("v2")+1;
+					v3=0;
+				}else if(user_level == 3){//县级
+					v3 = (int)vs.get("v3")+1;
 				}
-				
-				
 
 				if (Integer.parseInt(t_id) > 0 &&  v1 > 0) {
-					int new_t_id = sd.copy1(Integer.parseInt(t_id), v1);
+					int new_t_id = sd.copy1(Integer.parseInt(t_id), v1,v2,v3);
 					System.out.println("copy t_id :" + t_id + " new_t_id:" + new_t_id);
 
 					o.put("copy1", new_t_id);

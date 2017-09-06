@@ -42,6 +42,13 @@ public class StationDao {
 	}
 	
 	
+	public Map<String,Object> getMaxVersions(int groupid){
+		SqlSession session = MybatisUtil.getSession();
+		Map<String,Object>  m = session.selectOne("Station.versions", groupid);
+		MybatisUtil.closeSession();
+		return m;
+	}
+	
 	public List<Map<String,Object>> queryGroup(int id){
 		SqlSession session = MybatisUtil.getSession();
 		List<Map<String,Object>> list   = session.selectList("Station.grouplist", id);
@@ -102,10 +109,12 @@ public class StationDao {
 	}
 	
 	
-	public int  copy1(int t_id,int max_v){
+	public int  copy1(int t_id,int t_version,int t_version_1,int t_version_2){
 		Map<String,Object>  map = new HashMap<String,Object>  ();
 		map.put("t_id", t_id);
-		map.put("t_version", max_v);
+		map.put("t_version", t_version);
+		map.put("t_version_1", t_version_1);
+		map.put("t_version_2", t_version_2);
 		SqlSession session = MybatisUtil.getSession();
 		session.insert("Copy.copy_1", map);
 		int i =(int)map.get("t_id");
