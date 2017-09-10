@@ -49,13 +49,14 @@ public class DeviceInfoServlet  extends HttpServlet {
 			int id = Integer.parseInt(t_id);
 			
 			List<Map<String,Object>>  s_list = dd.queryList("s_list", id);
-
-			
 			List<Map<String,Object>>  o_list = dd.queryList("o_list", id);
 			List<Map<String,Object>>  m_list = dd.queryList("m_list", id);
 			List<Map<String,Object>>  d_list1 = dd.queryList("d_list1",id);
 			List<Map<String,Object>>  d_list2 = dd.queryList("d_list2",id);
 			List<Map<String,Object>>  as_list = dd.queryList("as_list",id);
+			List<Map<String,Object>>  power_list1 = dd.queryList("power_list1",id);
+			List<Map<String,Object>>  power_list2 = dd.queryList("power_list2",id);
+			
 			Map<String,Object>  m = new HashMap<String,Object>();
 			if(s_list != null) 	m.put("s_list", s_list);
 			if(o_list != null) 	m.put("o_list", o_list);
@@ -63,6 +64,9 @@ public class DeviceInfoServlet  extends HttpServlet {
 			if(d_list1 != null) 	m.put("d_list1", d_list1);
 			if(d_list2 != null) 	m.put("d_list2", d_list2);
 			if(as_list != null) 	m.put("as_list", as_list);
+			if(power_list1 != null) 	m.put("power_list1", power_list1);
+			if(power_list2 != null) 	m.put("power_list2", power_list2);
+			
 			
 			JSONObject  o = JSONObject.fromObject(m);
 			out.write(o.toString());

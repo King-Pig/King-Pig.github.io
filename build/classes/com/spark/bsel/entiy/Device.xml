@@ -16,10 +16,10 @@
 		SELECT * FROM device_info WHERE d_id=#{id}
 	</select>
 	<insert id="d_add"  parameterType="map" >
-			insert into device_info  (t_id,d_type,d_frequency,d_r_power,d_t_power,d_program,d_m_m,d_i_interface,d_m_b,d_multiple,d_f_type,d_f_polarity,d_f_direction,d_f_h,d_f_c_type,d_f_length)  values (#{t_id},#{d_type},#{d_frequency},#{d_r_power},#{d_t_power},#{d_program},#{d_m_m},#{d_i_interface},#{d_m_b},#{d_multiple},#{d_f_type},#{d_f_polarity},#{d_f_direction},#{d_f_h},#{d_f_c_type},#{d_f_length})
+			insert into device_info  (t_id,d_type,d_frequency,d_r_power,d_t_power,d_program,d_m_m,d_i_interface,d_m_b,d_multiple,d_f_type,d_f_polarity,d_f_direction,d_f_h,d_f_c_type,d_f_length,d_f_c_i)  values (#{t_id},#{d_type},#{d_frequency},#{d_r_power},#{d_t_power},#{d_program},#{d_m_m},#{d_i_interface},#{d_m_b},#{d_multiple},#{d_f_type},#{d_f_polarity},#{d_f_direction},#{d_f_h},#{d_f_c_type},#{d_f_length},#{d_f_c_i})
 	</insert>
 	<update id="d_update"  parameterType="map"  >
-		   UPDATE device_info set d_frequency=#{d_frequency},d_r_power=#{d_r_power},d_t_power=#{d_t_power},d_program=#{d_program},d_m_m=#{d_m_m},d_i_interface=#{d_i_interface},d_m_b=#{d_m_b},d_multiple=#{d_multiple},d_f_type=#{d_f_type},d_f_polarity=#{d_f_polarity},d_f_direction=#{d_f_direction},d_f_h=#{d_f_h},d_f_c_type=#{d_f_c_type},d_f_length=#{d_f_length}  where d_id=#{d_id}
+		   UPDATE device_info set d_frequency=#{d_frequency},d_r_power=#{d_r_power},d_t_power=#{d_t_power},d_program=#{d_program},d_m_m=#{d_m_m},d_i_interface=#{d_i_interface},d_m_b=#{d_m_b},d_multiple=#{d_multiple},d_f_type=#{d_f_type},d_f_polarity=#{d_f_polarity},d_f_direction=#{d_f_direction},d_f_h=#{d_f_h},d_f_c_type=#{d_f_c_type},d_f_length=#{d_f_length},d_f_c_i=#{d_f_c_i}  where d_id=#{d_id}
 	</update>
 	<delete id="d_del"  parameterType="int">
 			delete from device_info  where d_id = #{id}
@@ -97,5 +97,27 @@
 	</update>
 
 
+	
+<!-- 电源设备  power_device-->
+	<select id="power_list1"  resultType="map"    parameterType="int">
+		SELECT * FROM power_device WHERE t_id=#{id} and power_type=1
+	</select>
+	
+	<select id="power_list2"  resultType="map"    parameterType="int">
+		SELECT * FROM power_device WHERE t_id=#{id} and power_type=2
+	</select>
+	
+	<select id="power_info"  resultType="map"    parameterType="int">
+		SELECT * FROM power_device WHERE power_id=#{id}
+	</select>
+	<delete id="power_del"  parameterType="int">
+			delete from power_device  where power_id = #{id}
+	</delete>
+	<insert id="power_add"  parameterType="map" >
+			insert into power_device  ( t_id,power_type,power_capacity,power_quantity,power_load)  values ( #{t_id},#{power_type},#{power_capacity},#{power_quantity},#{power_load})
+	</insert>
+	<update id="power_update"  parameterType="map"  >
+		   UPDATE power_device set  power_capacity=#{power_capacity},power_quantity=#{power_quantity},power_load=#{power_load}  where power_id=#{power_id}
+	</update>
 
 </mapper>

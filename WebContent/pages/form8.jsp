@@ -73,7 +73,7 @@
                     		 
                     		<label class="col-sm-2 control-label" for="ta_sm_m_c" >监测内容</label>
                              <div class="col-sm-4">
- 								<select id="ta_sm_m_c" name ="ta_sm_m_c" class="form-control">
+ 								<select id="ta_sm_m_c_1" name ="ta_sm_m_c_1" class="form-control  js-example-basic-multiple" multiple="multiple" style="width:100%">
 								<option>功率</option>
 								<option>开关机控制</option>
 								<option>输入输出信号</option>
@@ -81,6 +81,7 @@
 								<option>频率监测</option>
 								<option>电流电压</option>
 							</select>
+							<input type="hidden"  id="ta_sm_m_c"  name="ta_sm_m_c"  value="">
                     		 </div>
                       </div>      
                       
@@ -144,11 +145,12 @@
                             </div>
                              <label class="col-sm-2 control-label" for="ta_vs_region"  >所在区域 </label>
                              <div class="col-sm-4">
-								<select id="ta_vs_region" name ="ta_vs_region" class="form-control">
+								<select id="ta_vs_region_1" name ="ta_vs_region_1" class="form-control js-example-basic-multiple" multiple="multiple" style="width:100%">
 								<option>设备区</option>
 								<option>办公区</option>
 								<option>场区</option>
 								</select>
+								<input type="hidden"  id="ta_vs_region"  name="ta_vs_region"  value="">
                             </div>
 
                        </div>   

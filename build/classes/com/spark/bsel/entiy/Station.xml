@@ -17,8 +17,7 @@
 	
 	<select id="out_info"  resultType="map"  parameterType="int">
 		SELECT
- 			t_id,t_name,t_city,t_county,t_township,t_address,t_longitude,t_latitude,t_accuracy,t_altitude,t_build_date,t_purpose,t_parent,t_distance,t_move,t_version,t_group,t_c_time,t_c_u_id,t_cg_time,t_cg_u_id,p_primary,p_standby,p_t_capacity,p_t_quantity,p_t_load,p_a_power,p_u_capacity,p_u_quantity,p_u_load,p_m_capacity,p_m_quantity,p_m_load,p_resistance,c_p_layers,c_c_layers,c_l_type,c_l_v1,c_l_v2,c_g_type,c_g_v,c_as_type,c_as_cool,c_as_power,c_a_type,c_a_volume,c_a_power,c_a_pressure,t_p_layers,t_c_layers,t_l_type,t_l_v1,t_l_v2,t_g_type,t_g_v,t_as_type,t_as_cool,t_as_power,t_a_type,t_a_volume,t_a_power,t_a_pressure,t_d_type,t_d_v,cm_p_layers,cm_c_layers,cm_l_type,cm_l_v1,cm_l_v2,cm_l_v3,cm_g_type,cm_g_v,cm_as_type,cm_as_cool,cm_as_power,cm_a_type,cm_a_volume,cm_a_power,cm_a_pressure,ta_net,IF(ta_s_centre=0,'否','是') AS ta_s_centre,IF(ta_sm_i=0,'否','是') AS ta_sm_i,ta_sm_i_type,ta_sm_c_i,ta_sm_m_c,IF(ta_pm=0,'否','是') AS ta_pm,IF(ta_pm_ups=0,'不具备','具备') AS ta_pm_ups,IF(ta_pm_pc=0,'不具备','具备') AS ta_pm_pc,IF(ta_pm_rp=0,'不具备','具备') AS ta_pm_rp ,ta_vs,ta_vs_region,ta_vs_am,IF(ta_vs_ia=0,'不具备','具备') AS ta_vs_ia,IF(ta_vs_ia_n=0,'不需要','需要') AS ta_vs_ia_n,IF(ta_vs_io=0,'不具备','具备') AS ta_vs_io,IF(ta_vs_io_n=0,'不需要','需要') AS ta_vs_io_n,IF(ta_vs_pg=0,'不具备','具备') AS ta_vs_pg, IF(ta_vs_pg_n=0,'不需要','需要') AS ta_vs_pg_n,IF(ta_vs_em=0,'不具备','具备') AS ta_vs_em, IF(ta_vs_em_n=0,'不需要','需要') AS ta_vs_em_n,ta_vs_em_position,ta_vs_em_ci,tm_longitude,tm_latitude,tm_altitude,tm_position,IF(tm_ice=0,'否','是') AS tm_ice,tm_height,tm_hemline,tm_style,tm_style_v,tm_build_unit,tm_design_unit,tm_lifespan,tm_s_status,t_new_sign,t_status
-		FROM Tower_info WHERE t_id=#{id}
+ 			t_id,t_name,t_city,t_county,t_township,t_address,t_longitude,t_latitude,t_accuracy,t_altitude,t_build_date,t_purpose,t_parent,t_distance,t_move,t_version,t_group,t_c_time,t_c_u_id,t_cg_time,t_cg_u_id,p_primary,p_standby,p_t_capacity,p_t_quantity,p_t_load,p_a_power,p_u_capacity,p_u_quantity,p_u_load,p_m_capacity,p_m_quantity,p_m_load,p_resistance,c_p_layers,c_c_layers,c_l_type,c_l_v1,c_l_v2,c_g_type,c_g_v,c_as_type,c_as_cool,c_as_power,c_a_type,c_a_volume,c_a_power,c_a_pressure,t_p_layers,t_c_layers,t_l_type,t_l_v1,t_l_v2,t_g_type,t_g_v,t_as_type,t_as_cool,t_as_power,t_a_type,t_a_volume,t_a_power,t_a_pressure,t_d_type,t_d_v,cm_p_layers,cm_c_layers,cm_l_type,cm_l_v1,cm_l_v2,cm_l_v3,cm_g_type,cm_g_v,cm_as_type,cm_as_cool,cm_as_power,cm_a_type,cm_a_volume,cm_a_power,cm_a_pressure,ta_net,IF(ta_s_centre=0,'否','是') AS ta_s_centre,IF(ta_sm_i=0,'否','是') AS ta_sm_i,ta_sm_i_type,ta_sm_c_i,ta_sm_m_c,IF(ta_pm=0,'否','是') AS ta_pm,IF(ta_pm_ups=0,'不具备','具备') AS ta_pm_ups,IF(ta_pm_pc=0,'不具备','具备') AS ta_pm_pc,IF(ta_pm_rp=0,'不具备','具备') AS ta_pm_rp ,ta_vs,ta_vs_region,ta_vs_am,IF(ta_vs_ia=0,'不具备','具备') AS ta_vs_ia,IF(ta_vs_ia_n=0,'不需要','需要') AS ta_vs_ia_n,IF(ta_vs_io=0,'不具备','具备') AS ta_vs_io,IF(ta_vs_io_n=0,'不需要','需要') AS ta_vs_io_n,IF(ta_vs_pg=0,'不具备','具备') AS ta_vs_pg, IF(ta_vs_pg_n=0,'不需要','需要') AS ta_vs_pg_n,IF(ta_vs_em=0,'不具备','具备') AS ta_vs_em, IF(ta_vs_em_n=0,'不需要','需要') AS ta_vs_em_n,ta_vs_em_position,ta_vs_em_ci,tm_longitude,tm_latitude,tm_altitude,tm_position,IF(tm_ice=0,'否','是') AS tm_ice,tm_height,tm_hemline,tm_style,tm_style_v,tm_build_unit,tm_design_unit,tm_lifespan,tm_s_status,t_new_sign,t_status      	FROM Tower_info WHERE t_id=#{id}
 	</select>
 	 <select id="grouplist" resultType="map" parameterType="int">
 	 <![CDATA[
@@ -120,7 +119,6 @@
 	<update id="upd" parameterType="map">
 
 		update Tower_info set t_cg_time = now(),t_cg_u_id=#{t_cg_u_id}
-		
 		<if test="t_name != '' and  t_name != null">,t_name = #{t_name},t_status=0</if>
 		<if test="t_city != '' and  t_city != null">,t_city = #{t_city}</if>
 		<if test="t_county != '' and  t_county != null">,t_county = #{t_county}</if>
@@ -151,13 +149,10 @@
 		<if test="p_m_quantity != '' and  p_m_quantity != null">,p_m_quantity = #{p_m_quantity}</if>
 		<if test="p_m_load != '' and  p_m_load != null">,p_m_load = #{p_m_load}</if>
 		<if test="p_resistance != '' and  p_resistance != null">,p_resistance = #{p_resistance}</if>
-
+		
 		<if test="c_p_layers != '' and  c_p_layers != null">
 			,c_p_layers = #{c_p_layers},
 			c_c_layers = #{c_c_layers},
-			c_l_type = #{c_l_type},
-			c_l_v1 = #{c_l_v1},
-			c_l_v2 = #{c_l_v2},
 			c_g_type = #{c_g_type},
 			c_g_v = #{c_g_v},
 			c_as_type = #{c_as_type},
@@ -172,9 +167,6 @@
 		<if test="t_p_layers != '' and  t_p_layers != null">
 			,t_p_layers = #{t_p_layers},
 			t_c_layers = #{t_c_layers},
-			t_l_type = #{t_l_type},
-			t_l_v1 = #{t_l_v1},
-			t_l_v2 = #{t_l_v2},
 			t_g_type = #{t_g_type},
 			t_g_v = #{t_g_v},
 			t_as_type = #{t_as_type},
@@ -184,17 +176,85 @@
 			t_a_volume = #{t_a_volume},
 			t_a_power = #{t_a_power},
 			t_a_pressure = #{t_a_pressure},
-			t_d_type = #{t_d_type},
-			t_d_v = #{t_d_v}
+			t_d_v = #{t_d_v},
+			t_d_v_a = #{t_d_v_a},
+			t_d_v_b = #{t_d_v_b}
 		</if>
+		
+		
+		<if test="c_l_type != '' and  c_l_type != null">
+			,c_l_type = #{c_l_type},c_l_v1 = #{c_l_v1},c_l_v2 = #{c_l_v2}
+		</if>
+		
+		<if test="c_l_type == '' ">
+			,c_l_type ='',c_l_v1 = 0,c_l_v2 =0
+		</if>
+		
+		<if test="c_l_type_a != '' and  c_l_type_a != null">
+			,c_l_type_a = #{c_l_type_a}
+		</if>
+		
+		<if test="c_l_type_b != '' and  c_l_type_b != null">
+			,c_l_type_b = #{c_l_type_b},c_l_v1_3 = #{c_l_v1_3},c_l_v2_3 = #{c_l_v2_3}
+		</if>
+		
+		<if test="c_l_type_b == '' ">
+			,c_l_type_b ='',c_l_v1_3 = 0,c_l_v2_3 =0
+		</if>
+		
+ 
+		
+		
+		<if test="t_l_type != '' and  t_l_type != null">
+			,t_l_type = #{t_l_type},t_l_v1 = #{t_l_v1},t_l_v2 = #{t_l_v2}
+		</if>
+		
+		<if test="t_l_type == '' ">
+			,t_l_type ='',t_l_v1 = 0,t_l_v2 =0
+		</if>
+		
+			<if test="t_l_type_a != '' and  t_l_type_a != null">
+			,t_l_type_a = #{t_l_type_a}
+		</if>
+		
+		<if test="t_l_type_b != '' and  t_l_type_b != null">
+			,t_l_type_b = #{t_l_type_b}, t_l_v1_3 = #{t_l_v1_3},t_l_v2_3 = #{t_l_v2_3}
+		</if>
+		
+		<if test="t_l_type_b == '' ">
+			,t_l_type_b ='',t_l_v1_3 = 0,t_l_v2_3 =0
+		</if>
+	
+	
+	
+	
+	
+	
+	
+		<if test="cm_l_type != '' and  cm_l_type != null">
+			,cm_l_type = #{cm_l_type},	cm_l_v1 = #{cm_l_v1},	cm_l_v2 = #{cm_l_v2}
+		</if>
+		
+		<if test="cm_l_type == '' ">
+			,cm_l_type ='',cm_l_v1 = 0,cm_l_v2 =0
+		</if>
+		
+		<if test="cm_l_type_a != '' and  cm_l_type_a != null">
+			,cm_l_type_a = #{cm_l_type_a}
+		</if>
+		
+		<if test="cm_l_type_b != '' and  cm_l_type_b != null">
+			,cm_l_type_b = #{cm_l_type_b},cm_l_v1_3 = #{cm_l_v1_3},cm_l_v2_3 = #{cm_l_v2_3}
+		</if>
+		
+		<if test="cm_l_type_b == '' ">
+			,cm_l_type_b ='',cm_l_v1_3 = 0,cm_l_v2_3 =0
+		</if>			
+		
 
 		<if test="cm_p_layers != '' and  cm_p_layers != null">
 			,cm_p_layers = #{cm_p_layers},
 			cm_c_layers = #{cm_c_layers},
-			cm_l_type = #{cm_l_type},
-			cm_l_v1 = #{cm_l_v1},
-			cm_l_v2 = #{cm_l_v2},
-			cm_l_v3 = #{cm_l_v3},
 			cm_g_type = #{cm_g_type},
 			cm_g_v = #{cm_g_v},
 			cm_as_type = #{cm_as_type},

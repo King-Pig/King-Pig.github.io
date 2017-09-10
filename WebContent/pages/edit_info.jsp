@@ -51,6 +51,7 @@ if(action == null) action ="";
 <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 <link href="../css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
 
+<link href="../css/select2.min.css" rel="stylesheet">
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 <!--[if lt IE 9]>
@@ -313,8 +314,15 @@ if(action == null) action ="";
 									<th >节目</th>
 									<th >发射机厂商/设备型号</th>
 									<th >是否具备对外智能接口</th>
+									<th >智能接口类型</th>
 									<th >主/备</th>
 									<th >多工情况</th>
+									<th>天线类型</th>
+									<th>极化</th>
+									<th>方向性</th>
+									<th>天线中心挂高</th>
+									<th>馈线类型、接头类型</th>
+									<th>长</th>
 									<th >操作</th>
 									</tr>
 								</thead>
@@ -352,8 +360,15 @@ if(action == null) action ="";
 									<th >节目</th>
 									<th >发射机厂商/设备型号</th>
 									<th >是否具备对外智能接口</th>
+									<th >智能接口类型</th>
 									<th >主/备</th>
 									<th >多工情况</th>
+									<th>天线类型</th>
+									<th>极化</th>
+									<th>方向性</th>
+									<th>天线中心挂高</th>
+									<th>馈线类型、接头类型</th>
+									<th>长</th>
 									<th >操作</th>
 									</tr>
 								</thead>
@@ -782,6 +797,21 @@ if(action == null) action ="";
     				</div>
     				</div>  
     				
+    			    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">智能接口类型</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+    				       <select id="d_f_c_i" name ="d_f_c_i" class="form-control">
+								<option>RS485</option>
+								<option>RS232</option>
+								<option>以太网</option>
+							</select>
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>  	
+    				
     				<div class="row">
   					<div class="col-sm-4">
       					<span class="">主/备</span>
@@ -826,7 +856,11 @@ if(action == null) action ="";
     				</div>
     				<div class="col-sm-6">
     				<div class="form-group">
-      					<input id="d_f_polarity" name="d_f_polarity" type="number" class="form-control"   placeholder="">
+      					 
+      					    <select id="d_f_polarity" name ="d_f_polarity" class="form-control "   >
+                             	<option>水平</option>
+								<option>垂直</option>
+							</select>
     				</div><!-- /input-group -->
     				</div>
     				</div>  
@@ -941,6 +975,52 @@ if(action == null) action ="";
     				<input type="hidden" id="form_tag6"  name="form_tag"  value="as">
   				</form>
   				
+  				
+  				  <form class="form-horizontal  list_info_form"   id="list_info_form7" style="display:none;">
+  					
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">UPS容量（kVA）</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="power_capacity" name="power_capacity" type="number" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>
+    				
+  					<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">UPS数量</span>
+    				</div>
+    				<div class="col-sm-6">
+    				<div class="form-group">
+      					<input id="power_quantity" name="power_quantity" type="number" class="form-control"   placeholder="">
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>   				
+    				
+    				<div class="row">
+  					<div class="col-sm-4">
+      					<span class="">UPS负荷（kVA）</span>
+    				</div>
+
+    				<div class="col-sm-6">
+    				<div class="form-group">
+    				
+						<input id="power_load" name="power_load" type="number" class="form-control"   placeholder="">
+     
+    				</div><!-- /input-group -->
+    				</div>
+    				</div>  
+
+ 
+
+ 					 <input type="hidden" id="power_type"  name="power_type"  >
+ 					 <input type="hidden" id="power_id"  name="power_id"  >
+    				<input type="hidden" id="form_tag7"  name="form_tag"  value="power">
+  				</form>
 
       </div>
       <div class="modal-footer">
@@ -983,9 +1063,11 @@ if(action == null) action ="";
 	
 	<!-- Custom Theme JavaScript -->
 	<script src="../dist/js/sb-admin-2.js"></script>
-		<script type="text/javascript"  src="../js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	<script type="text/javascript"  src="../js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+	<script src="../js/select2.min.js"></script>
 	<script>
-
+	 	var $ta_sm_m_c_Multi;
+		var $ta_vs_region_Multi;
 
 
 	function uploadfile(type){
@@ -1057,13 +1139,21 @@ if(action == null) action ="";
 	//模态窗口
  
 	function openwindow(num,id){
-		var d_type;
+		var d_type =0;
+		var power_type = 0;
 		if(num == 5){
 			num = num-1; 
 			d_type = 2
 		}else if(num == 4){
 			d_type = 1
 		}
+		 if(num == 8){
+				num = num-1; 
+				power_type = 2
+		}else if(num == 7){
+			power_type = 1
+		}
+		 
 		$(".list_info_form").hide();
 		$("#list_info_form"+num).show();	
 		save_list_info_num = num;
@@ -1075,7 +1165,9 @@ if(action == null) action ="";
 			// 新增
 			save_list_info_type = 'add';
 			document.getElementById("list_info_form"+num).reset();  //表单初始化
-			$('#d_type').val(d_type);
+			if(d_type != 0)	$('#d_type').val(d_type);
+			if(power_type != 0)	$('#power_type').val(power_type);
+			
 			$("#"+nowid).val(0);
 			$('#list_modal').modal({
 			    keyboard: true,
@@ -1259,6 +1351,9 @@ if(action == null) action ="";
 			$.post("../StationInfo?method=update&t_id="+id, from_data, function(data) {
 		         	if(next == 1){
 		         		nextpage(unm);
+					}else{
+						
+						alert("当前表单保存成功！");
 					}
 		         		
 			}, "json");
@@ -1344,6 +1439,16 @@ if(action == null) action ="";
  					$("#info_from7").populateForm(result);
  					$("#info_from8").populateForm(result);
  					$("#info_from9").populateForm(result);
+
+ 					if(result.ta_sm_m_c !=""){
+ 						var d =  result.ta_sm_m_c.split(",");
+ 						 $ta_sm_m_c_Multi.val(d).trigger("change");
+ 					}
+ 					if(result.ta_vs_region !=""){
+ 						var d =  result.ta_vs_region.split(",");
+ 						 $ta_vs_region_Multi.val(d).trigger("change");
+ 					}
+ 					
  					showfiles(result.files);
  					$("#list_loading").hide();
  					$("#side-menu").show();
@@ -1381,6 +1486,7 @@ if(action == null) action ="";
 	
 	//表单必填校验
  	function formValuesCheck(fname) {
+
  		var fields = $("#"+fname).serializeArray(); 
  		var r = 0;
  		var op = "";
@@ -1397,10 +1503,13 @@ if(action == null) action ="";
  	    	}
  	    });
  	    
+ 	    if(r){
+ 	    	alert("请填写完整（红色框为必填项）");
+ 	    }
  	    return r;
  	  }
  	 
- 	
+
 		//时间 控件初始化
 		$(function() {
 			  $(".form_datetime").datetimepicker({
@@ -1409,6 +1518,29 @@ if(action == null) action ="";
 				  minView:'month',
 				  autoclose:true
 				  });
+			  
+			  $ta_sm_m_c_Multi =  $("#ta_sm_m_c_1").select2();
+			  $ta_vs_region_Multi =  $("#ta_vs_region_1").select2();
+			  
+			  
+			  $ta_sm_m_c_Multi.on("select2:select", function (e) { 
+				  var d = 	$ta_sm_m_c_Multi.val();
+				  $("#ta_sm_m_c").val(d);
+				});
+			  $ta_sm_m_c_Multi.on("select2:unselect", function (e) {
+				  var d = 	$ta_sm_m_c_Multi.val();
+				  $("#ta_sm_m_c").val(d);
+				});
+			  
+			  
+			  $ta_vs_region_Multi.on("select2:select", function (e) { 
+				  var d = 	$ta_vs_region_Multi.val();
+				  $("#ta_vs_region").val(d);
+				});
+			  $ta_vs_region_Multi.on("select2:unselect", function (e) {
+				  $("#ta_vs_region").val(d);
+				});
+			  
 		});
 		
 		var t_id=$('#t_id').val();  
@@ -1431,7 +1563,7 @@ if(action == null) action ="";
 		
  		//列表数据加载
 		function getAllListData(){
-			var method  = new Array("s_list", "o_list", "m_list","d_list1","d_list2");
+			var method  = new Array("s_list", "o_list", "m_list","d_list1","d_list2","p_list1","p_list2");
 			var _html_arr ;
 				
 				$.post("../DeviceInfo?method=alldata&t_id="+$('#t_id').val(), function(data) {
@@ -1506,8 +1638,15 @@ if(action == null) action ="";
 			                _html_arr.push('<td>' + item.d_program + '</td>');
 			                _html_arr.push('<td>' + item.d_m_m + '</td>');
 			                _html_arr.push('<td>' + yes+ '</td>');
+			                _html_arr.push('<td>' + item.d_f_c_i + '</td>');
 			                _html_arr.push('<td>' + item.d_m_b + '</td>');
 			                _html_arr.push('<td>' + item.d_multiple + '</td>');
+			                _html_arr.push('<td>' + item.d_f_type + '</td>');
+			                _html_arr.push('<td>' + item.d_f_polarity + '</td>');
+			                _html_arr.push('<td>' + item.d_f_direction + '</td>');
+			                _html_arr.push('<td>' + item.d_f_h + '</td>');
+			                _html_arr.push('<td>' + item.d_f_c_type + '</td>');
+			                _html_arr.push('<td>' + item.d_f_length + '</td>');
 			                _html_arr.push('<td style="text-align: center ;">');
 			               	_html_arr.push('<button type="button" onclick="openwindow(4,'+item.d_id+')" class="btn btn-success btn-xs">编辑</button>');
 			               	_html_arr.push('&nbsp  <button type="button" onclick="del_info(\'d\','+item.d_id+')" class="btn btn-success btn-xs">删除</button>');
@@ -1529,11 +1668,17 @@ if(action == null) action ="";
 			                _html_arr.push('<td>' + item.d_program + '</td>');
 			                _html_arr.push('<td>' + item.d_m_m + '</td>');
 			                _html_arr.push('<td>' +yes + '</td>');
+			                _html_arr.push('<td>' + item.d_f_c_i + '</td>');
 			                _html_arr.push('<td>' + item.d_m_b + '</td>');
 			                _html_arr.push('<td>' + item.d_multiple + '</td>');
-
+			                _html_arr.push('<td>' + item.d_f_type + '</td>');
+			                _html_arr.push('<td>' + item.d_f_polarity + '</td>');
+			                _html_arr.push('<td>' + item.d_f_direction + '</td>');
+			                _html_arr.push('<td>' + item.d_f_h + '</td>');
+			                _html_arr.push('<td>' + item.d_f_c_type + '</td>');
+			                _html_arr.push('<td>' + item.d_f_length + '</td>');
 			                _html_arr.push('<td style="text-align: center ;">');
-			               	_html_arr.push('<button type="button" onclick="openwindow(4'+item.d_id+')" class="btn btn-success btn-xs">编辑</button>');
+			               	_html_arr.push('<button type="button" onclick="openwindow(4,'+item.d_id+')" class="btn btn-success btn-xs">编辑</button>');
 			            	_html_arr.push('&nbsp  <button type="button" onclick="del_info(\'d\','+item.d_id+')" class="btn btn-success btn-xs">删除</button>');
 			                _html_arr.push('</td>');
 			                _html_arr.push('</tr>');
@@ -1562,13 +1707,58 @@ if(action == null) action ="";
 					}
 					
 					
+					if (typeof(data.power_list1) == "object"){
+						_html_arr = new Array();
+						$.each(data.power_list1, function(i, item) {
+
+			                _html_arr.push('<tr class="">');
+			                _html_arr.push('<td>' + (i+1)+ '</td>');
+			                _html_arr.push('<td>' + item.power_capacity + '</td>');
+			                _html_arr.push('<td>' + item.power_quantity + '</td>');
+			                _html_arr.push('<td>' + item.power_load + '</td>');
+			                _html_arr.push('<td style="text-align: center ;">');
+			               	_html_arr.push('<button type="button" onclick="openwindow(7,'+item.power_id+')" class="btn btn-success btn-xs">编辑</button>');
+			            	_html_arr.push('&nbsp  <button type="button" onclick="del_info(\'power\','+item.power_id+')" class="btn btn-success btn-xs">删除</button>');
+			                _html_arr.push('</td>');
+			                _html_arr.push('</tr>');
+		                });
+						$('#power_list1').html(_html_arr.join(''));
+					}
+					
+					if (typeof(data.power_list2) == "object"){
+						_html_arr = new Array();
+						$.each(data.power_list2, function(i, item) {
+
+			                _html_arr.push('<tr class="">');
+			                _html_arr.push('<td>' + (i+1)+ '</td>');
+			                _html_arr.push('<td>' + item.power_capacity + '</td>');
+			                _html_arr.push('<td>' + item.power_quantity + '</td>');
+			                _html_arr.push('<td>' + item.power_load + '</td>');
+			                _html_arr.push('<td style="text-align: center ;">');
+			               	_html_arr.push('<button type="button" onclick="openwindow(8,'+item.power_id+')" class="btn btn-success btn-xs">编辑</button>');
+			            	_html_arr.push('&nbsp  <button type="button" onclick="del_info(\'power\','+item.power_id+')" class="btn btn-success btn-xs">删除</button>');
+			                _html_arr.push('</td>');
+			                _html_arr.push('</tr>');
+		                });
+						$('#power_list2').html(_html_arr.join(''));
+					}
+					
+					
 				}, "json");
 				
  
 			
 		}
 		
-		
+ 		
+ 		function zouxian(id,id1,id2){
+  
+ 			if($("#"+id).val().length ==0){
+ 				$("#"+id1).val(0);
+ 				$("#"+id2).val(0);
+ 			}
+ 		}
+			
 		initLoading();
 	</script>
 </body>

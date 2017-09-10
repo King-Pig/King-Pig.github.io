@@ -19,18 +19,18 @@
                     <fieldset>
                         <legend>供配电</legend>
                        <div class="form-group">
-                          <label class="col-sm-2 control-label"  for="p_primary" >外电主路电压等级</label>
+                          <label class="col-sm-2 control-label"  for="p_primary" >外电主路电压等级（kV）</label>
                           <div class="col-sm-4">
                              <input class="form-control"  id="p_primary" name ="p_primary"  type="number" placeholder="kV"/>
                           </div>
-                          <label class="col-sm-2 control-label"  for="p_standby">外电辅路电压等级</label>
+                          <label class="col-sm-2 control-label"  for="p_standby">外电辅路电压等级（kV）</label>
                           <div class="col-sm-4">
- 							<input class="form-control"  id="p_standby" name ="p_standby"  type="number" placeholder="kV"/>
+ 							<input class="form-control"  id="p_standby" name ="p_standby"  type="number" placeholder="kV"/> 
                           </div>
                        </div>
                        <div class="form-group">
                        
-                          <label class="col-sm-2 control-label"  for="p_t_capacity">变压器 容量</label>
+                          <label class="col-sm-2 control-label"  for="p_t_capacity">变压器 容量（kVA）</label>
                           <div class="col-sm-4">
                              <input class="form-control"  id="p_t_capacity" name="p_t_capacity"  type="number" placeholder="kVA"/>
                           </div>
@@ -46,20 +46,89 @@
                        
                        
                         <div class="form-group">
-                           <label class="col-sm-2 control-label" for="p_t_load" >变压器实际负荷 </label>
+                           <label class="col-sm-2 control-label" for="p_t_load" >变压器实际负荷（kVA） </label>
                              <div class="col-sm-4">
                              <input class="form-control"  id=" p_t_load"  name ="p_t_load" type="number" placeholder="kVA"/>
                              </div>
 
-                           <label class="col-sm-2 control-label" for="p_a_power">柴油发电机输出功率</label>
+                           <label class="col-sm-2 control-label" for="p_a_power">柴油发电机输出功率（kVA）</label>
                              <div class="col-sm-4">
                              <input class="form-control"  id=" p_a_power" name="p_a_power" type="number" placeholder="kVA"/>
                              </div>
                        </div>      
 
                        
+                         <div class="form-group">
+                       
+                          <label class="col-sm-2 control-label"  for="p_t_capacity">PUS</label>
+                          <div class="col-sm-10">
+                              <div class="panel panel-default">
+                        		<div class="panel-heading" style='height:42px;'>
+                            		<span class=""> </span>
+                                	<div class="navbar-right" style='margin-top:-5px;margin-right:10px;'>
+ 										<button type="button" class="btn btn-info   btn-sm" onclick="openwindow(7,0)"> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
+      								</div>
+                        		</div>
+                         
+                        		<div class="panel-body">
+ 						 			<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+										<thead>
+											<tr>
+											<th width="50px">序号</th>
+											<th>UPS容量 (kVA)</th>
+											<th>UPS数量</th>
+											<th>UPS实际负荷 (kVA)</th>
+											<th width="100px">操作</th>
+											</tr>
+										</thead>
+									<tbody id="power_list1">
+
+									</tbody>
+									</table>
+ 						 				
+								</div>
+							</div>
+                          </div>
+                       </div>
+                       
+                       
+                       
+                         <div class="form-group">
+                       
+                          <label class="col-sm-2 control-label"  for="p_t_capacity">稳压器</label>
+                          <div class="col-sm-10">
+                              <div class="panel panel-default">
+                        		<div class="panel-heading" style='height:42px;'>
+                            		<span class=""> </span>
+                                	<div class="navbar-right" style='margin-top:-5px;margin-right:10px;'>
+ 										<button type="button" class="btn btn-info   btn-sm" onclick="openwindow(8,0)"> <span class='fa  fa-plus  ' style='color:#ffffff'></span>  </button>
+      								</div>
+                        		</div>
+                         
+                        		<div class="panel-body">
+ 						 			<table class="table table-striped table-bordered table-hover" id="dataTables-example">
+										<thead>
+											<tr>
+											<th width="50px">序号</th>
+											<th>稳压器容量 (kVA)</th>
+											<th>稳压器数量</th>
+											<th>稳压器实际负荷 (kVA)</th>
+											<th width="100px">操作</th>
+											</tr>
+										</thead>
+									<tbody id="power_list2">
+
+									</tbody>
+									</table>
+ 						 				
+								</div>
+							</div>
+                          </div>
+                       </div>
+                       
+                       <!--  
                       <div class="form-group">
-                           <label class="col-sm-2 control-label" for="p_u_capacity" >UPS容量</label>
+                           <label class="col-sm-2 control-label" for="p_u_capacity" >UPS容量（kVA）</label>
                              <div class="col-sm-4">
  								<input class="form-control"  id=" p_u_capacity" name = "p_u_capacity" type="number" placeholder="kVA"/>
                     		 </div>
@@ -74,12 +143,12 @@
                        
  
                          <div class="form-group">
-                           <label class="col-sm-2 control-label" for="p_u_load" >UPS实际负荷 </label>
+                           <label class="col-sm-2 control-label" for="p_u_load" >UPS实际负荷 （kVA）</label>
                              <div class="col-sm-4">
  								<input class="form-control"  id=" p_u_load" name="p_u_load" type="number" placeholder="kVA"/>
                              </div>
 
-                           <label class="col-sm-2 control-label" for="p_m_capacity">稳压器 容量 </label>
+                           <label class="col-sm-2 control-label" for="p_m_capacity">稳压器 容量 （kVA）</label>
                              <div class="col-sm-4">
                              <input class="form-control"  id=" p_m_capacity" name = "p_m_capacity" type="number" placeholder="kVA"/>
                              </div>
@@ -92,14 +161,15 @@
 								<input class="form-control"  id=" p_m_quantity"  name="p_m_quantity" type="number" placeholder=""/>
                              </div>
 
-                           <label class="col-sm-2 control-label" for="p_m_load">稳压器 实际负荷</label>
+                           <label class="col-sm-2 control-label" for="p_m_load">稳压器 实际负荷（kVA）</label>
                              <div class="col-sm-4">
                              <input class="form-control"  id=" p_m_load"  name="p_m_load" type="number" placeholder="kVA"/>
                              </div>
                        </div>   
+                       -->
                        
                        <div class="form-group">
-                           <label class="col-sm-2 control-label" for="p_resistance"  >场区接地电阻值 </label>
+                           <label class="col-sm-2 control-label" for="p_resistance"  >场区接地电阻值<br>(欧姆 Ω) </label>
                              <div class="col-sm-4">
 								<input class="form-control"  id=" p_resistance" name="p_resistance"  type="number" placeholder="欧姆（Ω）"/>
                              </div>

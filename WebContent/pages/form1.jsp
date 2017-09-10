@@ -140,7 +140,12 @@
 
                            <label class="col-sm-2 control-label" for="t_move">搬迁计划 </label>
                              <div class="col-sm-4">
-                             <input class="form-control"  id="t_move"  name ="t_move"  type="number" placeholder="年"/>
+                             
+                              <div class="input-group date form_datetime">
+                                       <input class="form-control "  id="t_move"  type="text" name="t_move"  readonly  data-date-format="yyyy-mm" />
+    									 <div class="input-group-addon"> <i class="fa fa-calendar"></i></div>
+    						</div>
+
                              </div>
                        </div>   
                        

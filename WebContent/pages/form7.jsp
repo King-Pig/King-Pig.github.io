@@ -23,6 +23,11 @@
                           <div class="col-sm-2">
                              <input class="form-control"  id="cm_p_layers" name ="cm_p_layers"  type="number" placeholder="层数"/>  
                           </div>
+                          
+                            <div class="col-sm-1"  style="text-align:center">
+                            <spna style="margin:5px;display:inline-block"> /</spna>
+                          </div>
+                          
                           <div class="col-sm-2">
                              <input class="form-control"  id="cm_c_layers" name ="cm_c_layers"  type="number" placeholder="总层数"/>
                           </div>
@@ -34,30 +39,59 @@
                       	
                       	<fieldset>
                         <legend>走线</legend>
-                        <div class="form-group">
-                           <label class="col-sm-2 control-label" for="cm_l_type" >走线类型</label>
-                             <div class="col-sm-4">
-                             <select id="cm_l_type" name ="cm_l_type" class="form-control">
+                        
+                           <div class="form-group">
+                           <label class="col-sm-2 control-label" for="cm_l_type" >走线架</label>
+                             <div class="col-sm-2">
+                             <select id="cm_l_type" name ="cm_l_type" class="form-control  zxlx"  optional="optional"  onchange="zouxian('cm_l_type','cm_l_v1','cm_l_v2')">
+                             	<option></option>
 								<option>走线架</option>
+
+							</select>
+                           </div>
+                             
+                           <label class="col-sm-2 control-label" for="cm_l_v1" >距地高度(米)</label>
+                             <div class="col-sm-2">
+ 								<input class="form-control  zxlx_v"  id="cm_l_v1"  name = "cm_l_v1" type="number" placeholder="米"  optional="optional"/>
+                    		 </div>
+                    		 
+                    		<label class="col-sm-2 control-label" for="cm_l_v2" >宽度(米)</label>
+                             <div class="col-sm-2">
+ 								<input class="form-control zxlx_v"  id="cm_l_v2"  name="cm_l_v2" type="number" placeholder="米"  optional="optional"/>
+                    		 </div>
+                      </div>   
+ 
+ 					<div class="form-group">
+                           <label class="col-sm-2 control-label" for="cm_l_type_a" >活动地板</label>
+                             <div class="col-sm-2">
+                             <select id="cm_l_type_a"  name ="cm_l_type_a" class="form-control zxlx"  optional="optional">
+								<option></option>
 								<option>活动地板</option>
-								<option>地沟</option>
 							</select>
                              </div>
 
-                       </div>      
+                      </div>  
 
-                      
-                      <div class="form-group">
-                           <label class="col-sm-2 control-label" for="cm_l_v1" >距地高度/沟深</label>
-                             <div class="col-sm-4">
- 								<input class="form-control"  id=" cm_l_v1" name = "cm_l_v1" type="number" placeholder="米"/>
+                         <div class="form-group">
+                           <label class="col-sm-2 control-label" for="cm_l_type_b" >地沟</label>
+                             <div class="col-sm-2">
+                             <select id="cm_l_type_b" name ="cm_l_type_b" class="form-control " optional="optional"  onchange="zouxian('cm_l_type_b','cm_l_v1_3','cm_l_v2_3')">
+								<option></option>
+								<option>地沟</option>
+							</select>
+                            </div>
+                           <label class="col-sm-2 control-label" for="cm_l_v1_3" >沟深(米)</label>
+                            <div class="col-sm-2">
+ 								<input class="form-control zxlx_v"  id="cm_l_v1_3" name = "cm_l_v1_3" type="number" placeholder="米"  optional="optional"/>
                     		 </div>
                     		 
-                    		<label class="col-sm-2 control-label" for="cm_l_v2" >宽度/沟宽</label>
-                             <div class="col-sm-4">
- 								<input class="form-control"  id=" cm_l_v2" name="cm_l_v2" type="number" placeholder="米"/>
+                    		<label class="col-sm-2 control-label" for="cm_l_v2_3" >沟宽(米)</label>
+                             <div class="col-sm-2">
+ 								<input class="form-control zxlx_v"  id="cm_l_v2_3"  name="cm_l_v2_3"  type="number" placeholder="米"  optional="optional"/>
                     		 </div>
-                      </div>      
+                      </div>  
+ 
+ 
                       </fieldset>
                       	
                       	<fieldset>
