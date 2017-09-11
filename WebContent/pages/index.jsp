@@ -8,6 +8,7 @@
 	}else{
 	 	boolean isadmin=false ;
 	 	String u_name = (String)u.get("user_name");
+	 	int u_id = (Integer) u.get("user_id");
 		if("admin".equals(u_name)) isadmin =true;
 		String city = (String)u.get("city"); 
 		if(city==null) city="";
@@ -98,7 +99,7 @@
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
 				</a>
 					<ul class="dropdown-menu dropdown-user">
-						<li><a href="#"><i class="fa fa-user fa-fw"></i>密码修改</a></li>
+						<li><a href="#"  onclick="mypwdchange()"><i class="fa fa-user fa-fw"></i>密码修改</a></li>
 						<%
 							if(isadmin){
 						%>
@@ -181,6 +182,42 @@
 		</div>
 
 
+<div class="modal fade"   id="mypwd"  tabindex="-1" role="dialog"   aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">密码修改</h4>  	 
+</div>
+      <div class="modal-body">
+         <form  id="pwd_form"  name="pwd_form">
+           		<div class="form-group">
+    			<label for="exampleInputEmail1">用户名</label>
+    				<p> <%=u_name %></p>
+ 			 </div>
+  			<div class="form-group">
+    			<label for="exampleInputEmail1">当前密码</label>
+    				<input type="email" class="form-control" id="old_pwd"  name="old_pwd" >
+ 			 </div>
+  			<div class="form-group">
+    		<label for="exampleInputPassword1">新密码1</label>
+    		<input type="password" class="form-control" id="new_pwd"  name="new_pwd"   placeholder="6~18位密码">
+  			</div>
+  			<div class="form-group">
+    			<label for="exampleInputFile">新密码2</label>
+    			<input type="password" class="form-control" id="new_pwd1"  placeholder="6~18位密码">
+  			</div>
+  			<input type="hidden"  id="user_id"  name="user_id"  value="<%=u_id %>"> 
+		</form >
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onclick="pwdchange()">修改</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 		<!-- /.row -->
 
 		<!-- /.row -->
@@ -200,7 +237,6 @@
 
 	<!-- Bootstrap Core JavaScript -->
 	<script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
-
 	<!-- Metis Menu Plugin JavaScript -->
 	<script src="../vendor/metisMenu/metisMenu.min.js"></script>
 	<script src="../js/bootstrap3-typeahead.min.js"></script>
@@ -212,6 +248,51 @@
 	<!-- Custom Theme JavaScript -->
 	<script src="../dist/js/sb-admin-2.js"></script>
 	<script>
+	
+	function pwdchange(){
+		var old_pwd = $("#old_pwd").val();
+		var new_pwd1 = $("#new_pwd").val();
+		var new_pwd2 = $("#new_pwd1").val();
+		if(old_pwd =="" ||  new_pwd1==""  || new_pwd2==""){
+			alert("请填写完整！");
+			return;
+		}
+		
+		if(new_pwd1.length<6){
+			alert("新密码长度不足6位！")
+			return;
+		}
+		
+		if(new_pwd1.length>18 ){
+			alert("新密码长度超已过18位！")
+			return;
+		}
+		
+		if(new_pwd1 != new_pwd2){
+			alert("新密码不相同！")
+			return;
+		}
+		
+	 
+		var from_data = $("#pwd_form").serialize();
+		$.post("../UserInfo?method=changepwd",from_data, function(data) {
+         	if(data.result == 1){
+         		alert("密码修改成！请使用新密码登录！");
+         		window.location.href="login.jsp";
+         	}else{
+         		alert(data.msg);
+         	}
+		}, "json");
+		
+	}
+	
+	 
+	function mypwdchange(){
+		$('#mypwd').modal({
+		    keyboard: true,
+		    show:true
+		});
+	}
 		function showcity() {
 			$.post("../StationInfo",{"method" : "city_count","city":"<%=city%>"},
 				function(data) {

@@ -16,11 +16,12 @@
 	
 		<update id="user_edit"  parameterType="map"  >
 			UPDATE  `user`  SET  lasttime=now()
- 			<if test="user_pwd != '' and  user_pwd != null">,user_pwd = password(#{user_pwd})</if>
+ 			<if test="new_pwd != '' and  new_pwd != null">,user_pwd = password(#{new_pwd})</if>
  			<if test= "city != null">,city = #{city}</if>
  			<if test="district != null">,district = #{district}</if>
  			<if test="user_status != '' and  user_status != null">,user_status = #{user_status}</if>
  			  where user_id = #{user_id}
+ 			  <if test="old_pwd != '' and  old_pwd != null"> and user_pwd = password(#{old_pwd})</if>
 		</update>
 		
 	<select id="user_name" resultType="map"  parameterType="map">
