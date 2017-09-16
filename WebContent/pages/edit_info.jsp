@@ -479,6 +479,27 @@ if(action == null) action ="";
 								</tbody>
 							</table>
 
+ 					<fieldset>
+                        <legend>附件</legend>
+                       <div class="form-group">
+                          <label class="col-sm-2 control-label"  for="" >天馈线现状图</label>
+                          <div class="col-sm-10">
+                            <div class="alert alert-warning">
+								<button type="button" class="btn btn-default   btn-sm" onclick="uploadfile(10)">上传</button>
+								<br/>
+								<div id="file_box10">
+								</div>
+                            </div>
+ 							
+                          </div>
+ 
+                       </div>
+                       
+   
+                       
+                       
+                       </fieldset>
+                       
 						</div>
                         <div class="panel-footer" style="text-align:center" >
                             <button type="button" class="btn btn-success" onclick="saveall()">完成</button>

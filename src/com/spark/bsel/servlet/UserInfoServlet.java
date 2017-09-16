@@ -55,6 +55,21 @@ public class UserInfoServlet  extends HttpServlet {
 			}
 
 			out.write(o.toString());
+		}else if("changepwd".equals(method) ){
+			Map  map = getParameterStringMap(request);
+/*			String old_pwd = request.getParameter("old_pwd");
+			String new_pwd = request.getParameter("new_pwd");
+			String user_id = request.getParameter("user_id");*/
+			JSONObject  o = new JSONObject();
+			 
+			int  i = ud.update(map);
+			if(i>0){
+				o.put("result", 1);
+			}else{
+				o.put("result", 0);
+				o.put("msg", "当前密码错误！");
+			}
+			out.write(o.toString());
 		}else if("useredit".equals(method) ){
 			Map  map = getParameterStringMap(request);
 			map.remove("user_name");
