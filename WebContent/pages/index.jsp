@@ -71,12 +71,14 @@
 				<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"> <i class="fa fa-th fa-fw"></i> <i class="fa fa-caret-down"></i>
 				</a>
 					<ul class="dropdown-menu dropdown-alerts">
+					<%if("".equals(city) && "".equals(district) ){ %>
 						<li><a href="#" onclick="add()">
 								<div>
 									<i class="fa fa-plus fa-fw"></i> 新增台站
 								</div>
 						</a></li>
 						<li class="divider"></li>
+					<%} %>
 						<li><a href="#">
 								<div>
 									<i class="fa  fa-search fa-fw"></i> 高级查询

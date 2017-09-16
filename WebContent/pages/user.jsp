@@ -314,9 +314,9 @@ if(u == null){
 						$.each(data,function(i, item) {
 							html += '<li><a href="#" onclick="districtchange(\''+item.name+'\')">'+item.name+'</a></li>';
 	 
-							$("#districtshowbox").html(html);
+							
 						});
-						
+						$("#districtshowbox").html(html);
 						}, "json");
 				}
 				

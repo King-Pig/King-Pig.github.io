@@ -44,6 +44,9 @@
 		SELECT * FROM  `district`   WHERE  cityid=#{id}
 	</select>
 	
+	<select id="district_name" resultType="map"  parameterType="map">
+		SELECT d.* FROM district d,city c WHERE c.id = d.cityId AND  c.name=#{city}
+	</select>
 	
 		<select id="city"  resultType="map"  >
 			SELECT * FROM `city`

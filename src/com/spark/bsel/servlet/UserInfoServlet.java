@@ -107,6 +107,12 @@ public class UserInfoServlet  extends HttpServlet {
 			List<Map<String,Object>> list = ud.queryDistrict(Integer.parseInt(id));
 			JSONArray  o = JSONArray.fromObject(list);
 			out.write(o.toString());
+		}else if("district_name".equals(method) ){
+			String city = request.getParameter("city");
+			if(city==null) city="";
+			List<Map<String,Object>> list = ud.queryDistrict(city);
+			JSONArray  o = JSONArray.fromObject(list);
+			out.write(o.toString());
 		}
  
 		

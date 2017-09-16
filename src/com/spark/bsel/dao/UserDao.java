@@ -1,5 +1,6 @@
 package com.spark.bsel.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -76,6 +77,18 @@ public class UserDao {
 	public List<Map<String,Object>>  queryCity(){
 		SqlSession session = MybatisUtil.getSession();
 		List<Map<String,Object>>  u = session.selectList("User.city");
+		MybatisUtil.closeSession();
+		return u;
+	}
+	
+	
+	public List<Map<String,Object>> queryDistrict(String name){
+		List<Map<String,Object>>  u = new ArrayList<Map<String,Object>>();
+		if(name == null || "".equals(name)) return u;
+		Map<String,Object>   map = new HashMap<String,Object> ();
+		map.put("city", name);
+		SqlSession session = MybatisUtil.getSession();
+		u = session.selectList("User.district_name", map);
 		MybatisUtil.closeSession();
 		return u;
 	}

@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
 
@@ -11,7 +12,26 @@
 <meta name="author" content="">
 
 <title>form1</title>
- 
+<script type="text/javascript">
+
+
+function citychange(){
+	var city = $("#t_city").val();
+	changecounty(city);
+}
+
+function changecounty(city){
+	$.post("../UserInfo",{"method" : "district_name","city":city},function(data) {
+		 
+		var html = '<option></option>';
+		$.each(data,function(i, item) {
+			html += '<option>'+item.name+'</option>';
+		});
+		$("#t_county").html(html);
+	}, "json");
+	
+}
+</script>
 </head>
 
 <body style=" font-family: 'Microsoft YaHei';color:#666666;">
@@ -25,7 +45,7 @@
                           </div>
                           <label class="col-sm-2 control-label"  for="t_city">市/州</label>
                           <div class="col-sm-4">
-                                <select id="t_city" name="t_city" class="form-control">
+                                <select id="t_city" name="t_city" class="form-control" onchange="citychange()" >
 <option>昆明市</option>
 <option>曲靖市</option>
 <option>玉溪市</option>
@@ -49,7 +69,10 @@
                        
                           <label class="col-sm-2 control-label"  for="t_county">县</label>
                           <div class="col-sm-4">
-                             <input class="form-control"  id="t_county" name="t_county" type="text"  placeholder=""   />
+                          	<select id="t_county" name="t_county" class="form-control">
+                          	
+                          	</select>
+ 
                           </div>
                           
                           <label class="col-sm-2 control-label"  for="t_address">地址</label>

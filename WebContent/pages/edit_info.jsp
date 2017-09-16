@@ -12,8 +12,10 @@ if(u == null){
 	if(city==null) city="";
 	String district = (String)u.get("district");
 	if(district==null) district="";
- 
- 
+ 	int province = 0;
+ 	if("".equals(city) && "".equals(district) ){
+ 		province = 1;
+ 	}
 
 String id = request.getParameter("id");
 String action = request.getParameter("action");
@@ -1089,7 +1091,7 @@ if(action == null) action ="";
 	<script>
 	 	var $ta_sm_m_c_Multi;
 		var $ta_vs_region_Multi;
-
+		var province = <%=province%>;
 
 	function uploadfile(type){
 		$('#upload_file_type').val(type);
@@ -1452,6 +1454,12 @@ if(action == null) action ="";
 						$("#copy_info").show();
 					}
 					
+					var html ="";// '<option></option>';
+					$.each(result.district,function(i, item) {
+						html += '<option>'+item.name+'</option>';
+					});
+					$("#t_county").html(html);
+					
 					$('#st_name').html(result.t_name);  
  					$("#info_from1").populateForm(result);
  					$("#info_from2").populateForm(result);
@@ -1460,7 +1468,13 @@ if(action == null) action ="";
  					$("#info_from7").populateForm(result);
  					$("#info_from8").populateForm(result);
  					$("#info_from9").populateForm(result);
-
+ 					
+ 					if(province == 0){
+ 						$("#t_city").attr("disabled","disabled");
+ 						$("#t_county").attr("disabled","disabled");
+ 						
+ 					}
+ 					
  					if(result.ta_sm_m_c !=""){
  						var d =  result.ta_sm_m_c.split(",");
  						 $ta_sm_m_c_Multi.val(d).trigger("change");

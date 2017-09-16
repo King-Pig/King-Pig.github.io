@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.spark.bsel.dao.FilesDao;
 import com.spark.bsel.dao.StationDao;
+import com.spark.bsel.dao.UserDao;
 import com.spark.bsel.util.CopyFileUtil;
 import com.spark.bsel.util.FileUtil;
 
@@ -80,8 +81,12 @@ public class StationInfoServlet extends HttpServlet {
 					t_id = "0";
 				Map<String, Object> map = sd.queryInfo(Integer.parseInt(t_id));
 				int group_id = (int) map.get("t_group");
+				String t_city =(String) map.get("t_city");
+				UserDao ud = new UserDao();
+				List<Map<String,Object>>  District = ud.queryDistrict(t_city);
 				List<Map<String, Object>> t_version_list = sd.queryGroup(group_id);
 				map.put("version_list", t_version_list);
+				map.put("district", District);
 				JSONObject o = new JSONObject();
 				if (map != null) {
 
