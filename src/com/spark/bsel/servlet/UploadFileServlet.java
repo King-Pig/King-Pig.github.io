@@ -48,6 +48,8 @@ public class UploadFileServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		String path = this.getServletContext().getRealPath("/")+"webapps/files";
+		FileUtil.setUploadPath(path);
 		PrintWriter out = response.getWriter();
 		JSONObject o = new JSONObject();
 		try {
@@ -132,7 +134,7 @@ public class UploadFileServlet extends HttpServlet {
 
 	private String getPath(String t_id) {
 
-		String basepath = FileUtil.uploadPath + "/" + t_id + "/";
+		String basepath = FileUtil.getUploadPath() + "/" + t_id + "/";
 
 		File file = new File(basepath);
 		if (!file.exists() && !file.isDirectory()) {

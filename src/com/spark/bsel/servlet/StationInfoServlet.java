@@ -40,6 +40,8 @@ public class StationInfoServlet extends HttpServlet {
 
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
+		String path = this.getServletContext().getRealPath("/")+"webapps/files";
+		FileUtil.setUploadPath(path);
 		String method = request.getParameter("method");
 		Map<String, Object> user = (Map<String, Object>) request.getSession().getAttribute("user");
 		PrintWriter out = response.getWriter();
@@ -187,7 +189,7 @@ public class StationInfoServlet extends HttpServlet {
 					file_id = "0";
 				FilesDao fd = new FilesDao();
 				Map<String, Object> m = fd.queryInfo(Integer.parseInt(file_id));
-				String file = FileUtil.uploadPath + (String) m.get("file_path");
+				String file = FileUtil.getUploadPath() + (String) m.get("file_path");
 				File f = new File(file);
 				f.delete();
 
@@ -266,7 +268,8 @@ public class StationInfoServlet extends HttpServlet {
 						System.out.println("copy 7 :" + i);
 						o.put("copy7", i);
 						if (i > 0) {
-							CopyFileUtil.copyDir(FileUtil.uploadPath + "/" + t_id, FileUtil.uploadPath + "/" + new_t_id);
+							String  p = FileUtil.getUploadPath();
+							CopyFileUtil.copyDir(p + "/" + t_id, p + "/" + new_t_id);
 						}
 
 						i = sd.copy_other(map, 8);

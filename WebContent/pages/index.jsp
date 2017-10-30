@@ -61,7 +61,7 @@
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
 					<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html"><span style="font-family: '楷体'; font-size: 25px; color: #cc0000; text-shadow: 1px 1px 2px #980000;"><strong>云南省广播电视无线发射台站资源信息库</strong></span></a>
+				<a class="navbar-brand" href="index.jsp"><span style="font-family: '楷体'; font-size: 25px; color: #cc0000; text-shadow: 1px 1px 2px #980000;"><strong>云南省广播电视无线发射台站资源信息库</strong></span></a>
 			</div>
 			<!-- /.navbar-header -->
 
